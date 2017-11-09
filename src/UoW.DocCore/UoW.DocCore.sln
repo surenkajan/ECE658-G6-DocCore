@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation Layer", "1. Presentation Layer", "{5FCBA414-7A97-4D7C-B794-377FF4B6619D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Hosting Layer", "2. Hosting Layer", "{993223E7-20B6-422D-A24D-2085727FD2D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Service Layer", "3. Service Layer", "{1BF0D197-F078-4D59-A72B-643094CC816D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Business Layer", "4. Business Layer", "{AFC71944-AD5A-4DC6-9D1F-E7011E8CA918}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Data Layer", "5. Data Layer", "{9EDE0836-E454-4CFB-AF60-8DE7065B1991}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Common", "6. Common", "{E8EB120C-9ADC-49C7-AD8B-7834C0A73C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UoW.DocCore.Web.WebForms", "UoW.DocCore.Web.WebForms\UoW.DocCore.Web.WebForms.csproj", "{1A16D6F3-7E16-4088-BA1F-2F0418DD97DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A16D6F3-7E16-4088-BA1F-2F0418DD97DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A16D6F3-7E16-4088-BA1F-2F0418DD97DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A16D6F3-7E16-4088-BA1F-2F0418DD97DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A16D6F3-7E16-4088-BA1F-2F0418DD97DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1A16D6F3-7E16-4088-BA1F-2F0418DD97DA} = {5FCBA414-7A97-4D7C-B794-377FF4B6619D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {333C2A9E-F18A-41C0-875B-328FF4CA56F9}
+	EndGlobalSection
+EndGlobal
