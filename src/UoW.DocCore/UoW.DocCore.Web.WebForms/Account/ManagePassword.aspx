@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Manage Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagePassword.aspx.cs" Inherits="UoW.DocCore.Web.WebForms.Account.ManagePassword" %>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
+    <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
+</asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
     <div class="form-horizontal">

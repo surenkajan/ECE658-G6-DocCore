@@ -1,0 +1,6 @@
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DocCoreUtilities\bin\Debug\UoW.DocCore.DocCoreUtilities.dll
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DocCoreUtilities\bin\Debug\UoW.DocCore.DocCoreUtilities.pdb
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DocCoreUtilities\obj\Debug\UoW.DocCore.DocCoreUtilities.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DocCoreUtilities\obj\Debug\UoW.DocCore.DocCoreUtilities.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DocCoreUtilities\obj\Debug\UoW.DocCore.DocCoreUtilities.dll
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DocCoreUtilities\obj\Debug\UoW.DocCore.DocCoreUtilities.pdb

@@ -30,7 +30,7 @@ namespace UoW.DocCore.Web.WebForms.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DocCoreDBConnectionString", throwIfV1Schema: false)
         {
         }
 

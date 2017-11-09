@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Register an external login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegisterExternalLogin.aspx.cs" Inherits="UoW.DocCore.Web.WebForms.Account.RegisterExternalLogin" Async="true" %>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
+    <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
+</asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 <h3>Register with your <%: ProviderName %> account</h3>
 

@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Account Confirmation" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Confirm.aspx.cs" Inherits="UoW.DocCore.Web.WebForms.Account.Confirm" Async="true" %>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
+    <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
+</asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
 

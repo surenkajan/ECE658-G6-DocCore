@@ -1,0 +1,6 @@
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Core\bin\Debug\UoW.DocCore.Core.dll
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Core\bin\Debug\UoW.DocCore.Core.pdb
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Core\obj\Debug\UoW.DocCore.Core.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Core\obj\Debug\UoW.DocCore.Core.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Core\obj\Debug\UoW.DocCore.Core.dll
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Core\obj\Debug\UoW.DocCore.Core.pdb
