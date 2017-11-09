@@ -1,6 +1,0 @@
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DataObjects\bin\Debug\UoW.DocCore.DataObjects.dll
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DataObjects\bin\Debug\UoW.DocCore.DataObjects.pdb
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DataObjects\obj\Debug\UoW.DocCore.DataObjects.csprojResolveAssemblyReference.cache
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DataObjects\obj\Debug\UoW.DocCore.DataObjects.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DataObjects\obj\Debug\UoW.DocCore.DataObjects.dll
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.DataObjects\obj\Debug\UoW.DocCore.DataObjects.pdb

@@ -1,6 +1,0 @@
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.ServiceUtils\bin\Debug\UoW.DocCore.ServiceUtils.dll
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.ServiceUtils\bin\Debug\UoW.DocCore.ServiceUtils.pdb
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.ServiceUtils\obj\Debug\UoW.DocCore.ServiceUtils.csprojResolveAssemblyReference.cache
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.ServiceUtils\obj\Debug\UoW.DocCore.ServiceUtils.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.ServiceUtils\obj\Debug\UoW.DocCore.ServiceUtils.dll
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.ServiceUtils\obj\Debug\UoW.DocCore.ServiceUtils.pdb

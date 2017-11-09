@@ -57,6 +57,8 @@ C:\Users\Administrator\Documents\KajarubanDocs\fall2017\ece658\ECE658-G6-DocCore
 C:\Users\Administrator\Documents\KajarubanDocs\fall2017\ece658\ECE658-G6-DocCore\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\obj\Debug\UoW.DocCore.Web.WebForms.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Documents\KajarubanDocs\fall2017\ece658\ECE658-G6-DocCore\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\obj\Debug\UoW.DocCore.Web.WebForms.dll
 C:\Users\Administrator\Documents\KajarubanDocs\fall2017\ece658\ECE658-G6-DocCore\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\obj\Debug\UoW.DocCore.Web.WebForms.pdb
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\UoW.DocCore.Web.WebForms.dll.config
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\UoW.DocCore.Web.WebForms.dll
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\UoW.DocCore.Web.WebForms.pdb
@@ -97,9 +99,7 @@ C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.Do
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Newtonsoft.Json.xml
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\EntityFramework.xml
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\EntityFramework.SqlServer.xml
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\System.Web.Providers.xml
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Microsoft.Owin.xml
 C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.Web.WebForms\bin\Microsoft.Owin.Host.SystemWeb.xml
