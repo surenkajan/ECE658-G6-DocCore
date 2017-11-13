@@ -16,6 +16,7 @@
     </asp:ContentPlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="/Content/Images/doccore_favicon.png" rel="shortcut icon" type="image/x-icon" />
+
 </head>
 <body>
     <form runat="server">
