@@ -1,3 +1,13 @@
+CREATE DATABASE DocCoreDB 
+ON
+PRIMARY ( NAME = Arch1,
+    FILENAME = 'c:\DocCoreDocuments\archdat1.mdf'),
+FILEGROUP FileStreamGroup1 CONTAINS FILESTREAM( NAME = Arch3,
+    FILENAME = 'c:\DocCoreDocuments\filestream')
+LOG ON  ( NAME = Archlog1,
+    FILENAME = 'c:\DocCoreDocuments\archlog1.ldf')
+GO
+
 USE DocCore
 GO
 
