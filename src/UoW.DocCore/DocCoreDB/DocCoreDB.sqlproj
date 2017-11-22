@@ -72,5 +72,6 @@
   <ItemGroup>
     <Build Include="SchemaObjects\Database Level Objects\Security\Schemas\doccore.schema.sql" />
     <Build Include="SchemaObjects\Database Level Objects\Security\Schemas\schema_DocCore.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Tables\DocCoreTables.sql" />
   </ItemGroup>
 </Project>

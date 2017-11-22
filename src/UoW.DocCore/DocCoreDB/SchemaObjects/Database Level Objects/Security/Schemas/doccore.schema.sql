@@ -1,4 +1,5 @@
-﻿USE [DocCore]
+﻿--Run CREATE DATABASE DocCoreDB before this
+USE [DocCoreDB]
 GO
 
 IF NOT EXISTS (
