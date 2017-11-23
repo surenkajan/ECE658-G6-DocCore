@@ -73,5 +73,13 @@
     <Build Include="SchemaObjects\Database Level Objects\Security\Schemas\doccore.schema.sql" />
     <Build Include="SchemaObjects\Database Level Objects\Security\Schemas\schema_DocCore.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Tables\DocCoreTables.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreAddUserByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateUserByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreAllUsers.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreDeleteUserByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserByEmailId.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserByFullName.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserByUid.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserTableColumns.proc.sql" />
   </ItemGroup>
 </Project>

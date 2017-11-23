@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UoW.DocCore.DocCoreUtilitie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UoW.DocCore.ServiceUtils", "UoW.DocCore.ServiceUtils\UoW.DocCore.ServiceUtils.csproj", "{F5DE6792-587E-459D-8890-9FD8D8A63BF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UoW.DocCore.BusinessObjects", "UoW.DocCore.BusinessObjects\UoW.DocCore.BusinessObjects.csproj", "{03147C63-2E56-4302-864A-AE71DBE15DFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{F5DE6792-587E-459D-8890-9FD8D8A63BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DE6792-587E-459D-8890-9FD8D8A63BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5DE6792-587E-459D-8890-9FD8D8A63BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03147C63-2E56-4302-864A-AE71DBE15DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03147C63-2E56-4302-864A-AE71DBE15DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03147C63-2E56-4302-864A-AE71DBE15DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03147C63-2E56-4302-864A-AE71DBE15DFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{3D0801A2-3A2C-4405-92F8-3AFC00DBF10C} = {9EDE0836-E454-4CFB-AF60-8DE7065B1991}
 		{CA4C5090-CCDC-46BA-B405-299F98C52849} = {E8EB120C-9ADC-49C7-AD8B-7834C0A73C56}
 		{F5DE6792-587E-459D-8890-9FD8D8A63BF3} = {E8EB120C-9ADC-49C7-AD8B-7834C0A73C56}
+		{03147C63-2E56-4302-864A-AE71DBE15DFC} = {AFC71944-AD5A-4DC6-9D1F-E7011E8CA918}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {333C2A9E-F18A-41C0-875B-328FF4CA56F9}

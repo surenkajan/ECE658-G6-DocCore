@@ -1,7 +1,0 @@
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.CoreService\bin\Debug\UoW.DocCore.CoreService.dll.config
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.CoreService\bin\Debug\UoW.DocCore.CoreService.dll
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.CoreService\bin\Debug\UoW.DocCore.CoreService.pdb
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.CoreService\obj\Debug\UoW.DocCore.CoreService.csprojResolveAssemblyReference.cache
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.CoreService\obj\Debug\UoW.DocCore.CoreService.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.CoreService\obj\Debug\UoW.DocCore.CoreService.dll
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\UoW.DocCore.CoreService\obj\Debug\UoW.DocCore.CoreService.pdb

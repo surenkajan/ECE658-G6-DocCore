@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Administrator\Documents\ECE658\IISDocCoreService</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/UoW.DocCore.BusinessObjects.dll">
+      <publishTime>11/23/2017 18:08:34</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.BusinessObjects.pdb">
+      <publishTime>11/23/2017 18:08:34</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.Core.dll">
+      <publishTime>11/23/2017 18:08:36</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.Core.pdb">
+      <publishTime>11/23/2017 18:08:36</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.CoreService.dll">
+      <publishTime>11/23/2017 18:08:37</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.CoreService.dll.config">
+      <publishTime>11/22/2017 10:32:48</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.CoreService.pdb">
+      <publishTime>11/23/2017 18:08:37</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.DataObjects.dll">
+      <publishTime>11/22/2017 10:41:55</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.DataObjects.pdb">
+      <publishTime>11/22/2017 10:41:55</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.WCF.CoreService.dll">
+      <publishTime>11/23/2017 18:08:38</publishTime>
+    </File>
+    <File Include="bin/UoW.DocCore.WCF.CoreService.pdb">
+      <publishTime>11/23/2017 18:08:38</publishTime>
+    </File>
+    <File Include="docCoreServiceWcfKey.snk">
+      <publishTime>11/22/2017 10:32:48</publishTime>
+    </File>
+    <File Include="Service.svc">
+      <publishTime>11/23/2017 18:04:41</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/23/2017 18:08:39</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
