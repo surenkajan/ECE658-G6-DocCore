@@ -1,7 +1,0 @@
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\DocCoreDB\bin\Debug\DocCoreDB.dacpac
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\DocCoreDB\obj\Debug\Model.xml
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\DocCoreDB\obj\Debug\refactor.xml
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\DocCoreDB\obj\Debug\postdeploy.sql
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\DocCoreDB\obj\Debug\predeploy.sql
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\DocCoreDB\obj\Debug\DocCoreDB.dll
-C:\Users\Administrator\Documents\ECE658\ECE658-G6-DocCore\src\UoW.DocCore\DocCoreDB\obj\Debug\DocCoreDB.pdb
