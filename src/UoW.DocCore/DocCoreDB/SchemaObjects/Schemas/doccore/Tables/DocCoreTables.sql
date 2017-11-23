@@ -4,7 +4,7 @@ GO
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'User'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -14,8 +14,12 @@ CREATE TABLE [doccore].[User]
 	UserName				VARCHAR(50),
 	FirstName				VARCHAR(150) NOT NULL,
 	LastName				VARCHAR(150),
+	FullName				VARCHAR(240),
 	EmailAddress			VARCHAR(240) NOT NULL,
-	ProfilePhoto    image,
+	DateOfBirth				DATETIME NOT NULL,
+	Sex						VARCHAR(30) NOT NULL,
+	ProfilePhoto    image
+
 CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -29,7 +33,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'Permission'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -46,7 +50,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'Access'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -64,7 +68,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'Documents'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -111,7 +115,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'Comments'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -131,7 +135,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'SharedWith'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -149,7 +153,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'Project'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -166,7 +170,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'ProjectManager'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
@@ -184,7 +188,7 @@ END
 IF NOT EXISTS (SELECT 'X'
                    FROM   INFORMATION_SCHEMA.TABLES
                    WHERE  TABLE_NAME = 'Members'
-                          AND TABLE_SCHEMA = 'DocCore')
+                          AND TABLE_SCHEMA = 'doccore')
 
 BEGIN
 
