@@ -19,7 +19,7 @@ namespace UoW.DocCore.Web.WebForms
 
         private PictreBDelegate()
         {
-            Service_BaseAddress = ConfigurationManager.AppSettings["PictreServicesBaseAddress"];
+            Service_BaseAddress = ConfigurationManager.AppSettings["DocCoreServicesBaseAddress"];
             json_type = "application/json;charset=utf-8";
         }
 
