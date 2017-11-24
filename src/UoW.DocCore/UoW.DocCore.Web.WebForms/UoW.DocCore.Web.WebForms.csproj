@@ -185,6 +185,7 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
+    <Content Include="Account\Settings.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\Project.aspx" />
@@ -201,6 +202,7 @@
     <Content Include="Content\css\myprofile.css" />
     <Content Include="Content\css\register.css" />
     <Content Include="Content\css\resetpwd.css" />
+    <Content Include="Content\css\settings.css" />
     <Content Include="Content\Images\doccore_favicon.png" />
     <Content Include="Content\Images\doccore_favicon2.png" />
     <Content Include="Content\Images\doccore_favicon3.png" />
@@ -219,6 +221,7 @@
     <Content Include="doccorewebkey.snk" />
     <Content Include="UserAccess.aspx" />
     <Content Include="ViewAllUsers.aspx" />
+    <Content Include="ImageHandler.ashx" />
     <None Include="Properties\PublishProfiles\DocCore.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -347,6 +350,13 @@
     <Compile Include="Account\ResetPasswordConfirmation.aspx.designer.cs">
       <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\TwoFactorAuthenticationSignIn.aspx.cs">
       <DependentUpon>TwoFactorAuthenticationSignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -402,6 +412,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="PictreBDelegate.cs" />
