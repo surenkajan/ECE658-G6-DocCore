@@ -11,8 +11,8 @@
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
 
-    <div id="PictreUpdateUserDiv" class="form-horizontal">
-        <asp:PlaceHolder ID="PictreUpdateUserDetailsPH" runat="server">
+    <div id="DoccoreUpdateUserDiv" class="form-horizontal">
+        <asp:PlaceHolder ID="DoccoreUpdateUserDetailsPH" runat="server">
             <%--<h4>Update account details:</h4>--%>
             <hr />
             <asp:ValidationSummary Visible="false" runat="server" CssClass="text-danger" />
