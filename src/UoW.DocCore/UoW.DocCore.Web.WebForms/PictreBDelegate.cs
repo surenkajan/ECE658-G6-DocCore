@@ -131,75 +131,6 @@ namespace UoW.DocCore.Web.WebForms
             return status;
         }
         
-        #region SecurityQuestions
-
-        public List<SecurityQuestionDto> GetSecurityQuestions()
-        {
-            List<SecurityQuestionDto> questions = null;
-
-            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/GetSecurityQuestions", "GET", json_type, null);
-            JavaScriptSerializer json_ques_serializer = new JavaScriptSerializer();
-
-            if (Json_usrList != null)
-            {
-                questions = json_ques_serializer.Deserialize<List<SecurityQuestionDto>>(Json_usrList);
-            }
-            return questions;
-        }
-
-        public int InsertSecurityAnswers(SecurityAnswersDto Answers)
-        {
-            int status = -1;
-
-            if (Answers != null)
-            {
-                //JavaScriptSerializer js = new JavaScriptSerializer();
-                //string ansjson = js.Serialize(Answers);
-
-                string ansjson = JsonConvert.SerializeObject(Answers);
-
-                //Add New user
-                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/AddSecurityAnswersEmailID", "POST", json_type, ansjson);
-                status = val != null ? Int32.Parse(val) : -1;
-            }
-            return status;
-        }
-
-        public int UpdateSecurityAnswers(SecurityAnswersDto Answers)
-        {
-            int status = -1;
-
-            if (Answers != null)
-            {
-                //JavaScriptSerializer js = new JavaScriptSerializer();
-                //string ansjson = js.Serialize(Answers);
-
-                string ansjson = JsonConvert.SerializeObject(Answers);
-
-                //Add New user
-                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/UpdateSecurityAnswersEmailID", "PUT", json_type, ansjson);
-                status = val != null ? Int32.Parse(val) : -1;
-            }
-            return status;
-        }
-
-        //public List<SecurityAnswersDto> GetSecurityQuestionsAnswers(string EmailID)
-        public SecurityAnswersDto GetSecurityQuestionsAnswers(string EmailID)
-        {
-            SecurityAnswersDto questionsAnswers = null;
-
-            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/GetSecurityAnswersByEmailID?Email=" + EmailID, "GET", json_type, null);
-            JavaScriptSerializer json_ques_serializer = new JavaScriptSerializer();
-
-            if (Json_usrList != null)
-            {
-                questionsAnswers = json_ques_serializer.Deserialize<SecurityAnswersDto>(Json_usrList);
-            }
-            return questionsAnswers;
-        }
-
-        #endregion
-
     }
 
     #region All Dto
@@ -208,14 +139,12 @@ namespace UoW.DocCore.Web.WebForms
     {
         #region Database Properties
         private int uid;
-        [DataMember]
         public int Uid
         {
             get { return uid; }
             set { uid = value; }
         }
         private string userName;
-        [DataMember]
         public string UserName
         {
             get { return userName; }
@@ -223,7 +152,6 @@ namespace UoW.DocCore.Web.WebForms
         }
 
         private string lastName;
-        [DataMember]
         public string LastName
         {
             get { return lastName; }
@@ -231,7 +159,6 @@ namespace UoW.DocCore.Web.WebForms
         }
 
         private DateTime? dateOfBirth;
-        [DataMember]
         public DateTime? DateOfBirth
         {
             get { return dateOfBirth; }
@@ -239,7 +166,6 @@ namespace UoW.DocCore.Web.WebForms
         }
 
         private string emailAddress;
-        [DataMember]
         public string EmailAddress
         {
             get { return emailAddress; }
@@ -247,7 +173,6 @@ namespace UoW.DocCore.Web.WebForms
         }
 
         private string firstName;
-        [DataMember]
         public string FirstName
         {
             get { return firstName; }
@@ -255,7 +180,6 @@ namespace UoW.DocCore.Web.WebForms
         }
 
         private string fullName;
-        [DataMember]
         public string FullName
         {
             get { return fullName; }
@@ -263,7 +187,6 @@ namespace UoW.DocCore.Web.WebForms
         }
 
         private string sex;
-        [DataMember]
         public string Sex
         {
             get { return sex; }
@@ -275,7 +198,6 @@ namespace UoW.DocCore.Web.WebForms
 
         #region External Properties
         private string profilePhoto;
-        [DataMember]
         public string ProfilePhoto
         {
             get { return profilePhoto; }

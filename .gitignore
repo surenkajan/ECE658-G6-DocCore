@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/UoW.DocCore/.vs
+/src/UoW.DocCore/UoW.DocCore.BusinessObjects/bin/Debug
+/src/UoW.DocCore/UoW.DocCore.BusinessObjects/obj/Debug
+/src/UoW.DocCore/UoW.DocCore.Core/bin/Debug
+/src/UoW.DocCore/UoW.DocCore.Core/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/src/UoW.DocCore/UoW.DocCore.Core/obj/Debug
+/src/UoW.DocCore/UoW.DocCore.CoreService/bin/Debug
+/src/UoW.DocCore/UoW.DocCore.CoreService/obj/Debug
+/src/UoW.DocCore/UoW.DocCore.DataObjects/bin/Debug
+/src/UoW.DocCore/UoW.DocCore.DataObjects/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/src/UoW.DocCore/UoW.DocCore.DataObjects/obj/Debug
+/src/UoW.DocCore/UoW.DocCore.DocCoreUtilities/bin/Debug
+/src/UoW.DocCore/UoW.DocCore.DocCoreUtilities/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/src/UoW.DocCore/UoW.DocCore.DocCoreUtilities/obj/Debug
+/src/UoW.DocCore/UoW.DocCore.ServiceUtils/bin/Debug
+/src/UoW.DocCore/UoW.DocCore.ServiceUtils/obj/Debug
+/src/UoW.DocCore/UoW.DocCore.WCF.CoreService/bin
+/src/UoW.DocCore/UoW.DocCore.Web.WebForms/bin
+/src/UoW.DocCore/UoW.DocCore.Web.WebForms/obj/Debug
+/src/UoW.DocCore/UoW.DocCore.WCF.CoreService/obj/Debug
+/src/UoW.DocCore/packages
