@@ -10,8 +10,11 @@ namespace UoW.DocCore.Web.WebForms.Account
 {
     public partial class Login : Page
     {
+        string currentUserEmailID;
         protected void Page_Load(object sender, EventArgs e)
         {
+            RememberMe.Visible = false;
+            lbl_RememberMe.Visible = false;
             RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
@@ -38,6 +41,20 @@ namespace UoW.DocCore.Web.WebForms.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
+                        //User Must enter the security questions if it the first time to log in
+                        // Find first time user by checking the Security questions and Answers
+                        //Retrieve Answers of Security Questions
+                        currentUserEmailID = Email.Text;
+                        SecurityAnswersDto answersList = DocCoreBDelegate.Instance.GetSecurityQuestionsAnswers(currentUserEmailID);
+                        if((answersList == null) ||
+                            (answersList.QuestionsAnswers.Count == 0) ||
+                            (answersList != null && (answersList.QuestionsAnswers[0] == null || answersList.QuestionsAnswers[1] == null)) || 
+                            string.IsNullOrEmpty(answersList.QuestionsAnswers[0].Answer) || string.IsNullOrEmpty(answersList.QuestionsAnswers[1].Answer))
+                        {
+                            //TODO: Have to handle the Redirect URL here
+                            Response.Redirect("/Account/Settings");
+                        }
+
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case SignInStatus.LockedOut:

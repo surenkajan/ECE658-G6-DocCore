@@ -10,21 +10,21 @@ using UoW.DocCore.ServiceUtils;
 
 namespace UoW.DocCore.Web.WebForms
 {
-    public sealed class PictreBDelegate
+    public sealed class DocCoreBDelegate
     {
         private static readonly object padlock = new object();
-        private static PictreBDelegate instance = null;
+        private static DocCoreBDelegate instance = null;
         string Service_BaseAddress;
         string json_type;
 
-        private PictreBDelegate()
+        private DocCoreBDelegate()
         {
             Service_BaseAddress = ConfigurationManager.AppSettings["DocCoreServicesBaseAddress"];
             json_type = "application/json;charset=utf-8";
         }
 
         //Thread Safety Singleton using Double Check Locking
-        public static PictreBDelegate Instance
+        public static DocCoreBDelegate Instance
         {
             get
             {
@@ -34,7 +34,7 @@ namespace UoW.DocCore.Web.WebForms
                     {
                         if (instance == null)
                         {
-                            instance = new PictreBDelegate();
+                            instance = new DocCoreBDelegate();
                         }
                     }
                 }

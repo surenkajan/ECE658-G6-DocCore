@@ -128,11 +128,14 @@
                                                 "EmailAddress", EmailID,
                                                 "Question", ques.Question
                                          });
-                SecurityQuestion question = new SecurityQuestion();
-                question.ID = answer.Question.ID;
-                question.Question = ques.Question;
-                pair = new SecurityAnswerPair() { Question = question, Answer = answer.Answer };
-                answers.QuestionsAnswers.Add(pair);
+                if(answer != null)
+                {
+                    SecurityQuestion question = new SecurityQuestion();
+                    question.ID = answer.Question.ID;
+                    question.Question = ques.Question;
+                    pair = new SecurityAnswerPair() { Question = question, Answer = answer.Answer };
+                    answers.QuestionsAnswers.Add(pair);
+                }
             }
 
             return answers;

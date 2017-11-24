@@ -37,7 +37,7 @@ namespace UoW.DocCore.Web.WebForms.Account
                     UserName = Email.Text,
                     ProfilePhoto = ImageToBase64()
                 };
-                int AddStatus = PictreBDelegate.Instance.InsertUser(newUser);
+                int AddStatus = DocCoreBDelegate.Instance.InsertUser(newUser);
 
                 signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);

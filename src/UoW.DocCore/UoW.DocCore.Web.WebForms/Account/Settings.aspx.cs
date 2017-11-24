@@ -16,12 +16,12 @@ namespace UoW.DocCore.Web.WebForms.Account
         {
             currentUserEmailID = HttpContext.Current.User.Identity.Name;
             Session["ImageBytes"] = null;
-            Currentuser = PictreBDelegate.Instance.GetUserByEmailID(currentUserEmailID);
+            Currentuser = DocCoreBDelegate.Instance.GetUserByEmailID(currentUserEmailID);
             if (!IsPostBack)
             {
                 //Retrieve User Personal Details
                 //Retrieve the Security questions:
-                List<SecurityQuestionDto> questionsList = PictreBDelegate.Instance.GetSecurityQuestions();
+                List<SecurityQuestionDto> questionsList = DocCoreBDelegate.Instance.GetSecurityQuestions();
                 if (questionsList != null)
                 {
                     SQuestion1.Text = questionsList[0].Question;
@@ -45,12 +45,20 @@ namespace UoW.DocCore.Web.WebForms.Account
                         ImagePreview.ImageUrl = "~/ImageHandler.ashx";
                     }
                     //Retrieve Answers of Security Questions
-                    SecurityAnswersDto answersList = PictreBDelegate.Instance.GetSecurityQuestionsAnswers(currentUserEmailID);
+                    SecurityAnswersDto answersList = DocCoreBDelegate.Instance.GetSecurityQuestionsAnswers(currentUserEmailID);
                     //SQuestion1Ans.Text = (answersList != null && answersList.QuestionAnswer != null) ? answersList.QuestionAnswer[SQuestion1.Text] : String.Empty;
                     //SQuestion1Ans.Text = (answersList != null && answersList.QuestionAnswer != null) ? answersList.QuestionAnswer[SQuestion2.Text] : String.Empty;
 
-                    SQuestion1Ans.Text = (answersList != null && answersList.QuestionsAnswers[0] != null) ? answersList.QuestionsAnswers[0].Answer : String.Empty;
-                    SQuestion2Ans.Text = (answersList != null && answersList.QuestionsAnswers[1] != null) ? answersList.QuestionsAnswers[1].Answer : String.Empty;
+                    if (!((answersList == null) ||
+                            (answersList.QuestionsAnswers.Count == 0) ||
+                            (answersList != null && (answersList.QuestionsAnswers[0] == null || answersList.QuestionsAnswers[1] == null)) ||
+                            string.IsNullOrEmpty(answersList.QuestionsAnswers[0].Answer) || string.IsNullOrEmpty(answersList.QuestionsAnswers[1].Answer)))
+                    {
+                        SQuestion1Ans.Text = (answersList != null && answersList.QuestionsAnswers[0] != null) ? answersList.QuestionsAnswers[0].Answer : String.Empty;
+                        SQuestion2Ans.Text = (answersList != null && answersList.QuestionsAnswers[1] != null) ? answersList.QuestionsAnswers[1].Answer : String.Empty;
+
+                    }
+
 
                 }
             }
@@ -74,7 +82,7 @@ namespace UoW.DocCore.Web.WebForms.Account
                             UserName = Currentuser.UserName,
                             ProfilePhoto = Convert.ToBase64String(ProfilePhotoUpload.FileBytes)
                         };
-                        int updateuserStatus = PictreBDelegate.Instance.UpdateUser(user_Updated);
+                        int updateuserStatus = DocCoreBDelegate.Instance.UpdateUser(user_Updated);
 
                     }
                 }
@@ -95,7 +103,7 @@ namespace UoW.DocCore.Web.WebForms.Account
                 UserName = Currentuser.UserName,
                 ProfilePhoto = Currentuser.ProfilePhoto.Split(new[] { ',' }, 2)[1]
             };
-            int updateuserStatus = PictreBDelegate.Instance.UpdateUser(user_Updated);
+            int updateuserStatus = DocCoreBDelegate.Instance.UpdateUser(user_Updated);
 
             //Update Security Questions
             SecurityAnswersDto Ans_Updated = new SecurityAnswersDto()
@@ -119,7 +127,7 @@ namespace UoW.DocCore.Web.WebForms.Account
                 }
 
             };
-            int updateAnsStatus = PictreBDelegate.Instance.UpdateSecurityAnswers(Ans_Updated);
+            int updateAnsStatus = DocCoreBDelegate.Instance.UpdateSecurityAnswers(Ans_Updated);
 
             lblSaveStatus.Visible = true;
             if (updateuserStatus != -1 && updateAnsStatus != -1)
