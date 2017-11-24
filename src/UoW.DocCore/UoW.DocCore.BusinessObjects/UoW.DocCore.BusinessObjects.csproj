@@ -52,6 +52,9 @@
     <Compile Include="ProjectMember.cs" />
     <Compile Include="ProjectUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityAnswerPair.cs" />
+    <Compile Include="SecurityAnswers.cs" />
+    <Compile Include="SecurityQuestion.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

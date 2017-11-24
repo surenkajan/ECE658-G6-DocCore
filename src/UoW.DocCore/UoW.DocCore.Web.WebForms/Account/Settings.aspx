@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Settings.aspx.cs" Inherits="UoW.DocCore.Web.WebForms.Account.Settings" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
     <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
     <link rel="stylesheet" href="/Content/css/settings.css" type="text/css" />
@@ -97,19 +98,18 @@
                             CssClass="text-danger" ErrorMessage="Answer to Security Question 2 is required." />
                     </div>
                 </div>
-
                 <div class="form-group">
                     <asp:Label runat="server" ID="lblSaveStatus" Visible="false" CssClass="control-label"></asp:Label>
                 </div>
 
                 <div class="form-group">
-                    <div style="width: 25%; margin-left: 10%;min-width: 250px;">
-                        <div style="float:left;">
+                    <div style="width: 25%; margin-left: 10%; min-width: 250px;">
+                        <div style="float: left;">
                             <div class="col-md-offset-2 col-md-10">
                                 <asp:Button runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-default" />
                             </div>
                         </div>
-                        <div style="float:right;">
+                        <div style="float: right;">
                             <div class="col-md-offset-2 col-md-10">
                                 <asp:Button runat="server" OnClick="btnCancel_Click" Text="Close" CssClass="btn btn-default" />
                             </div>

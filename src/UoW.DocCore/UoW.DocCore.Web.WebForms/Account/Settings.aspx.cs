@@ -20,7 +20,13 @@ namespace UoW.DocCore.Web.WebForms.Account
             if (!IsPostBack)
             {
                 //Retrieve User Personal Details
-
+                //Retrieve the Security questions:
+                List<SecurityQuestionDto> questionsList = PictreBDelegate.Instance.GetSecurityQuestions();
+                if (questionsList != null)
+                {
+                    SQuestion1.Text = questionsList[0].Question;
+                    SQuestion2.Text = questionsList[1].Question;
+                }
                 if (Currentuser != null)
                 {
                     FName.Text = Currentuser.FirstName;
@@ -38,6 +44,14 @@ namespace UoW.DocCore.Web.WebForms.Account
                         Session["ImageBytes"] = imageBytes;
                         ImagePreview.ImageUrl = "~/ImageHandler.ashx";
                     }
+                    //Retrieve Answers of Security Questions
+                    SecurityAnswersDto answersList = PictreBDelegate.Instance.GetSecurityQuestionsAnswers(currentUserEmailID);
+                    //SQuestion1Ans.Text = (answersList != null && answersList.QuestionAnswer != null) ? answersList.QuestionAnswer[SQuestion1.Text] : String.Empty;
+                    //SQuestion1Ans.Text = (answersList != null && answersList.QuestionAnswer != null) ? answersList.QuestionAnswer[SQuestion2.Text] : String.Empty;
+
+                    SQuestion1Ans.Text = (answersList != null && answersList.QuestionsAnswers[0] != null) ? answersList.QuestionsAnswers[0].Answer : String.Empty;
+                    SQuestion2Ans.Text = (answersList != null && answersList.QuestionsAnswers[1] != null) ? answersList.QuestionsAnswers[1].Answer : String.Empty;
+
                 }
             }
             else
@@ -82,9 +96,33 @@ namespace UoW.DocCore.Web.WebForms.Account
                 ProfilePhoto = Currentuser.ProfilePhoto.Split(new[] { ',' }, 2)[1]
             };
             int updateuserStatus = PictreBDelegate.Instance.UpdateUser(user_Updated);
-            
+
+            //Update Security Questions
+            SecurityAnswersDto Ans_Updated = new SecurityAnswersDto()
+            {
+                UserEmailID = Currentuser.EmailAddress,
+                //QuestionAnswer = new Dictionary<string, string>
+                //    {
+                //        {SQuestion1.Text,SQuestion1Ans.Text},
+                //        {SQuestion2.Text,SQuestion2Ans.Text}
+                //    }
+                QuestionsAnswers = new List<SecurityAnswerPair>()
+                {
+                    new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = SQuestion1.Text},
+                            Answer =  SQuestion1Ans.Text
+                        },
+                        new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = SQuestion2.Text},
+                            Answer =  SQuestion2Ans.Text
+                        }
+                }
+
+            };
+            int updateAnsStatus = PictreBDelegate.Instance.UpdateSecurityAnswers(Ans_Updated);
+
             lblSaveStatus.Visible = true;
-            if (updateuserStatus != -1)
+            if (updateuserStatus != -1 && updateAnsStatus != -1)
             {
                 lblSaveStatus.Text = "Your Profile is successfully saved.";
                 lblSaveStatus.ForeColor = Color.Green;

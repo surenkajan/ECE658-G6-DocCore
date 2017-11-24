@@ -86,5 +86,76 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
                 Sex = userDto.Sex
             };
         }
+
+        public static SecurityQuestionDto SecurityQuestionDaoToDto(SecurityQuestion SecurityQuestion)
+        {
+            if (SecurityQuestion == null) return null;
+            SecurityQuestionDto dto = new SecurityQuestionDto();
+            dto.ID = SecurityQuestion.ID;
+            dto.Question = SecurityQuestion.Question;
+
+
+            return dto;
+        }
+
+        public static List<SecurityQuestionDto> SecurityQuestionsDaoToDto(List<SecurityQuestion> SecurityQuestionDaoList)
+        {
+            if (SecurityQuestionDaoList == null) return null;
+            var secList = (from secObj in SecurityQuestionDaoList
+                           select SecurityQuestionDaoToDto(secObj)).ToList();
+            return secList;
+        }
+
+        //SecurityAnswersDaoToDto
+        public static SecurityAnswersDto SecurityAnswersDaoToDto(SecurityAnswers SecurityAnswersDao)
+        {
+            if (SecurityAnswersDao == null) return null;
+            SecurityAnswersDto dto = new SecurityAnswersDto();
+            dto.UserEmailID = SecurityAnswersDao.UserEmailID;
+            dto.QuestionsAnswers = SecurityAnswersDao.QuestionsAnswers;
+
+            return dto;
+        }
+
+        public static SecurityAnswers SecurityAnswersDtoToDao(SecurityAnswersDto secAnsDto)
+        {
+            if (secAnsDto == null) return null;
+            return new SecurityAnswers()
+            {
+                UserEmailID = secAnsDto.UserEmailID,
+                QuestionsAnswers = new List<SecurityAnswerPair>()
+                {
+                    new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = secAnsDto.QuestionsAnswers[0].Question.Question},
+                            Answer =  secAnsDto.QuestionsAnswers[0].Answer
+                        },
+                        new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = secAnsDto.QuestionsAnswers[1].Question.Question},
+                            Answer =  secAnsDto.QuestionsAnswers[1].Answer
+                        }
+                }
+            };
+        }
+
+        public static SecurityAnswersDto SecurityQuestionDaoToDto(SecurityAnswers SecurityQuestionAnswer)
+        {
+            if (SecurityQuestionAnswer == null) return null;
+            return new SecurityAnswersDto()
+            {
+                UserEmailID = SecurityQuestionAnswer.UserEmailID,
+                QuestionsAnswers = new List<SecurityAnswerPair>()
+                {
+                    new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = SecurityQuestionAnswer.QuestionsAnswers[0].Question.Question},
+                            Answer =  SecurityQuestionAnswer.QuestionsAnswers[0].Answer
+                        },
+                        new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = SecurityQuestionAnswer.QuestionsAnswers[1].Question.Question},
+                            Answer =  SecurityQuestionAnswer.QuestionsAnswers[1].Answer
+                        }
+                }
+            };
+        }
+
     }
 }

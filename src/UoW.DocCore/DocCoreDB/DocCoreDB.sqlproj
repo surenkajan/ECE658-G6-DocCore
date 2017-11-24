@@ -82,5 +82,9 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserByUid.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserTableColumns.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Tables\DocCoreTables_InsertDummyValues.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreAddSecurityAnswersByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllSecurityQuestions.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetSecurityAnswersByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateSecurityAnswersByEmailID.proc.sql" />
   </ItemGroup>
 </Project>

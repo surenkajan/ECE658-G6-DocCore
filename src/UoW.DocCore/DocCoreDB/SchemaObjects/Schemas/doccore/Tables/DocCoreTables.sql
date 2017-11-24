@@ -202,3 +202,41 @@ CONSTRAINT FK_MEMBER_PROJECT_ID FOREIGN KEY (pID) REFERENCES [doccore].[Project]
 )
 
 END
+
+
+IF NOT EXISTS (SELECT 'X'
+                   FROM   INFORMATION_SCHEMA.TABLES
+                   WHERE  TABLE_NAME = 'SecurityQuestion'
+                          AND TABLE_SCHEMA = 'doccore')
+
+BEGIN
+
+CREATE TABLE [doccore].[SecurityQuestion]
+(
+	ID						int IDENTITY(1,1),
+	Question				VARCHAR(45),
+	
+CONSTRAINT PK_QUESTION_ID PRIMARY KEY CLUSTERED (ID)
+
+)
+
+END
+
+IF NOT EXISTS (SELECT 'X'
+                   FROM   INFORMATION_SCHEMA.TABLES
+                   WHERE  TABLE_NAME = 'UserSecurity'
+                          AND TABLE_SCHEMA = 'doccore')
+
+BEGIN
+
+CREATE TABLE [doccore].[UserSecurity]
+(
+	UserID						int,
+	QuestionID				int,
+	Answer					text,
+	
+CONSTRAINT FK_USER_USERSECURITY FOREIGN KEY (UserID) REFERENCES [doccore].[User] (ID) ON DELETE CASCADE,
+CONSTRAINT FK_SECURITYQUESTION_USERSECURITY FOREIGN KEY (QuestionID) REFERENCES [doccore].[SecurityQuestion] (ID)
+)
+
+END

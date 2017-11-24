@@ -130,7 +130,78 @@ namespace UoW.DocCore.Web.WebForms
             int status = val != null ? Int32.Parse(val) : -1;
             return status;
         }
-        
+
+
+        #region SecurityQuestions
+
+        public List<SecurityQuestionDto> GetSecurityQuestions()
+        {
+            List<SecurityQuestionDto> questions = null;
+
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/GetSecurityQuestions", "GET", json_type, null);
+            JavaScriptSerializer json_ques_serializer = new JavaScriptSerializer();
+
+            if (Json_usrList != null)
+            {
+                questions = json_ques_serializer.Deserialize<List<SecurityQuestionDto>>(Json_usrList);
+            }
+            return questions;
+        }
+
+        public int InsertSecurityAnswers(SecurityAnswersDto Answers)
+        {
+            int status = -1;
+
+            if (Answers != null)
+            {
+                //JavaScriptSerializer js = new JavaScriptSerializer();
+                //string ansjson = js.Serialize(Answers);
+
+                string ansjson = JsonConvert.SerializeObject(Answers);
+
+                //Add New user
+                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/AddSecurityAnswersEmailID", "POST", json_type, ansjson);
+                status = val != null ? Int32.Parse(val) : -1;
+            }
+            return status;
+        }
+
+        public int UpdateSecurityAnswers(SecurityAnswersDto Answers)
+        {
+            int status = -1;
+
+            if (Answers != null)
+            {
+                //JavaScriptSerializer js = new JavaScriptSerializer();
+                //string ansjson = js.Serialize(Answers);
+
+                string ansjson = JsonConvert.SerializeObject(Answers);
+
+                //Add New user
+                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/UpdateSecurityAnswersEmailID", "PUT", json_type, ansjson);
+                status = val != null ? Int32.Parse(val) : -1;
+            }
+            return status;
+        }
+
+        //public List<SecurityAnswersDto> GetSecurityQuestionsAnswers(string EmailID)
+        public SecurityAnswersDto GetSecurityQuestionsAnswers(string EmailID)
+        {
+            SecurityAnswersDto questionsAnswers = null;
+
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/securityRest/GetSecurityAnswersByEmailID?Email=" + EmailID, "GET", json_type, null);
+            JavaScriptSerializer json_ques_serializer = new JavaScriptSerializer();
+
+            if (Json_usrList != null)
+            {
+                questionsAnswers = json_ques_serializer.Deserialize<SecurityAnswersDto>(Json_usrList);
+            }
+            return questionsAnswers;
+        }
+
+        #endregion
+
+
     }
 
     #region All Dto
@@ -205,5 +276,112 @@ namespace UoW.DocCore.Web.WebForms
         }
         #endregion
     }
+
+    public class SecurityQuestionDto
+    {
+        #region Database Properties
+
+        private int id;
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
+        private string question;
+        public string Question
+        {
+            get { return question; }
+            set { question = value; }
+        }
+
+        #endregion
+    }
+
+    public class SecurityAnswersDto
+    {
+        #region Database Properties
+
+        private string userEmailId;
+        public string UserEmailID
+        {
+            get { return userEmailId; }
+            set { userEmailId = value; }
+        }
+
+        private List<SecurityAnswerPair> questionsAnswers;
+        public List<SecurityAnswerPair> QuestionsAnswers
+        {
+            get { return questionsAnswers; }
+            set { questionsAnswers = value; }
+        }
+
+        #endregion
+    }
+
+    public class SecurityAnswerPair
+    {
+        private SecurityQuestion question;
+        /// <summary>
+        /// Gets or sets the question.
+        /// </summary>
+        /// <value>
+        /// The question.
+        /// </value>
+        public SecurityQuestion Question
+        {
+            get { return question; }
+            set { question = value; }
+        }
+
+        private string answer;
+        /// <summary>
+        /// Gets or sets the answer.
+        /// </summary>
+        /// <value>
+        /// The question.
+        /// </value>
+        public string Answer
+        {
+            get { return answer; }
+            set { answer = value; }
+        }
+    }
+
+    public class SecurityQuestion
+    {
+        #region Database Properties
+
+        private int id;
+        /// <summary>
+        /// Gets or sets the ID.
+        /// </summary>
+        /// <value>
+        /// The ID.
+        /// </value>
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
+        private string question;
+        /// <summary>
+        /// Gets or sets the question.
+        /// </summary>
+        /// <value>
+        /// The question.
+        /// </value>
+        public string Question
+        {
+            get { return question; }
+            set { question = value; }
+        }
+
+        #endregion
+    }
+
     #endregion
 }

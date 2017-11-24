@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityDao.cs" />
     <Compile Include="UserDao.cs" />
   </ItemGroup>
   <ItemGroup>
