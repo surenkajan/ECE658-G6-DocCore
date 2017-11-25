@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -27,7 +28,7 @@ namespace UoW.DocCore.Web.WebForms
                     string fileName = DocumentUpload.FileName;
                     string fileExtension = System.IO.Path.GetExtension(fileName);
                     lblDocName.Text = fileName;
-                    FileExtImage.ImageUrl = "\\Content\\Images\\" + fileExtension.Replace(".","").ToLower() + ".png";
+                    FileExtImage.ImageUrl = "\\Content\\Images\\ext\\" + fileExtension.Replace(".","").ToLower() + "256.png";
                     lblUploadedBy.Text = currentUserEmailID;
                     lblUploadedDate.Text = DateTime.Now.ToString("g");
                 }
