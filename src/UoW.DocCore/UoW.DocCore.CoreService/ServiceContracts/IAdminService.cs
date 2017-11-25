@@ -71,5 +71,14 @@ namespace UoW.DocCore.CoreService
         UriTemplate = "GetProjectDetailsByID?projectId={ID}")]
         ProjectDto GetProjectDetailsByID(int ID);
 
+        [OperationContract]
+        [Description("Delete User By EmailID")]
+        [WebInvoke(Method = "DELETE",
+          BodyStyle = WebMessageBodyStyle.Bare,
+          RequestFormat = WebMessageFormat.Json,
+          ResponseFormat = WebMessageFormat.Json,
+          UriTemplate = "DeleteUserByEmailID?Email={EmailID}")]
+        int DeleteUserByEmailID(string EmailID);
+
     }
 }

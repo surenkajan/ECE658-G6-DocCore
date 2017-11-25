@@ -116,8 +116,36 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 {
                     lstdays.Add(d);  //add single day to days List
                 }
+               
+                for (int i=0;i< newDays.Length; i++)
+                {
+                    this.ListBox1.SelectedIndex = i;
+                }
+                List<UserDto> User = DocCoreBDelegate.Instance.GetAllManagers();
+                foreach (UserDto  dto in User)
+                    {
+                    foreach (string d in newDays)
+                    {
+                        if (d.Trim().Equals(dto.FullName.Trim()))
+                        {
+                            break;
+                            
+                        }
+                        else
+                        {
+                            lstdays.Add(dto.FullName);
+                        }
+                    }
+                    
+                 }
                 ListBox1.DataSource = lstdays;
                 ListBox1.DataBind();
+
+
+
+
+
+
 
                 string members = project.TeamMember;
                 List<string> memberlist = new List<string>();
@@ -126,6 +154,28 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 foreach (string i in memberArray)
                 {
                     memberlist.Add(i);  //add single day to days List
+                }
+               
+                for (int i = 0; i < newDays.Length; i++)
+                {
+                    this.ListBox2.SelectedIndex = i;
+                }
+                List<UserDto> teamMembers = DocCoreBDelegate.Instance.GetAllTeamMembers();
+                foreach (UserDto dto in teamMembers)
+                {
+                    foreach (string d in memberArray)
+                    {
+                        if (d.Trim().Equals(dto.FullName.Trim()))
+                        {
+                            break;
+
+                        }
+                        else
+                        {
+                            memberlist.Add(dto.FullName);
+                        }
+                    }
+
                 }
                 ListBox2.DataSource = memberlist;
                 ListBox2.DataBind();
