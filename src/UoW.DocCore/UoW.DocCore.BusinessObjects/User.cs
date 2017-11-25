@@ -100,7 +100,12 @@ namespace UoW.DocCore.BusinessObjects
             get { return sex; }
             set { sex = value; }
         }
-
+        private string projectrole;
+        public string ProjectRole
+        {
+            get { return projectrole; }
+            set { projectrole = value; }
+        }
         private string employeeDesignation;
         /// <summary>
         /// Gets or sets the employee designation.

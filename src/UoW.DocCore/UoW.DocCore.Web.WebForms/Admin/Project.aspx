@@ -8,11 +8,18 @@
     &nbsp;<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
         rel="stylesheet" type="text/css" /><script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
         type="text/javascript"></script><script type="text/javascript">
-        $(function () {
-            $('[id*=ListBox1]').multiselect({
-                includeSelectAllOption: true
-            });
-        });
+                                            $(function () {
+                                                $('[id*=ListBox1]').multiselect({
+                                                    includeSelectAllOption: true
+                                                });
+                                            });
+
+                                            $(function () {
+                                                $('[id*=ListBox2]').multiselect({
+                                                    includeSelectAllOption: true
+                                                });
+                                            });
+
 
     </script><div>
    <h2>Create Project</h2>
@@ -20,7 +27,7 @@
    
             <asp:Table ID="Table1" runat="server">
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell Height="50px">
                         <asp:Label ID="Label1" runat="server" Text="Project Name" > </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
@@ -28,7 +35,7 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell>
+                    <asp:TableCell Height="50px">
                         <asp:Label ID="Label2" runat="server" Text="Project Manager" ></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
@@ -37,8 +44,11 @@
                       </asp:TableCell>
                     </asp:TableRow>
                 <asp:TableRow >
+                    <asp:TableCell Height="50px">
+                        <asp:Label ID="Label3" runat="server" Text="Team Members" ></asp:Label>
+                    </asp:TableCell>
                     <asp:TableCell Height="30px" >
-                        
+                             <asp:ListBox ID="ListBox2" runat="server" Width="100%" SelectionMode="Multiple" CssClass="form-control"></asp:ListBox>
                     </asp:TableCell>
                      
                 </asp:TableRow>

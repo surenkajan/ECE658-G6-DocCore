@@ -32,6 +32,8 @@ namespace UoW.DocCore.CoreService
             return CoreObjectMapper.UserDaoToDto(userDao.GetUserByFullName(FullName));
         }
 
+
+
         /// <summary>
         /// Gets the Details of the User by Email ID.
         /// </summary>

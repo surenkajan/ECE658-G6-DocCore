@@ -52,12 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTransferObjectMapper\CoreObjectMapper.cs" />
+    <Compile Include="DataTransferObjects\ProjectDto.cs" />
     <Compile Include="DataTransferObjects\SecurityAnswersDto.cs" />
     <Compile Include="DataTransferObjects\SecurityQuestionDto.cs" />
     <Compile Include="DataTransferObjects\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContracts\IAdminService.cs" />
     <Compile Include="ServiceContracts\ISecurityService.cs" />
     <Compile Include="ServiceContracts\IUserService.cs" />
+    <Compile Include="ServiceImplementations\AdminService.cs" />
     <Compile Include="ServiceImplementations\SecurityService.cs" />
     <Compile Include="ServiceImplementations\UserService.cs" />
   </ItemGroup>

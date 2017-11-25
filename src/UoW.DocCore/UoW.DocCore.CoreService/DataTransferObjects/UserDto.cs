@@ -85,8 +85,14 @@ namespace UoW.DocCore.CoreService.DataTransferObjects
             get { return sex; }
             set { sex = value; }
         }
+        private string projectRole;
+        [DataMember]
+        public string ProjectRole
+        {
+            get { return projectRole; }
+            set { projectRole = value; }
+        }
 
-      
         #endregion
 
         #region External Properties

@@ -39,6 +39,7 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             dto.Sex = userDao.Sex;
 			    dto.ProfilePhoto = userDao.ProfilePhoto;
             dto.UserID = userDao.UserID;
+            dto.ProjectRole = userDao.ProjectRole;
 
             return dto;
 
@@ -58,6 +59,7 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
                 Sex = userDto.Sex,
 				 ProfilePhoto = userDto.ProfilePhoto,
                  UserID = userDto.UserID
+                  
 
             };
         }
@@ -70,8 +72,18 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             return userList;
         }
 
+        public static Project ProjectDtoToDao(ProjectDto projectDto)
+        {
+            if (projectDto == null) return null;
+            return new Project()
+            {
+                ProjectManager = projectDto.ProjectManager,
+                ProjectName = projectDto.TeamMember,
+                TeamMember = projectDto.TeamMember
 
-        
+            };
+        }
+
         public static User EmployeeDtoToDao(UserDto userDto)
         {
             if (userDto == null) return null;

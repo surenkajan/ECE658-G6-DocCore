@@ -86,5 +86,10 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllSecurityQuestions.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetSecurityAnswersByEmailID.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateSecurityAnswersByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\Functions\SplitString.function.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreCreateProjectByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllManagers.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllTeamMembers.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserRoleByEmailID.proc.sql" />
   </ItemGroup>
 </Project>

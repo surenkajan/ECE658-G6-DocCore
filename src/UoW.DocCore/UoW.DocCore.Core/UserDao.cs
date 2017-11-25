@@ -31,13 +31,26 @@
                 throw;
             }
         }
-
+        public User GetUserRoleByEmailID(string emailID)
+        {
+            try
+            {
+                return Db.Read(Db.QueryType.StoredProcedure, "[doccore].[CoreGetUserRoleByEmailID]", GetUserFromReader, "DocCoreMSSQLConnection",
+                    new object[] { "EmailAddress", emailID });
+                //return new User() { FirstName = "User1FN", LastName = "User1LN", EmailAddress = "user1@gmail.com   ", DateOfBirth = DateTime.Now, FullName = "User1 User 1", Sex = "Male" };
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Core Service", ex.Message + "\n Stack trace: " + ex.StackTrace);
+                throw;
+            }
+        }
         public List<User> GetUserByFullName(string fullName)
         {
             try
             {
                 return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetUserByFullName]", GetUserFromReader, "DocCoreMSSQLConnection",
-                    new object[] { "Fullname", fullName});
+                    new object[] { "Fullname", fullName });
                 //return new User() { FirstName = "User1FN", LastName = "User1LN", EmailAddress = "user1@gmail.com   ", DateOfBirth = DateTime.Now, FullName = "User1 User 1", Sex = "Male" };
             }
             catch (Exception ex)
@@ -98,7 +111,7 @@
                 return -1;
             }
         }
-        
+
         //UpdateUserByEmailID
         /// <summary>
         /// Add New user the DB once the ASP.Net Auth registration completes
@@ -122,7 +135,7 @@
                     "EmailAddress", user.EmailAddress,
                     "DateOfBirth", user.DateOfBirth,
                     "Sex", user.Sex,
-                    "ProfilePhoto", Convert.FromBase64String(user.ProfilePhoto) 
+                    "ProfilePhoto", Convert.FromBase64String(user.ProfilePhoto)
                 });
             }
             else
@@ -161,7 +174,51 @@
                 GetUserFromReader, "DocCoreMSSQLConnection",
                 new object[] { "UserTablePreFix", "AU" });
         }
+        public List<User> GetAllManagers()
+        {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllManagers]",
+                GetMemberFromReader, "DocCoreMSSQLConnection",
+                new object[] { "UserTablePreFix", "AU" });
+        }
+        public List<User> GetAllTeamMembers()
+        {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllTeamMembers]",
+                GetMemberFromReader, "DocCoreMSSQLConnection",
+                new object[] { "UserTablePreFix", "AU" });
+        }
+        private User GetMemberFromReader(IDataReader reader)
+        {
+            return GetMemberFromReader(reader, "AU");
+        }
+        public static User GetMemberFromReader(IDataReader reader, string namePreFix)
+        {
+            User user = new User();
 
+            user.UserID = Db.GetValue(reader, "ID", 0);
+            user.FullName = Db.GetValue(reader, "FullName", "");
+            user.EmailAddress = Db.GetValue(reader, "EmailAddress", "");
+            //user.UserName = Db.GetValue(reader, "UserName", "");
+            //user.FirstName = Db.GetValue(reader, "FirstName", "");
+            //user.LastName = Db.GetValue(reader, "LastName", "");
+
+            //user.DateOfBirth = Db.GetValue(reader, "DateOfBirth", DateTime.Now);
+            //user.Sex = Db.GetValue(reader, "Sex", "");
+            //user.Uid = Db.GetValue(reader, "ID", 0);
+            //user.ProjectRole = Db.GetValue(reader, "projectRole", "");
+            //if (!DBNull.Value.Equals(reader["ProfilePhoto"]))
+            //{
+            //    byte[] imgBytes = (byte[])reader["ProfilePhoto"];
+            //    string imgString = Convert.ToBase64String(imgBytes);
+            //    user.ProfilePhoto = String.Format("data:image/jpg;base64,{1}", "jpg", imgString);
+            //}
+            //else
+            //{
+            //    //Image image = Image.FromFile(@"\images\avator.png");
+            //    //user.ProfilePhoto = Common.ImageToBase64(image);
+            //    user.ProfilePhoto = null;
+            //}
+            return user;
+        }
         /// <summary>
         /// Gets the employee from reader.
         /// </summary>
@@ -191,6 +248,7 @@
             user.DateOfBirth = Db.GetValue(reader, "DateOfBirth", DateTime.Now);
             user.Sex = Db.GetValue(reader, "Sex", "");
             user.Uid = Db.GetValue(reader, "ID", 0);
+            user.ProjectRole = Db.GetValue(reader, "projectRole", "");
             if (!DBNull.Value.Equals(reader["ProfilePhoto"]))
             {
                 byte[] imgBytes = (byte[])reader["ProfilePhoto"];

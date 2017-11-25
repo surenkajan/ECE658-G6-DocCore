@@ -54,30 +54,56 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 public int LastName { get; set; }
             }
         }
-
+        string currentUserEmailID;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                FriendProfiles new1 = new FriendProfiles();
-                ListBox1.DataSource = new1.FriendProfiless();
-                ListBox1.DataTextField = "FirstName";
-                //DropDownList1.DataValueField = "LastName";
-                ListBox1.DataBind();
+                currentUserEmailID = HttpContext.Current.User.Identity.Name;
+                //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("doccore_hdnf_CurrentUserEmailID");
+                //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
+                UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
+                if (user.ProjectRole == "Admin")
+                {
+                    FriendProfiles new1 = new FriendProfiles();
+                    ListBox1.DataSource = new1.FriendProfiless();
+                    ListBox1.DataTextField = "FirstName";
+                    //DropDownList1.DataValueField = "LastName";
+                    ListBox1.DataBind();
+                    LoadGridData();
+                }
+                else
+                {
+                    //hide
+                }
 
+            }
+        }
+
+        private void LoadGridData()
+        {
+            List<UserDto> User = DocCoreBDelegate.Instance.GetAllManagers();
+            foreach (UserDto user in User)
+            {
+                ListBox1.DataSource = user;
+                ListBox1.DataTextField = "FullName";
+                ListBox1.DataBind();
+            }
+            List<UserDto> teamMembers = DocCoreBDelegate.Instance.GetAllTeamMembers();
+            foreach (UserDto member in teamMembers)
+            {
+                ListBox2.DataSource = member;
+                ListBox2.DataTextField = "FullName";
+                ListBox2.DataBind();
             }
         }
         protected void CreateProject(object sender, EventArgs e)
         {
-            string message = "";
-            foreach (ListItem item in ListBox1.Items)
-            {
-                if (item.Selected)
-                {
-                    message += item.Text + " " + item.Value + "\\n";
-                }
-            }
-            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "alert('" + message + "');", true);
+            //string currentUserEmailID = HttpContext.Current.User.Identity.Name;
+            //int UserID = Int32.Parse(param1);
+            //FriendRequestDto addfriend = new FriendRequestDto() { CurrentUserEmailID = currentUserEmailID, Uid = UserID };
+            //int AddStatus = PictreBDelegate.Instance.InsertFriend(addfriend);
+            //LoadGridData();
         }
         protected void DeleteProject(object sender, EventArgs e)
         {

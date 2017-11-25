@@ -108,6 +108,65 @@ namespace UoW.DocCore.Web.WebForms
             return status;
         }
 
+        public int CreateProject(ProjectDto projectdto)
+        {
+            int status = -1;
+
+            if (projectdto != null)
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string userjson = js.Serialize(projectdto);
+
+                //Add New user
+                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/CreateProjectByEmailID", "POST", json_type, userjson);
+                status = val != null ? Int32.Parse(val) : -1;
+            }
+            return status;
+
+        }
+        public UserDto GetUserRoleByEmailID(string EmailID)
+        {
+            UserDto user = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            //Get the User
+            string usr = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetUserRoleByEmailID?Email=" + EmailID, "GET", json_type, null);
+
+            //How to Consume this in Pictre Front End: Deserialize the object(s)
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            json_serializer.MaxJsonLength = int.MaxValue;
+            if (usr != null)
+            {
+                user = json_serializer.Deserialize<UserDto>(usr);
+            }
+            return user;
+        }
+
+        public List<UserDto> GetAllTeamMembers()
+        {
+            List<UserDto> usrList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetAllTeamMembers", "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_usrList != null)
+            {
+                usrList = json_list_serializer.Deserialize<List<UserDto>>(Json_usrList);
+            }
+            return usrList;
+        }
+        public List<UserDto> GetAllManagers()
+        {
+            List<UserDto> usrList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetAllManagers", "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_usrList != null)
+            {
+                usrList = json_list_serializer.Deserialize<List<UserDto>>(Json_usrList);
+            }
+            return usrList;
+        }
         public int UpdateUser(UserDto user)
         {
             int status = -1;
@@ -263,7 +322,13 @@ namespace UoW.DocCore.Web.WebForms
             get { return sex; }
             set { sex = value; }
         }
-       
+        private string projectRole;
+
+        public string ProjectRole
+        {
+            get { return projectRole; }
+            set { projectRole = value; }
+        }
 
         #endregion
 
@@ -276,7 +341,32 @@ namespace UoW.DocCore.Web.WebForms
         }
         #endregion
     }
+    public class ProjectDto
+    {
+        #region Database Properties
+        private String projectName;
 
+        public String ProjectName
+        {
+            get { return projectName; }
+            set { projectName = value; }
+        }
+        private String projectManager;
+
+        public String ProjectManager
+        {
+            get { return projectManager; }
+            set { projectManager = value; }
+        }
+        private String teamMember;
+
+        public String TeamMember
+        {
+            get { return teamMember; }
+            set { teamMember = value; }
+        }
+        #endregion
+    }
     public class SecurityQuestionDto
     {
         #region Database Properties
