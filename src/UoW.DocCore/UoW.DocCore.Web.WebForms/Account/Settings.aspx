@@ -16,14 +16,14 @@
             <%--<h4>Update account details:</h4>--%>
             <hr />
             <asp:ValidationSummary Visible="false" runat="server" CssClass="text-danger" />
-            <div style="float: right;">
+            <div>
                 <div class="form-group">
                     <asp:Image runat="server" ID="ImagePreview" Height="164px" Width="125px" />
                     <asp:FileUpload runat="server" ID="ProfilePhotoUpload" onchange="this.form.submit()" />
                     <%--<asp:Button runat="server" OnClick="btnPreview_Click" ID="btnPhotoPreview" Text="Preview" />--%>
                 </div>
             </div>
-            <div style="float: left;">
+            <div>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="FName" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>First Name:</asp:Label>
                     <div class="col-md-10">

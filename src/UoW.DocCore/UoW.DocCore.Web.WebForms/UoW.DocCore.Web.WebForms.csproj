@@ -189,7 +189,9 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\Project.aspx" />
+    <Content Include="Admin\UserAccess.aspx" />
     <Content Include="Admin\ViewAllProject.aspx" />
+    <Content Include="Admin\ViewAllUsers.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-cerulean.css" />
     <Content Include="Content\bootstrap-ceruleanTemp.css" />
@@ -378,12 +380,26 @@
     <Compile Include="Admin\Project.aspx.designer.cs">
       <DependentUpon>Project.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserAccess.aspx.cs">
+      <DependentUpon>UserAccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserAccess.aspx.designer.cs">
+      <DependentUpon>UserAccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ViewAllProject.aspx.cs">
       <DependentUpon>ViewAllProject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ViewAllProject.aspx.designer.cs">
       <DependentUpon>ViewAllProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewAllUsers.aspx.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewAllUsers.aspx.designer.cs">
+      <DependentUpon>ViewAllUsers.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

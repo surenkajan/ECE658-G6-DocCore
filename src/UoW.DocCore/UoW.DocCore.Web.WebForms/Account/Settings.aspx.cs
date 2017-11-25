@@ -58,8 +58,6 @@ namespace UoW.DocCore.Web.WebForms.Account
                         SQuestion2Ans.Text = (answersList != null && answersList.QuestionsAnswers[1] != null) ? answersList.QuestionsAnswers[1].Answer : String.Empty;
 
                     }
-
-
                 }
             }
             else
@@ -127,8 +125,18 @@ namespace UoW.DocCore.Web.WebForms.Account
                 }
 
             };
-            int updateAnsStatus = DocCoreBDelegate.Instance.UpdateSecurityAnswers(Ans_Updated);
 
+            SecurityAnswersDto answers = DocCoreBDelegate.Instance.GetSecurityQuestionsAnswers(currentUserEmailID);
+            int updateAnsStatus = -1;
+            if (!((answers == null) || (answers.QuestionsAnswers.Count == 0)))
+            {
+                updateAnsStatus = DocCoreBDelegate.Instance.UpdateSecurityAnswers(Ans_Updated);
+            }
+            else
+            {
+                updateAnsStatus = DocCoreBDelegate.Instance.InsertSecurityAnswers(Ans_Updated);
+            }
+            
             lblSaveStatus.Visible = true;
             if (updateuserStatus != -1 && updateAnsStatus != -1)
             {
