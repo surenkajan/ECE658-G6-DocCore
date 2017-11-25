@@ -14,6 +14,13 @@ namespace UoW.DocCore.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //If the user does not have access, Redirect to Error Page
+            //if()
+            //{
+                  //Session["ErrorCode"] = 001;
+            //    Response.Redirect("/Error");
+            //}
+
             if (!this.IsPostBack)
             {
                 PopulateAllProjects();
@@ -72,16 +79,17 @@ namespace UoW.DocCore.Web.WebForms
                 };
                 int AddStatus = DocCoreBDelegate.Instance.InsertUser(newUser);
 
-                signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+                //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                RegisterStatusPH.Visible = true;
+                DocCoreRegisterUserPH.Visible = false;
+                registerStatus.Text = "New account has been created successfully and is ready to use";
             }
             else
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
-            //RegisterStatusPH.Visible = true;
-            //DocCoreRegisterUserPH.Visible = false;
-            //registerStatus.Text = "You have successfully registered with DocCore. Please login to the system using your credentials";
+            
         }
 
         protected void CreateUserCancel_Click(object sender, EventArgs e)

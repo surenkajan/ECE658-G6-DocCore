@@ -74,8 +74,8 @@
                                 <li><a runat="server" href="~/myprofile/myprofile" title="My Profile"><span class="glyphicon glyphicon-user"></span></a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Admin/UserRegistration"><img src="/Content/Images/create_user.png" style="max-height:20px;"/></a></li>
-                                <li><a runat="server" href="~/Admin/Project"><img src="/Content/Images/create_project.png" style="max-height:20px;"/></a></li>
+                                <li><a runat="server" href="~/Admin/UserRegistration"><img src="/Content/Images/create_user.png" title="Create New User" style="max-height:20px;"/></a></li>
+                                <li><a runat="server" href="~/Admin/Project"><img src="/Content/Images/create_project.png" title="Create New Project" style="max-height:20px;"/></a></li>
                                 <li><a runat="server" href="~/Account/Settings" title="Manage your account"><span class="glyphicon glyphicon-cog"></span>&nbsp;<%: Context.User.Identity.GetUserName()  %></a></li>                
                                 <%--<li><a runat="server" href="~/Account/Settings" title="Manage your account"><%: Context.User.Identity.GetUserName()  %></a></li>--%>
                                 <li>
