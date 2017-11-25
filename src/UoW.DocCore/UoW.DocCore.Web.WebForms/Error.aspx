@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Error" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="UoW.DocCore.Web.WebForms.Error" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
-    <link rel="stylesheet" href="/Content/css/pictreCommon.css" type="text/css" />
+    <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2 id="ErrorTitle"></h2>
@@ -16,7 +16,7 @@
             <div style="width: 25%; margin-left: 10%; min-width: 250px;">
                 <div style="float: left;">
                     <div class="col-md-offset-2 col-md-10">
-                        <asp:Button runat="server" OnClick="CreateClose_Click" Text="Close" CssClass="btn btn-default" />
+                        <asp:Button runat="server" OnClick="Close_Click" Text="Close" CssClass="btn btn-default" />
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ namespace UoW.DocCore.Web.WebForms
         {
         }
 
-        protected void CreateClose_Click(object sender, EventArgs e)
+        protected void Close_Click(object sender, EventArgs e)
         {
 
         }
