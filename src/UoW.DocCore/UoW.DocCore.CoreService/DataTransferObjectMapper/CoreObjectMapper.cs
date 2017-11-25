@@ -44,7 +44,17 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             return dto;
 
         }
-        
+        public static ProjectDto  ProjectDaoToDto(Project projectDao)
+        {
+            if (projectDao == null) return null;
+            ProjectDto dto = new ProjectDto();
+            dto.ProjectName = projectDao.ProjectName;
+            dto.ProjectManager = projectDao.ProjectManager;
+            dto.TeamMember = projectDao.TeamMember;
+            return dto;
+
+        }
+
         public static User UserDtoToDao(UserDto userDto)
         {
             if (userDto == null) return null;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,5 +33,27 @@ namespace UoW.DocCore.Core
                 return -1;
             }
         }
+        public Project GetProjectDetailsByID(int ID)
+        {
+            return Db.Read(Db.QueryType.StoredProcedure, "[doccore].[CoreGetProjectDetailsById]",
+             GetMemberFromReader, "DocCoreMSSQLConnection",
+             new object[] { "ProjectID", ID });
+        }
+        private Project GetMemberFromReader(IDataReader reader)
+        {
+            return GetMemberFromReader(reader, "AU");
+        }
+        public static Project GetMemberFromReader(IDataReader reader, string namePreFix)
+        {
+            Project project = new Project();
+
+            project.ProjectName = Db.GetValue(reader, "projectName", "");
+            project.ProjectManager = Db.GetValue(reader, "ProjectManagers", "");
+            project.TeamMember = Db.GetValue(reader, "ProjectMembers", "");
+        
+            return project;
+        }
+
+
     }
 }

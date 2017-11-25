@@ -41,5 +41,23 @@ namespace UoW.DocCore.CoreService
             UserDao userDao = new UserDao();
             return CoreObjectMapper.UserDaoToDto(userDao.GetAllTeamMembers());
         }
+        public List<UserDto> GetAllTeamMembersByProjectID(int ID)
+        {
+
+            UserDao userDao = new UserDao();
+            return CoreObjectMapper.UserDaoToDto(userDao.GetAllTeamMembersByProjectID(ID));
+        }
+
+        public List<UserDto> GetAllManagersByProjectID(int ID)
+        {
+
+            UserDao userDao = new UserDao();
+            return CoreObjectMapper.UserDaoToDto(userDao.GetAllManagersByProjectID(ID));
+        }
+        public ProjectDto GetProjectDetailsByID(int ID)
+        {
+            ProjectDao projectDao = new ProjectDao();
+            return CoreObjectMapper.ProjectDaoToDto(projectDao.GetProjectDetailsByID(ID));
+        }
     }
 }

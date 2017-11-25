@@ -154,6 +154,47 @@ namespace UoW.DocCore.Web.WebForms
             }
             return usrList;
         }
+        public List<UserDto> GetAllManagersByProjectID(int ID)
+        {
+            List<UserDto> usrList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetAllManagersByProjectID?projectID=" + ID, "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_usrList != null)
+            {
+                usrList = json_list_serializer.Deserialize<List<UserDto>>(Json_usrList);
+            }
+            return usrList;
+        }
+        public List<UserDto> GetAllTeamMembersByProjectID(int ID)
+        {
+            List<UserDto> usrList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetAllTeamMembersByProjectID?projectId=" + ID, "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_usrList != null)
+            {
+                usrList = json_list_serializer.Deserialize<List<UserDto>>(Json_usrList);
+            }
+            return usrList;
+        }
+
+        public ProjectDto GetProjectDetailsByID(int ID)
+        {
+            ProjectDto project = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Proj = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetProjectDetailsByID?projectId=" + ID, "GET", json_type, null);
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            json_serializer.MaxJsonLength = int.MaxValue;
+            if (Proj != null)
+            {
+                project = json_serializer.Deserialize<ProjectDto>(Proj);
+            }
+            return project;
+
+        }
         public List<UserDto> GetAllManagers()
         {
             List<UserDto> usrList = null;

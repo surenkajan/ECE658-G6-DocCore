@@ -91,5 +91,8 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllManagers.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllTeamMembers.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetUserRoleByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllManagersByID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllTeamMembersByID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetProjectDetailsById.proc.sql" />
   </ItemGroup>
 </Project>

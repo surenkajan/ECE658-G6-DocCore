@@ -186,6 +186,19 @@
                 GetMemberFromReader, "DocCoreMSSQLConnection",
                 new object[] { "UserTablePreFix", "AU" });
         }
+        public List<User> GetAllManagersByProjectID(int ID)
+        {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllManagersByID]",
+                GetMemberFromReader, "DocCoreMSSQLConnection",
+                new object[] { "ProjectID", ID });
+        }
+        public List<User> GetAllTeamMembersByProjectID(int ID)
+        {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllTeamMembersByID]",
+                GetMemberFromReader, "DocCoreMSSQLConnection",
+                new object[] { "ProjectID", ID });
+        }
+
         private User GetMemberFromReader(IDataReader reader)
         {
             return GetMemberFromReader(reader, "AU");
@@ -205,18 +218,7 @@
             //user.Sex = Db.GetValue(reader, "Sex", "");
             //user.Uid = Db.GetValue(reader, "ID", 0);
             //user.ProjectRole = Db.GetValue(reader, "projectRole", "");
-            //if (!DBNull.Value.Equals(reader["ProfilePhoto"]))
-            //{
-            //    byte[] imgBytes = (byte[])reader["ProfilePhoto"];
-            //    string imgString = Convert.ToBase64String(imgBytes);
-            //    user.ProfilePhoto = String.Format("data:image/jpg;base64,{1}", "jpg", imgString);
-            //}
-            //else
-            //{
-            //    //Image image = Image.FromFile(@"\images\avator.png");
-            //    //user.ProfilePhoto = Common.ImageToBase64(image);
-            //    user.ProfilePhoto = null;
-            //}
+           
             return user;
         }
         /// <summary>

@@ -47,5 +47,29 @@ namespace UoW.DocCore.CoreService
      UriTemplate = "GetAllTeamMembers")]
         List<UserDto> GetAllTeamMembers();
 
+        [OperationContract]
+        [Description("Get All team Members by project")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+     RequestFormat = WebMessageFormat.Json,
+     ResponseFormat = WebMessageFormat.Json,
+     UriTemplate = "GetAllTeamMembersByProject?projectID={ID}")]
+        List<UserDto> GetAllTeamMembersByProjectID(int ID);
+
+        [OperationContract]
+        [Description("Get All project managers by project")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+    RequestFormat = WebMessageFormat.Json,
+    ResponseFormat = WebMessageFormat.Json,
+    UriTemplate = "GetAllTeamMembersByProjectID?projectId={ID}")]
+        List<UserDto> GetAllManagersByProjectID(int ID);
+
+        [OperationContract]
+        [Description("Get Project Details By ID")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetProjectDetailsByID?projectId={ID}")]
+        ProjectDto GetProjectDetailsByID(int ID);
+
     }
 }

@@ -64,42 +64,81 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("doccore_hdnf_CurrentUserEmailID");
                 //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
+                Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
+                string uid = HttpUtility.ParseQueryString(myUri.Query).Get("uid");
+                uid = "16";
                 //if (user.ProjectRole == "Admin")
                 //{
-                    FriendProfiles new1 = new FriendProfiles();
-                    ListBox1.DataSource = new1.FriendProfiless();
-                    ListBox1.DataTextField = "FirstName";
-                    //DropDownList1.DataValueField = "LastName";
-                    ListBox1.DataBind();
-                    LoadGridData();
-                //}
-                //else
-                //{
-                //    //hide
-                //}
+                //FriendProfiles new1 = new FriendProfiles();
+                //ListBox1.DataSource = new1.FriendProfiless();
+                //ListBox1.DataTextField = "FirstName";
+                ////DropDownList1.DataValueField = "LastName";
+                //ListBox1.DataBind();
+                if (string.IsNullOrEmpty(uid))
+                {
+                    // My Profile
+                    LoadGridDataFirst();
+                }
+                else
+                {
 
+                    LoadGridData(uid);
+
+                }
             }
-        }
 
-        private void LoadGridData()
+        }
+        private void LoadGridDataFirst()
         {
             List<UserDto> User = DocCoreBDelegate.Instance.GetAllManagers();
-            //foreach (UserDto user in User)
-            //{
-                ListBox1.DataSource = User;
-                ListBox1.DataTextField = "FullName";
-                ListBox1.DataBind();
-            //}
+            ListBox1.DataSource = User;
+            ListBox1.DataTextField = "FullName";
+            ListBox1.DataBind();
             List<UserDto> teamMembers = DocCoreBDelegate.Instance.GetAllTeamMembers();
-            //foreach (UserDto member in teamMembers)
-            //{
+            
                 ListBox2.DataSource = teamMembers;
                 ListBox2.DataTextField = "FullName";
                 ListBox2.DataBind();
-            //}
+
+        }
+        private void LoadGridData(string uID)
+        {
+            if (!String.IsNullOrEmpty(uID))
+            {
+                int ProjectID = Int32.Parse(uID);
+                ProjectDto project = DocCoreBDelegate.Instance.GetProjectDetailsByID(ProjectID);
+                TextBox1.Text = project.ProjectName;
+                string listboxvalues = project.ProjectManager;
+                List<string> lstdays = new List<string>();
+                string[] newDays = listboxvalues.Split(',');
+
+                foreach (string d in newDays)
+                {
+                    lstdays.Add(d);  //add single day to days List
+                }
+                ListBox1.DataSource = lstdays;
+                ListBox1.DataBind();
+
+                string members = project.TeamMember;
+                List<string> memberlist = new List<string>();
+                string[] memberArray = members.Split(',');
+
+                foreach (string i in memberArray)
+                {
+                    memberlist.Add(i);  //add single day to days List
+                }
+                ListBox2.DataSource = memberlist;
+                ListBox2.DataBind();
+            }
+             
         }
         protected void CreateProject(object sender, EventArgs e)
         {
+
+
+
+
+
             //string currentUserEmailID = HttpContext.Current.User.Identity.Name;
             //int UserID = Int32.Parse(param1);
             string projectName = TextBox1.Text;
