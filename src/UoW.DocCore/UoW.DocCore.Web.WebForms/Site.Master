@@ -49,7 +49,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <%--<a class="navbar-brand" runat="server" href="~/">Application name</a>--%>
-                    <a class="navbar-brand" runat="server" href="~/home/home">
+                    <a class="navbar-brand" runat="server" href="~/home">
                         <span>
                             <img id="DocCoreLogo" class="doccore-Logo" src="/Content/Images/doccore_favicon.png" />
                         </span>
@@ -70,8 +70,8 @@
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-doccore">
-                                <li><a runat="server" href="~/home/home" title="Home"><span class="glyphicon glyphicon-home"></a></li>
-                                <li><a runat="server" href="~/myprofile/myprofile" title="My Profile"><span class="glyphicon glyphicon-user"></span></a></li>
+                                <li><a runat="server" href="~/home" title="Home"><span class="glyphicon glyphicon-home"></a></li>
+                                <li><a runat="server" href="~/myprofile" title="My Profile"><span class="glyphicon glyphicon-user"></span></a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Admin/UserRegistration"><img src="/Content/Images/create_user.png" title="Create New User" style="max-height:20px;"/></a></li>

@@ -205,8 +205,11 @@
     <Content Include="Content\css\register.css" />
     <Content Include="Content\css\resetpwd.css" />
     <Content Include="Content\css\settings.css" />
+    <Content Include="Content\Images\avi.png" />
     <Content Include="Content\Images\create_project.png" />
     <Content Include="Content\Images\create_user.png" />
+    <Content Include="Content\Images\css.png" />
+    <Content Include="Content\Images\doc.png" />
     <Content Include="Content\Images\doccore_favicon.png" />
     <Content Include="Content\Images\doccore_favicon2.png" />
     <Content Include="Content\Images\doccore_favicon3.png" />
@@ -214,6 +217,17 @@
     <Content Include="Content\Images\doccore_favicon5.png" />
     <Content Include="Content\Images\Google-Calendar-icon.png" />
     <Content Include="Content\Images\Google-Calendar-icon2.png" />
+    <Content Include="Content\Images\html.png" />
+    <Content Include="Content\Images\jpg.png" />
+    <Content Include="Content\Images\mp3.png" />
+    <Content Include="Content\Images\mp4.png" />
+    <Content Include="Content\Images\pdf.png" />
+    <Content Include="Content\Images\png.png" />
+    <Content Include="Content\Images\ppt.png" />
+    <Content Include="Content\Images\txt.png" />
+    <Content Include="Content\Images\xls.png" />
+    <Content Include="Content\Images\xml.png" />
+    <Content Include="Content\Images\zip.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
@@ -226,6 +240,8 @@
     <Content Include="Account\Web.config" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="doccorewebkey.snk" />
+    <Content Include="Home.aspx" />
+    <Content Include="MyProfile.aspx" />
     <Content Include="UserAccess.aspx" />
     <Content Include="ViewAllUsers.aspx" />
     <Content Include="ImageHandler.ashx" />
@@ -441,11 +457,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ImageHandler.ashx.cs">
       <DependentUpon>ImageHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="DocCoreBDelegate.cs" />
+    <Compile Include="MyProfile.aspx.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProfile.aspx.designer.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
