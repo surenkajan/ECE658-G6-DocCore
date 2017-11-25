@@ -18,8 +18,8 @@ namespace UoW.DocCore.CoreService
         //public int AddUserByEmailID()
         {
 
-            ProjectDao userDao = new ProjectDao();
-            return userDao.CreateProjectByEmailID(CoreObjectMapper.ProjectDtoToDao(project));
+            ProjectDao projectDao = new ProjectDao();
+            return projectDao.CreateProjectByEmailID(CoreObjectMapper.ProjectDtoToDao(project));
         }
         public UserDto GetUserRoleByEmailID(string EmailID)
         {

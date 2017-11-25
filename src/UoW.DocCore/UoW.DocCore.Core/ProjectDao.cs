@@ -21,9 +21,9 @@ namespace UoW.DocCore.Core
                     "DocCoreMSSQLConnection",
                     new object[]
                 {
-                    "ProjectManager	", project.ProjectManager,
+                    "ProjectManager", project.ProjectManager,
                     "ProjectName", project.ProjectName,
-                    "TeamMember	", project.TeamMember
+                    "TeamMember", project.TeamMember
 
                 });
             }

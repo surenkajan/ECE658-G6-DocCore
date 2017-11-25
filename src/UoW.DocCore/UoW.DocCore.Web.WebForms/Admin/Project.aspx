@@ -31,7 +31,7 @@
                         <asp:Label ID="Label1" runat="server" Text="Project Name" > </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox ID="TextBox1" runat="server" Width="100%" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox  ID="TextBox1" runat="server"  Width="100%" CssClass="form-control"></asp:TextBox>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -47,7 +47,7 @@
                     <asp:TableCell Height="50px">
                         <asp:Label ID="Label3" runat="server" Text="Team Members" ></asp:Label>
                     </asp:TableCell>
-                    <asp:TableCell Height="30px" >
+                    <asp:TableCell >
                              <asp:ListBox ID="ListBox2" runat="server" Width="100%" SelectionMode="Multiple" CssClass="form-control"></asp:ListBox>
                     </asp:TableCell>
                      
@@ -58,6 +58,12 @@
                     </asp:TableCell>
                     <asp:TableCell HorizontalAlign="Center">
                           <asp:Button ID="Button2" runat="server" Text="Delete" OnClick="DeleteProject" CssClass="btn btn-default" />  
+                    </asp:TableCell>
+                   
+                </asp:TableRow>
+                <asp:TableRow >
+                     <asp:TableCell >
+                        <asp:Label ID="SuccessMesg" runat="server"   Text="Project have been successfully created" ></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

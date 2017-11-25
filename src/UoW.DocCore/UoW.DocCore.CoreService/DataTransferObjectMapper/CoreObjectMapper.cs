@@ -77,8 +77,9 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             if (projectDto == null) return null;
             return new Project()
             {
+                ProjectName = projectDto.ProjectName,
                 ProjectManager = projectDto.ProjectManager,
-                ProjectName = projectDto.TeamMember,
+            
                 TeamMember = projectDto.TeamMember
 
             };
