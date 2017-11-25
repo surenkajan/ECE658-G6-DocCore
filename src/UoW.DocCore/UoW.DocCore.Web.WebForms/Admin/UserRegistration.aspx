@@ -1,8 +1,22 @@
-﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="UoW.DocCore.Web.WebForms.Account.Register" %>
+﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserRegistration.aspx.cs" Inherits="UoW.DocCore.Web.WebForms.UserRegistration" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
     <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
 </asp:Content>
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=ListBox1]').multiselect({
+                includeSelectAllOption: true
+            });
+        });
+    </script>
+
     <h2><%: Title %>.</h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
@@ -13,7 +27,7 @@
             <h4>Create a new account</h4>
             <hr />
             <asp:ValidationSummary Visible="false" runat="server" CssClass="text-danger" />
-
+            <h4>User Details:</h4>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="FName" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>First Name:</asp:Label>
                 <div class="col-md-10">
@@ -112,28 +126,23 @@
                         CssClass="text-danger" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
                 </div>
             </div>
+            <h4>Permission Level:</h4>
 
             <div class="form-group">
-                <asp:Label runat="server" CssClass="col-md-2 control-label" style="text-decoration: underline;">Security Questions:</asp:Label>
-                <br />
-                <br />
-                <asp:Label runat="server" ID="SQuestion1" AssociatedControlID="SQuestion1Ans" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span></asp:Label>
+                <asp:Label runat="server" AssociatedControlID="ddlRole" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Role</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="SQuestion1Ans" CssClass="form-control" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="SQuestion1Ans"
-                        CssClass="text-danger" ErrorMessage="Answer to Security Question 1 is required." />
+                    <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control" style="max-width: 280px;"></asp:DropDownList>
                 </div>
-                <br />
-                <asp:Label runat="server" ID="SQuestion2" AssociatedControlID="SQuestion2Ans" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span></asp:Label>
+            </div>
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="lstBoxProject" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Project</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="SQuestion2Ans" CssClass="form-control" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="SQuestion2Ans"
-                        CssClass="text-danger" ErrorMessage="Answer to Security Question 2 is required." />
+                    <asp:ListBox ID="lstBoxProject" runat="server" SelectionMode="Multiple" Width="100%" CssClass="form-control" style="max-width: 280px;"></asp:ListBox>
                 </div>
             </div>
 
             <div class="form-group">
-                <div style="width: 25%; margin-left: 10%;min-width: 250px;">
+                <div style="width: 25%; margin-left: 10%; min-width: 250px;">
                     <div style="float: left;">
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
@@ -151,12 +160,87 @@
 
         <asp:PlaceHolder ID="RegisterStatusPH" Visible="false" runat="server">
             <div class="form-group">
-                <asp:Label ID="registerStatus" runat="server" CssClass="control-label doccore-success-msg"></asp:Label>
+                <asp:Label ID="registerStatus" runat="server" CssClass="control-label DocCore-success-msg"></asp:Label>
             </div>
         </asp:PlaceHolder>
 
     </div>
 
 
-    
+
+    <%--<div>--%>
+    <%--<h3>User Access</h3>
+        <hr />
+        <h4>User Details</h4>
+        <table>
+            <tr style="margin-bottom: 4px">
+                <td style="width: 200px">
+                    <asp:Label runat="server" ID="label3"> First Name(userId):</asp:Label>
+
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 20px"></td>
+            </tr>
+            <tr>
+                <td style="width: 200px">
+                    <asp:Label runat="server" ID="label1"> Last Name:</asp:Label>
+
+
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
+                </td>
+
+            </tr>
+            <tr>
+                <td style="height: 20px"></td>
+            </tr>
+            <tr>
+                <td style="width: 200px">
+                    <asp:Label runat="server" ID="label2">  Password:</asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control"></asp:TextBox>
+                </td>
+            </tr>
+        </table>--%>
+    <%--<h4>Access Level</h4>
+        <table>
+            <tr>
+                <td style="width: 200px">Role:
+                </td>
+                <td style="width: 200px">
+                    <asp:DropDownList Width="200px" ID="DropDownList1" runat="server" CssClass="form-control"></asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 20px"></td>
+            </tr>
+            <tr>
+                <td>Project:
+                </td>
+                <td>
+                    <asp:ListBox ID="ListBox1" runat="server" SelectionMode="Multiple" Width="100%" CssClass="form-control"></asp:ListBox>
+                </td>
+
+
+            </tr>
+            <tr>
+                <td style="height: 20px"></td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="Button1" runat="server" Text="Create" OnClick="CreateProject" CssClass="btn btn-default" />
+                </td>
+                <td>
+                    <asp:Button ID="Button2" runat="server" Text="Delete" OnClick="DeleteProject" CssClass="btn btn-default" />
+                </td>
+            </tr>
+        </table>--%>
+
+    <%--</div>--%>
 </asp:Content>

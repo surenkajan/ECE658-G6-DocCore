@@ -52,7 +52,7 @@ namespace UoW.DocCore.Web.WebForms
             //Get the User
             string usr = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/userRest/GetUserByEmailID?Email=" + EmailID, "GET", json_type, null);
 
-            //How to Consume this in Pictre Front End: Deserialize the object(s)
+            //How to Consume this in DocCore Front End: Deserialize the object(s)
             JavaScriptSerializer json_serializer = new JavaScriptSerializer();
             json_serializer.MaxJsonLength = int.MaxValue;
             if (usr != null)
@@ -68,7 +68,7 @@ namespace UoW.DocCore.Web.WebForms
             //Get the User
             string usr = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/userRest/GetUserByUid?Uid=" + uid, "GET", json_type, null);
 
-            //How to Consume this in Pictre Front End: Deserialize the object(s)
+            //How to Consume this in DocCore Front End: Deserialize the object(s)
             JavaScriptSerializer json_serializer = new JavaScriptSerializer();
             if (usr != null)
             {

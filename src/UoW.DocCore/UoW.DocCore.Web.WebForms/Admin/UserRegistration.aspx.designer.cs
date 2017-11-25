@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UoW.DocCore.Web.WebForms.Account {
+namespace UoW.DocCore.Web.WebForms {
     
     
-    public partial class Register {
+    public partial class UserRegistration {
         
         /// <summary>
         /// ErrorMessage control.
@@ -121,40 +121,22 @@ namespace UoW.DocCore.Web.WebForms.Account {
         protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
         
         /// <summary>
-        /// SQuestion1 control.
+        /// ddlRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SQuestion1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRole;
         
         /// <summary>
-        /// SQuestion1Ans control.
+        /// lstBoxProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SQuestion1Ans;
-        
-        /// <summary>
-        /// SQuestion2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SQuestion2;
-        
-        /// <summary>
-        /// SQuestion2Ans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SQuestion2Ans;
+        protected global::System.Web.UI.WebControls.ListBox lstBoxProject;
         
         /// <summary>
         /// RegisterStatusPH control.

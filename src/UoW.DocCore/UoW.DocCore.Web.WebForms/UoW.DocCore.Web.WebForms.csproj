@@ -189,7 +189,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Admin\Project.aspx" />
-    <Content Include="Admin\UserAccess.aspx" />
+    <Content Include="Admin\UserRegistration.aspx" />
     <Content Include="Admin\ViewAllProject.aspx" />
     <Content Include="Admin\ViewAllUsers.aspx" />
     <Content Include="Contact.aspx" />
@@ -205,11 +205,15 @@
     <Content Include="Content\css\register.css" />
     <Content Include="Content\css\resetpwd.css" />
     <Content Include="Content\css\settings.css" />
+    <Content Include="Content\Images\create_project.png" />
+    <Content Include="Content\Images\create_user.png" />
     <Content Include="Content\Images\doccore_favicon.png" />
     <Content Include="Content\Images\doccore_favicon2.png" />
     <Content Include="Content\Images\doccore_favicon3.png" />
     <Content Include="Content\Images\doccore_favicon4.png" />
     <Content Include="Content\Images\doccore_favicon5.png" />
+    <Content Include="Content\Images\Google-Calendar-icon.png" />
+    <Content Include="Content\Images\Google-Calendar-icon2.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -380,12 +384,12 @@
     <Compile Include="Admin\Project.aspx.designer.cs">
       <DependentUpon>Project.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\UserAccess.aspx.cs">
-      <DependentUpon>UserAccess.aspx</DependentUpon>
+    <Compile Include="Admin\UserRegistration.aspx.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\UserAccess.aspx.designer.cs">
-      <DependentUpon>UserAccess.aspx</DependentUpon>
+    <Compile Include="Admin\UserRegistration.aspx.designer.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewAllProject.aspx.cs">
       <DependentUpon>ViewAllProject.aspx</DependentUpon>

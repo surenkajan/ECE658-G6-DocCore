@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace UoW.DocCore.Web.WebForms
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class ViewAllUsers : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

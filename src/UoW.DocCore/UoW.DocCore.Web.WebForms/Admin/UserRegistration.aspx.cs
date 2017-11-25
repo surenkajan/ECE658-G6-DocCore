@@ -1,16 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Owin;
 using UoW.DocCore.Web.WebForms.Models;
 
-namespace UoW.DocCore.Web.WebForms.Account
+namespace UoW.DocCore.Web.WebForms
 {
-    public partial class Register : Page
+    public partial class UserRegistration : Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.IsPostBack)
+            {
+                PopulateAllProjects();
+                PopulateAllRoles();
+            }
+            
+        }
+
+        private void PopulateAllProjects()
+        {
+            var products = new List<Product>();
+            products.Add(new Product() { Name = "Project Manager" });
+            products.Add(new Product() { Name = "Team Member" });
+            lstBoxProject.DataSource = products;
+            lstBoxProject.DataTextField = "Name";
+            //DropDownList1.DataValueField = "LastName";
+            lstBoxProject.DataBind();
+        }
+
+        private void PopulateAllRoles()
+        {
+            var products = new List<Product>();
+            products.Add(new Product() { Name = "Project Manager" });
+            products.Add(new Product() { Name = "Team Member" });
+            ddlRole.DataSource = products;
+            ddlRole.DataTextField = "Name";
+            ddlRole.DataBind();
+            ddlRole.Items.Insert(0, new ListItem("--Select Customer--", "0"));
+        }
+
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -39,18 +72,39 @@ namespace UoW.DocCore.Web.WebForms.Account
                 };
                 int AddStatus = DocCoreBDelegate.Instance.InsertUser(newUser);
 
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
+                signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
-            else 
+            else
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
+            //RegisterStatusPH.Visible = true;
+            //DocCoreRegisterUserPH.Visible = false;
+            //registerStatus.Text = "You have successfully registered with DocCore. Please login to the system using your credentials";
         }
 
         protected void CreateUserCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Account/Login");
+            //Response.Redirect("/Account/Login");
+        }
+
+        public class Product
+        {
+
+            public string Name { get; set; }
+
+
+        }
+
+        protected void DeleteProject(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void CreateProject(object sender, EventArgs e)
+        {
+
         }
 
         public string ImageToBase64()

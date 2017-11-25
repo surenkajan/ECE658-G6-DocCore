@@ -102,8 +102,8 @@
         ///// <returns></returns>
         //public List<SecurityAnswers> GetSecurityAnswersListsByEmailID(string EmailID)
         //{
-        //    return Db.ReadList(Db.QueryType.StoredProcedure, "[pictre].[GetSecurityAnswersByEmailID]",
-        //        GetSecurityAnswerFromReader, "PictreMSSQLConnection",
+        //    return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[GetSecurityAnswersByEmailID]",
+        //        GetSecurityAnswerFromReader, "DocCoreMSSQLConnection",
         //        new object[] { "EmailAddress", EmailID });
         //}
 

@@ -10,7 +10,7 @@
 namespace UoW.DocCore.Web.WebForms {
     
     
-    public partial class WebForm2 {
+    public partial class ViewAllUsers {
         
         /// <summary>
         /// Label1 control.
