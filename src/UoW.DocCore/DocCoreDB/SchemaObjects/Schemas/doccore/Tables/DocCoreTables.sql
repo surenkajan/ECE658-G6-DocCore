@@ -92,18 +92,31 @@ Id				uniqueidentifier NOT NULL Unique ROWGUIDCOL Default newid(),
 FileName		varchar(100),
 FileType        varchar(10),
 FileSummary		varchar(MAX),
+FileSizeInKB	bigint ,
 FileData		varbinary(MAX) FileStream NULL,
+UploadedTime    datetime,
 UploadedBy      int,
-UploadedTime    datetime
+Modified    datetime,
+ModifiedBy      int,
+IsCheckedIn     int Default (0)
 
-CONSTRAINT FK_USER_ID FOREIGN KEY (UploadedBy) REFERENCES [doccore].[User] (ID) ON DELETE CASCADE,
+CONSTRAINT FK_CREATED_USER_ID FOREIGN KEY (CreatedBy) REFERENCES [doccore].[User] (ID) ON DELETE CASCADE,
+CONSTRAINT FK_MODIFIED_USER_ID FOREIGN KEY (ModifiedBy) REFERENCES [doccore].[User] (ID) ON DELETE CASCADE,
 CONSTRAINT PK_DOCUMENT_ID PRIMARY KEY CLUSTERED (DocID)
 )
 
 END
 
+--ALTER TABLE [DocCoreDB].[doccore].[Documents] ADD
+--    [ModifiedBy] int 
+--    CONSTRAINT FK_MODIFIED_USER_ID FOREIGN KEY ([ModifiedBy]) 
+--    REFERENCES [doccore].[User] (ID)
+
 --ALTER TABLE [doccore].[Documents]
 --ALTER COLUMN FileSummary varchar(MAX);
+
+--ALTER TABLE [DocCoreDB].[doccore].[Documents]
+--ADD FileSizeInKB bigint;
 
 -- To Test the File Stream...
 

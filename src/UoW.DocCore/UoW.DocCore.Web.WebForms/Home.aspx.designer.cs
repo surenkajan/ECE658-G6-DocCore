@@ -58,6 +58,15 @@ namespace UoW.DocCore.Web.WebForms {
         protected global::System.Web.UI.WebControls.Label lblDocName;
         
         /// <summary>
+        /// lblDocSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDocSize;
+        
+        /// <summary>
         /// lblUploadedBy control.
         /// </summary>
         /// <remarks>

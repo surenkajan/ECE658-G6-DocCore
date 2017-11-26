@@ -31,15 +31,19 @@ namespace UoW.DocCore.Web.WebForms
                     FileExtImage.ImageUrl = "\\Content\\Images\\ext\\" + fileExtension.Replace(".","").ToLower() + "256.png";
                     lblUploadedBy.Text = currentUserEmailID;
                     lblUploadedDate.Text = DateTime.Now.ToString("g");
-
+                    lblDocSize.Text = DocumentUpload.FileBytes.Length.ToString();
                     //Consume the service and insert the document
                     DocumentDto document = new DocumentDto()
                     {
                         FileData = DocumentUpload.FileBytes,
                         FileName = DocumentUpload.FileName,
                         FileType = System.IO.Path.GetExtension(DocumentUpload.FileName).Replace(".", "").ToLower(),
+                        FileSizeInKB = DocumentUpload.FileBytes.Length,
                         UploadedBy = currentUserEmailID,
-                        UploadedTime = DateTime.Now
+                        UploadedTime = DateTime.Now,
+                        IsCheckedIn = 0,
+                        Modified = DateTime.Now,
+                        ModifiedBy = currentUserEmailID
                     };
 
                     int addDocumentStatus = DocCoreBDelegate.Instance.AddDocument(document);
@@ -60,18 +64,31 @@ namespace UoW.DocCore.Web.WebForms
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+
             //Consume the service and insert the document
             DocumentDto document = new DocumentDto()
             {
-                FileData = DocumentUpload.FileBytes,
+                FileData = null,
                 FileName = DocumentUpload.FileName,
                 FileSummary = txtFileDescription.Text,
                 FileType = System.IO.Path.GetExtension(DocumentUpload.FileName).Replace(".", "").ToLower(),
                 UploadedBy = currentUserEmailID,
-                UploadedTime = DateTime.Now
+                UploadedTime = DateTime.Now,
+                IsCheckedIn = 1,
+                Modified = DateTime.Now,
+                ModifiedBy = currentUserEmailID
             };
 
-            int addDocumentStatus = DocCoreBDelegate.Instance.AddDocument(document);
+            int UpdateDocumentStatus = DocCoreBDelegate.Instance.UpdateDocument(document);
+
+            if(UpdateDocumentStatus != -1)
+            {
+                Response.Redirect("/MyProfile");
+            }
+            else
+            {
+                Response.Redirect("/Home");
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

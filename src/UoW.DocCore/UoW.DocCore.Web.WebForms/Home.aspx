@@ -37,6 +37,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Document Size(KB):</asp:Label>
+                    <div class="col-md-10">
+                        <asp:Label ID="lblDocSize" runat="server" CssClass="control-label"></asp:Label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Uploaded By:</asp:Label>
                     <div class="col-md-10">
                         <asp:Label ID="lblUploadedBy" runat="server" CssClass="control-label"></asp:Label>

@@ -16,20 +16,39 @@ CREATE PROCEDURE [doccore].[UpdateDocument]
 	@DocID				int,
 	@FileName				VARCHAR(100),
 	@FileType				VARCHAR(10),
-	@FileSummary			varbinary(MAX),
+	@FileSummary			VARCHAR(MAX),
+	@FileSizeInKB			bigint ,
 	@FileData				varbinary(MAX),
-	@UploadedBy				int,
-	@UploadedTime			datetime
+	@UploadedBy				VARCHAR(240),
+	@UploadedTime			datetime,
+	@IsCheckedIn			int,
+	@Modified				datetime,
+	@ModifiedBy				VARCHAR(240)
 AS
-	UPDATE  [doccore].[Documents]
-	SET
-	FileName = @FileName, 
-	FileType = @FileType, 
-	FileSummary = @FileSummary, 
-	FileData = @FileData, 
-	UploadedBy = @UploadedBy, 
-	UploadedTime = @UploadedTime
-	WHERE DocID = @DocID;
+if @FileData IS NULL
+    Begin
+            UPDATE  [doccore].[Documents]
+			SET
+			FileName = @FileName, 
+			FileType = @FileType, 
+			FileSummary = @FileSummary,
+			UploadedBy = @UploadedBy, 
+			UploadedTime = @UploadedTime
+			WHERE DocID = @DocID;
+    End
+Else
+    Begin
+            UPDATE  [doccore].[Documents]
+			SET
+			FileName = @FileName, 
+			FileType = @FileType, 
+			FileSummary = @FileSummary, 
+			FileData = @FileData, 
+			UploadedBy = @UploadedBy, 
+			UploadedTime = @UploadedTime
+			WHERE DocID = @DocID;
+    End   
+	
 RETURN 0
 
 

@@ -676,6 +676,13 @@ namespace UoW.DocCore.Web.WebForms
             set { fileSummary = value; }
         }
 
+        private Int64 fileSizeInKB;
+        public Int64 FileSizeInKB
+        {
+            get { return fileSizeInKB; }
+            set { fileSizeInKB = value; }
+        }
+
         private byte[] fileData;
         public byte[] FileData
         {
@@ -702,6 +709,27 @@ namespace UoW.DocCore.Web.WebForms
         {
             get { return uploadedTime; }
             set { uploadedTime = value; }
+        }
+
+        private int isCheckedIn;
+        public int IsCheckedIn
+        {
+            get { return isCheckedIn; }
+            set { isCheckedIn = value; }
+        }
+
+        private string modifiedBy;
+        public string ModifiedBy
+        {
+            get { return modifiedBy; }
+            set { modifiedBy = value; }
+        }
+
+        private DateTime modified;
+        public DateTime Modified
+        {
+            get { return modified; }
+            set { modified = value; }
         }
 
         #endregion

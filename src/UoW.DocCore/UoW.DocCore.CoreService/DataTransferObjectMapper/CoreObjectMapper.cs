@@ -191,10 +191,13 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             dto.FileData = document.FileData;
             dto.FileName = document.FileName;
             dto.FileSummary = document.FileSummary;
+            dto.FileSizeInKB = document.FileSizeInKB;
             dto.FileType = document.FileType;
             dto.UploadedBy = document.UploadedBy;
             dto.UploadedTime = document.UploadedTime;
-
+            dto.Modified = document.Modified;
+            dto.ModifiedBy = document.ModifiedBy;
+            dto.IsCheckedIn = document.IsCheckedIn;
             return dto;
 
         }
@@ -208,9 +211,13 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
                 FileData = docDto.FileData,
                 FileName = docDto.FileName,
                 FileSummary = docDto.FileSummary,
+                FileSizeInKB = docDto.FileSizeInKB,
                 FileType = docDto.FileType,
                 UploadedBy = docDto.UploadedBy,
-                UploadedTime = docDto.UploadedTime
+                UploadedTime = docDto.UploadedTime,
+                Modified = docDto.Modified,
+                ModifiedBy = docDto.ModifiedBy,
+                IsCheckedIn = docDto.IsCheckedIn
             };
         }
 

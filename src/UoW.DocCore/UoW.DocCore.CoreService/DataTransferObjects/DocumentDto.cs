@@ -44,6 +44,14 @@ namespace UoW.DocCore.CoreService.DataTransferObjects
             set { fileSummary = value; }
         }
 
+        private Int64 fileSizeInKB;
+        [DataMember]
+        public Int64 FileSizeInKB
+        {
+            get { return fileSizeInKB; }
+            set { fileSizeInKB = value; }
+        }
+
         private byte[] fileData;
         [DataMember]
         public byte[] FileData
@@ -74,6 +82,30 @@ namespace UoW.DocCore.CoreService.DataTransferObjects
         {
             get { return uploadedTime; }
             set { uploadedTime = value; }
+        }
+
+        private int isCheckedIn;
+        [DataMember]
+        public int IsCheckedIn
+        {
+            get { return isCheckedIn; }
+            set { isCheckedIn = value; }
+        }
+
+        private string modifiedBy;
+        [DataMember]
+        public string ModifiedBy
+        {
+            get { return modifiedBy; }
+            set { modifiedBy = value; }
+        }
+
+        private DateTime modified;
+        [DataMember]
+        public DateTime Modified
+        {
+            get { return modified; }
+            set { modified = value; }
         }
 
         #endregion

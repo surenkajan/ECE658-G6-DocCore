@@ -78,8 +78,12 @@
                     "FileType", Doc.FileType,
                     "FileData", Doc.FileData,
                     "FileSummary", Doc.FileSummary,
+                    "FileSizeInKB", Doc.FileSizeInKB,
                     "UploadedBy", Doc.UploadedBy,
-                    "UploadedTime", Doc.UploadedTime
+                    "UploadedTime", Doc.UploadedTime,
+                    "IsCheckedIn", Doc.IsCheckedIn,
+                    "ModifiedBy", Doc.ModifiedBy,
+                    "Modified", Doc.Modified
                 });
             }
             else
@@ -103,8 +107,12 @@
                     "FileType", Doc.FileType,
                     "FileData", Doc.FileData,
                     "FileSummary", Doc.FileSummary,
+                    "FileSizeInKB", Doc.FileSizeInKB,
                     "UploadedBy", Doc.UploadedBy,
-                    "UploadedTime", Doc.UploadedTime
+                    "UploadedTime", Doc.UploadedTime,
+                    "IsCheckedIn", Doc.IsCheckedIn,
+                    "ModifiedBy", Doc.ModifiedBy,
+                    "Modified", Doc.Modified
                 });
             }
             else
@@ -153,10 +161,13 @@
             document.FileName = Db.GetValue(reader, "FileName", "");
             document.FileType = Db.GetValue(reader, "FileType", "");
             document.FileSummary = Db.GetValue(reader, "FileType", "");
+            document.FileSizeInKB = Db.GetValue(reader, "FileSizeInKB", 0);
             document.FileData = reader["FileData"] != null ? (byte[])reader["FileData"] : null;
             document.UploadedBy = Db.GetValue(reader, "UploadedBy", "");
             document.UploadedTime = Db.GetValue(reader, "UploadedTime", DateTime.Now);
-
+            document.IsCheckedIn = Db.GetValue(reader, "IsCheckedIn", 0);
+            document.ModifiedBy = Db.GetValue(reader, "ModifiedBy", "");
+            document.Modified = Db.GetValue(reader, "Modified", DateTime.Now);
             return document;
         }
     }
