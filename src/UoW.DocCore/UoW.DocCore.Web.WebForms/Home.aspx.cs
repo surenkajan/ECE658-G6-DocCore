@@ -27,7 +27,7 @@ namespace UoW.DocCore.Web.WebForms
                     
                     string fileName = DocumentUpload.FileName;
                     string fileExtension = System.IO.Path.GetExtension(fileName);
-                    lblDocName.Text = fileName;
+                    txtDocName.Text = fileName;
                     FileExtImage.ImageUrl = "\\Content\\Images\\ext\\" + fileExtension.Replace(".","").ToLower() + "256.png";
                     lblUploadedBy.Text = currentUserEmailID;
                     lblUploadedDate.Text = DateTime.Now.ToString("g");
@@ -50,11 +50,14 @@ namespace UoW.DocCore.Web.WebForms
 
                     if(addDocumentStatus != -1)
                     {
+                        //Retrieve the document 
+                        Session["DocID"] = addDocumentStatus;
                         DocumentUpload.Visible = false;
                         UploadedDocumentDetailsPH.Visible = true;
                     }
                     else
                     {
+                        Session["DocID"] = -1;
                         DocumentUpload.Visible = true;
                         UploadedDocumentDetailsPH.Visible = false;
                     }
@@ -66,29 +69,35 @@ namespace UoW.DocCore.Web.WebForms
         {
 
             //Consume the service and insert the document
-            DocumentDto document = new DocumentDto()
-            {
-                FileData = null,
-                FileName = DocumentUpload.FileName,
-                FileSummary = txtFileDescription.Text,
-                FileType = System.IO.Path.GetExtension(DocumentUpload.FileName).Replace(".", "").ToLower(),
-                UploadedBy = currentUserEmailID,
-                UploadedTime = DateTime.Now,
-                IsCheckedIn = 1,
-                Modified = DateTime.Now,
-                ModifiedBy = currentUserEmailID
-            };
+            int D_ID =  (int)(Session["DocID"]);
 
-            int UpdateDocumentStatus = DocCoreBDelegate.Instance.UpdateDocument(document);
+            if(D_ID != -1)
+            {
+                DocumentDto document = new DocumentDto()
+                {
+                    DocID = D_ID,
+                    FileData = null,
+                    FileName = txtDocName.Text,
+                    FileSummary = txtFileDescription.Text,
+                    UploadedBy = currentUserEmailID,
+                    UploadedTime = DateTime.Now,
+                    IsCheckedIn = 1,
+                    Modified = DateTime.Now,
+                    ModifiedBy = currentUserEmailID
+                };
 
-            if(UpdateDocumentStatus != -1)
-            {
-                Response.Redirect("/MyProfile");
+                int UpdatedDocID = DocCoreBDelegate.Instance.UpdateDocument(document);
+
+                if (UpdatedDocID != -1)
+                {
+                    Response.Redirect("/MyProfile");
+                }
+                else
+                {
+                    Response.Redirect("/Home");
+                }
             }
-            else
-            {
-                Response.Redirect("/Home");
-            }
+            
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

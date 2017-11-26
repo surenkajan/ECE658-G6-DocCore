@@ -40,7 +40,7 @@
             {
                 return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[GetAllDocumentsUploadedByEmailID]",
                 GetUserFromReader, "DocCoreMSSQLConnection",
-                new object[] { "EmailID", EmailID,  "UserTablePreFix", "AU" });
+                new object[] { "EmailID", EmailID, "UserTablePreFix", "AU" });
             }
             catch (Exception ex)
             {
@@ -66,9 +66,10 @@
 
         public int AddDocument(Document Doc)
         {
+            int DocID = -1;
             if (Doc != null && Doc.FileName != null && Doc.FileData != null)
             {
-                return Db.Insert(
+                DocID = Db.Insert(
                     Db.QueryType.StoredProcedure,
                     "[doccore].[CoreAddDocument]",
                     "DocCoreMSSQLConnection",
@@ -88,32 +89,56 @@
             }
             else
             {
-                return -1;
+                DocID = -1;
             }
+            return DocID;
         }
 
         public int UpdateDocument(Document Doc)
         {
-            if (Doc != null && Doc.DocID > 0 && Doc.FileName != null && Doc.FileData != null)
+            if (Doc != null && Doc.DocID > 0 && Doc.FileName != null)
             {
-                return Db.Update(
+                if (Doc.FileData != null)
+                {
+                    return Db.Update(
                     Db.QueryType.StoredProcedure,
                     "[doccore].[UpdateDocument]",
                     "DocCoreMSSQLConnection",
                     new object[]
+                    {
+                        "DocID", Doc.DocID,
+                        "FileName", Doc.FileName,
+                        "FileType", Doc.FileType,
+                        "FileData", Doc.FileData,
+                        "FileSummary", Doc.FileSummary,
+                        "FileSizeInKB", Doc.FileSizeInKB,
+                        "UploadedBy", Doc.UploadedBy,
+                        "UploadedTime", Doc.UploadedTime,
+                        "IsCheckedIn", Doc.IsCheckedIn,
+                        "ModifiedBy", Doc.ModifiedBy,
+                        "Modified", Doc.Modified
+                    });
+                }
+                else
                 {
-                    "DocID", Doc.DocID,
-                    "FileName", Doc.FileName,
-                    "FileType", Doc.FileType,
-                    "FileData", Doc.FileData,
-                    "FileSummary", Doc.FileSummary,
-                    "FileSizeInKB", Doc.FileSizeInKB,
-                    "UploadedBy", Doc.UploadedBy,
-                    "UploadedTime", Doc.UploadedTime,
-                    "IsCheckedIn", Doc.IsCheckedIn,
-                    "ModifiedBy", Doc.ModifiedBy,
-                    "Modified", Doc.Modified
-                });
+                    return Db.Update(
+                    Db.QueryType.StoredProcedure,
+                    "[doccore].[UpdateDocumentMetaData]",
+                    "DocCoreMSSQLConnection",
+                    new object[]
+                    {
+                        "DocID", Doc.DocID,
+                        "FileName", Doc.FileName,
+                        "FileType", Doc.FileType,
+                        "FileSummary", Doc.FileSummary,
+                        "FileSizeInKB", Doc.FileSizeInKB,
+                        "UploadedBy", Doc.UploadedBy,
+                        "UploadedTime", Doc.UploadedTime,
+                        "IsCheckedIn", Doc.IsCheckedIn,
+                        "ModifiedBy", Doc.ModifiedBy,
+                        "Modified", Doc.Modified
+                    });
+                }
             }
             else
             {

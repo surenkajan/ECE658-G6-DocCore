@@ -3,35 +3,31 @@ GO
 
 IF EXISTS ( SELECT * 
             FROM   sysobjects 
-            WHERE  id = object_id(N'[doccore].[UpdateDocument]') 
+            WHERE  id = object_id(N'[doccore].[UpdateDocumentMetaData]') 
                    and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
 BEGIN
-    DROP PROCEDURE [doccore].[UpdateDocument]
+    DROP PROCEDURE [doccore].[UpdateDocumentMetaData]
 END
 
 GO
 
 
-CREATE PROCEDURE [doccore].[UpdateDocument]
+CREATE PROCEDURE [doccore].[UpdateDocumentMetaData]
 	@DocID				int,
 	@FileName				VARCHAR(100),
 	@FileType				VARCHAR(10),
 	@FileSummary			VARCHAR(MAX),
 	@FileSizeInKB			bigint ,
-	@FileData				varbinary(MAX),
 	@UploadedBy				VARCHAR(240),
 	@UploadedTime			datetime,
 	@IsCheckedIn			int,
 	@Modified				datetime,
 	@ModifiedBy				VARCHAR(240)
 AS
-
             UPDATE  [doccore].[Documents]
 			SET
-			FileName = @FileName, 
-			FileType = @FileType, 
-			FileSummary = @FileSummary, 
-			FileData = @FileData, 
+			FileName = @FileName,
+			FileSummary = @FileSummary,
 			UploadedBy = (SELECT TOP 1 ID FROM [doccore].[User] WHERE EmailAddress = @UploadedBy), 
 			UploadedTime = @UploadedTime,
 			ModifiedBy = (SELECT TOP 1 ID FROM [doccore].[User] WHERE EmailAddress = @ModifiedBy), 

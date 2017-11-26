@@ -33,7 +33,8 @@
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Document Name:</asp:Label>
                     <div class="col-md-10">
-                        <asp:Label ID="lblDocName" runat="server" CssClass="control-label"></asp:Label>
+                        <%--<asp:Label ID="lblDocName" runat="server" CssClass="control-label"></asp:Label>--%>
+                        <asp:TextBox ID="txtDocName" runat="server"></asp:TextBox>
                     </div>
                 </div>
                 <div class="form-group">
