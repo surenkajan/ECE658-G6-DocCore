@@ -60,13 +60,14 @@ namespace UoW.DocCore.Web.WebForms.Admin
             if (!IsPostBack)
             {
                 SuccessMesg.Visible = false;
+                DeleteMsg.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
                 //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("doccore_hdnf_CurrentUserEmailID");
                 //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("uid");
-                uid = "16";
+                uid = "15";
                 //if (user.ProjectRole == "Admin")
                 //{
                 //FriendProfiles new1 = new FriendProfiles();
@@ -112,34 +113,59 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 List<string> lstdays = new List<string>();
                 string[] newDays = listboxvalues.Split(',');
 
+               
+
                 foreach (string d in newDays)
                 {
                     lstdays.Add(d);  //add single day to days List
+                    // ListBox1.Items.FindByValue(d);
                 }
-               
-                for (int i=0;i< newDays.Length; i++)
-                {
-                    this.ListBox1.SelectedIndex = i;
-                }
+ 
                 List<UserDto> User = DocCoreBDelegate.Instance.GetAllManagers();
-                foreach (UserDto  dto in User)
-                    {
+               foreach (UserDto  dto in User)
+                {
+                    bool flag = false;
                     foreach (string d in newDays)
                     {
                         if (d.Trim().Equals(dto.FullName.Trim()))
                         {
+                            flag = true;
                             break;
-                            
+                           
+
+
                         }
-                        else
-                        {
-                            lstdays.Add(dto.FullName);
-                        }
+                        
+                    }if (flag== false)
+                    {
+                        lstdays.Add(dto.FullName);
                     }
+
                     
                  }
                 ListBox1.DataSource = lstdays;
                 ListBox1.DataBind();
+                for (int I = ListBox1.Items.Count - 1; I >= 0; I += -1)
+                {
+
+                    bool flag2 = false;
+                    String MyStr = ListBox1.Items[I].ToString();
+                    foreach (string d in newDays)
+                    {
+                        if (d.Trim().Equals(MyStr.Trim()))
+                        {
+                            flag2 = true;
+                            break;
+                        }
+                    }
+                    if (flag2 == true)
+                    {
+                        ListBox1.Items[I].Selected = true;
+                    }
+
+
+
+                }
 
 
 
@@ -156,38 +182,59 @@ namespace UoW.DocCore.Web.WebForms.Admin
                     memberlist.Add(i);  //add single day to days List
                 }
                
-                for (int i = 0; i < newDays.Length; i++)
-                {
-                    this.ListBox2.SelectedIndex = i;
-                }
+              
                 List<UserDto> teamMembers = DocCoreBDelegate.Instance.GetAllTeamMembers();
+                
                 foreach (UserDto dto in teamMembers)
                 {
+                    bool flag1 = false;
                     foreach (string d in memberArray)
                     {
-                        if (d.Trim().Equals(dto.FullName.Trim()))
-                        {
-                            break;
+                        
+                            if (d.Trim().Equals(dto.FullName.Trim()))
+                            {
+                                flag1 = true;
+                                break;
 
-                        }
-                        else
-                        {
-                            memberlist.Add(dto.FullName);
-                        }
+
+
+                            }
+
                     }
+                        if (flag1 == false)
+                        {
+                           memberlist.Add(dto.FullName);
+                        }
 
                 }
                 ListBox2.DataSource = memberlist;
                 ListBox2.DataBind();
+                for (int I = ListBox2.Items.Count - 1; I >= 0; I += -1)
+                {
+
+                    bool flag3 = false;
+                    String MyStr = ListBox2.Items[I].ToString();
+                    foreach (string d in memberArray)
+                    {
+                        if (d.Trim().Equals(MyStr.Trim()))
+                        {
+                            flag3 = true;
+                            break;
+                        }
+                    }
+                    if (flag3 == true)
+                    {
+                        ListBox2.Items[I].Selected = true;
+                    }
+
+
+
+                }
             }
              
         }
         protected void CreateProject(object sender, EventArgs e)
         {
-
-
-
-
 
             //string currentUserEmailID = HttpContext.Current.User.Identity.Name;
             //int UserID = Int32.Parse(param1);
@@ -245,7 +292,31 @@ namespace UoW.DocCore.Web.WebForms.Admin
         }
         protected void DeleteProject(object sender, EventArgs e)
         {
+            Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
+            string uid = HttpUtility.ParseQueryString(myUri.Query).Get("uid");
+            uid = "9";
+            int ProjectID = Int32.Parse(uid);
+            int k = DocCoreBDelegate.Instance.DeleteProjectByProjectID(ProjectID);
+            if (k!=-1)
+            {
+                DeleteMsg.Visible = true;
+                TextBox1.Text = "";
+                for (int I = ListBox1.Items.Count - 1; I >= 0; I += -1)
+                {
+                    if (ListBox1.Items[I].Selected)
+                    {
+                        ListBox1.Items.RemoveAt(I);
+                    }
+                }
+                for (int I = ListBox2.Items.Count - 1; I >= 0; I += -1)
+                {
+                    if (ListBox2.Items[I].Selected)
+                    {
+                        ListBox2.Items.RemoveAt(I);
+                    }
+                }
 
+            }
         }
 
     }

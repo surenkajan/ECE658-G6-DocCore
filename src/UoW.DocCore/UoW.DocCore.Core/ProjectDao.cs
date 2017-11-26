@@ -53,7 +53,21 @@ namespace UoW.DocCore.Core
         
             return project;
         }
-
+        public int DeleteProjectByProjectID(int ID)
+        {
+            if (ID != null)
+            {
+                return Db.Delete(
+                    Db.QueryType.StoredProcedure,
+                    "[doccore].[CoreDeleteProjectByID]",
+                    "DocCoreMSSQLConnection",
+                   new object[] { "ProjectID", ID });
+            }
+            else
+            {
+                return -1;
+            }
+        }
 
     }
 }

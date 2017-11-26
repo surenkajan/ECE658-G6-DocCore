@@ -59,5 +59,10 @@ namespace UoW.DocCore.CoreService
             ProjectDao projectDao = new ProjectDao();
             return CoreObjectMapper.ProjectDaoToDto(projectDao.GetProjectDetailsByID(ID));
         }
+        public int DeleteProjectByProjectID(int ID)
+        {
+            ProjectDao projectDao = new ProjectDao();
+            return projectDao.DeleteProjectByProjectID(ID);
+        }
     }
 }

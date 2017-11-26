@@ -48,7 +48,7 @@
                         <asp:Label ID="Label3" runat="server" Text="Team Members" ></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell >
-                             <asp:ListBox ID="ListBox2" runat="server" Width="100%" SelectionMode="Multiple" CssClass="form-control"></asp:ListBox>
+                             <asp:ListBox ID="ListBox2"  runat="server" Width="100%" SelectionMode="Multiple" CssClass="form-control"></asp:ListBox>
                     </asp:TableCell>
                      
                 </asp:TableRow>
@@ -64,6 +64,7 @@
                 <asp:TableRow >
                      <asp:TableCell >
                         <asp:Label ID="SuccessMesg" runat="server"   Text="Project have been successfully created" ></asp:Label>
+                           <asp:Label ID="DeleteMsg" runat="server"   Text="Project have been successfully deleted" ></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

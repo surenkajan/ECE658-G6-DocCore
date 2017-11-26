@@ -223,6 +223,13 @@ namespace UoW.DocCore.Web.WebForms
             return status;
         }
 
+        public int DeleteProjectByProjectID(int ID)
+        {
+            //DELETE the Project
+            string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/DeleteProjectByProjectID?ProjectID=" + ID, "DELETE", json_type, null);
+            int status = val != null ? Int32.Parse(val) : -1;
+            return status;
+        }
         public int DeleteUserByEmailID(string EmailID)
         {
             //DELETE the User
