@@ -101,5 +101,6 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllSharedDocumentsForEmailID.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetDocumentByDocId.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateDocument.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreDeleteProjectByID.proc.sql" />
   </ItemGroup>
 </Project>
