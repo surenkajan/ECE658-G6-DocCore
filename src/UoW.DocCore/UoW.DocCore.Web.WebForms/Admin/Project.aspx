@@ -59,13 +59,18 @@
                     <asp:TableCell HorizontalAlign="Center">
                           <asp:Button ID="Button2" runat="server" Text="Delete" OnClick="DeleteProject" CssClass="btn btn-default" />  
                     </asp:TableCell>
+                     <asp:TableCell>
+                         <asp:Button ID="Button3" runat="server" Text="Update" OnClick="UpdateProject" CssClass="btn btn-default" />  
+                     </asp:TableCell>
                    
                 </asp:TableRow>
                 <asp:TableRow >
                      <asp:TableCell >
                         <asp:Label ID="SuccessMesg" runat="server"   Text="Project have been successfully created" ></asp:Label>
-                           <asp:Label ID="DeleteMsg" runat="server"   Text="Project have been successfully deleted" ></asp:Label>
+                        <asp:Label ID="DeleteMsg" runat="server"   Text="Project have been successfully deleted" ></asp:Label>
+                        <asp:Label ID="UpdateMsg" runat="server"   Text="Project have been successfully Updated" ></asp:Label>
                     </asp:TableCell>
+                   
                 </asp:TableRow>
             </asp:Table>
         

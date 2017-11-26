@@ -80,5 +80,14 @@ namespace UoW.DocCore.CoreService
           UriTemplate = "DeleteProjectByProjectID?ProjectID={ID}")]
         int DeleteProjectByProjectID(int ID);
 
+
+        [OperationContract(Name = "Update User Details")]
+        [WebInvoke(Method = "PUT",
+           BodyStyle = WebMessageBodyStyle.Bare,
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "UpdateProjectByID")]
+        int UpdateProjectByID(ProjectDto project);
+
     }
 }

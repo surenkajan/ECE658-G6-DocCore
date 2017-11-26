@@ -64,5 +64,12 @@ namespace UoW.DocCore.CoreService
             ProjectDao projectDao = new ProjectDao();
             return projectDao.DeleteProjectByProjectID(ID);
         }
+
+        public int UpdateProjectByID(ProjectDto project)
+        {
+            ProjectDao projectDao = new ProjectDao();
+            return projectDao.UpdateProjectByID(CoreObjectMapper.ProjectDtoToDao(project));
+
+        }
     }
 }

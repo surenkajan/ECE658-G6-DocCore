@@ -28,6 +28,12 @@ namespace UoW.DocCore.BusinessObjects
             get { return teamMember; }
             set { teamMember = value; }
         }
+        private int pid;
+        public int pID
+        {
+            get { return pid; }
+            set { pid = value; }
+        }
 
 
 

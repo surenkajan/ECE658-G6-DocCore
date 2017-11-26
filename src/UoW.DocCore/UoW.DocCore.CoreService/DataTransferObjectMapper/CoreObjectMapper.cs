@@ -51,6 +51,7 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             dto.ProjectName = projectDao.ProjectName;
             dto.ProjectManager = projectDao.ProjectManager;
             dto.TeamMember = projectDao.TeamMember;
+            //dto.pID = projectDao.pID;
             return dto;
 
         }
@@ -90,7 +91,8 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
                 ProjectName = projectDto.ProjectName,
                 ProjectManager = projectDto.ProjectManager,
             
-                TeamMember = projectDto.TeamMember
+                TeamMember = projectDto.TeamMember,
+                pID= projectDto.pID
 
             };
         }

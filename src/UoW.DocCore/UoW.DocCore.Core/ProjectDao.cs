@@ -68,6 +68,29 @@ namespace UoW.DocCore.Core
                 return -1;
             }
         }
+        public int UpdateProjectByID(Project proj)
+        {
+            if (proj != null && proj.ProjectManager != null && proj.pID != null && proj.TeamMember != null)
+            {
+                return Db.Update(
+                    Db.QueryType.StoredProcedure,
+                    "[doccore].[CoreUpdateProjectByID]",
+                    "DocCoreMSSQLConnection",
+                    new object[]
+                {
+                    "ProjectID",proj.pID ,
+                    "ProjectManagers", proj.ProjectManager,
+                    "TeamMembers", proj.TeamMember
+                   
+                });
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+
 
     }
 }

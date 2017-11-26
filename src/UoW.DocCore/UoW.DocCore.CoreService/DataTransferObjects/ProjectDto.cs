@@ -33,6 +33,13 @@ namespace UoW.DocCore.CoreService.DataTransferObjects
             get { return teamMember; }
             set { teamMember = value; }
         }
+        private int pid;
+        [DataMember]
+        public int pID
+        {
+            get { return pid; }
+            set { pid = value; }
+        }
         #endregion
     }
 }
