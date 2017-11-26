@@ -237,6 +237,20 @@ namespace UoW.DocCore.Web.WebForms
             int status = val != null ? Int32.Parse(val) : -1;
             return status;
         }
+        public int UpdateProjectByID(ProjectDto proj)
+        {
+            int status = -1;
+            if (proj != null)
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string userjson = js.Serialize(proj);
+
+                //Update existing user
+                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/UpdateProjectByID", "PUT", json_type, userjson);
+                status = val != null ? Int32.Parse(val) : -1;
+            }
+            return status;
+        }
 
 
         #region SecurityQuestions
@@ -500,6 +514,14 @@ namespace UoW.DocCore.Web.WebForms
         {
             get { return projectName; }
             set { projectName = value; }
+        }
+
+        private int pid;
+
+        public int pID
+        {
+            get { return pid; }
+            set { pid = value; }
         }
         private String projectManager;
 
