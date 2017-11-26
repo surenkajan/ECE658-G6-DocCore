@@ -91,7 +91,7 @@ DocID			int Primary Key IDENTITY (1, 1),
 Id				uniqueidentifier NOT NULL Unique ROWGUIDCOL Default newid(),
 FileName		varchar(100),
 FileType        varchar(10),
-FileSummary		varbinary(MAX),
+FileSummary		varchar(MAX),
 FileData		varbinary(MAX) FileStream NULL,
 UploadedBy      int,
 UploadedTime    datetime
@@ -101,6 +101,9 @@ CONSTRAINT PK_DOCUMENT_ID PRIMARY KEY CLUSTERED (DocID)
 )
 
 END
+
+--ALTER TABLE [doccore].[Documents]
+--ALTER COLUMN FileSummary varchar(MAX);
 
 -- To Test the File Stream...
 

@@ -52,9 +52,17 @@ namespace UoW.DocCore.CoreService.DataTransferObjects
             set { fileData = value; }
         }
 
-        private int uploadedBy;
+        //private int uploadedBy;
+        //[DataMember]
+        //public int UploadedBy
+        //{
+        //    get { return uploadedBy; }
+        //    set { uploadedBy = value; }
+        //}
+
+        private string uploadedBy;
         [DataMember]
-        public int UploadedBy
+        public string UploadedBy
         {
             get { return uploadedBy; }
             set { uploadedBy = value; }

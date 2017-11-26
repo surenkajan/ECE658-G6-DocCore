@@ -75,11 +75,11 @@
                     new object[]
                 {
                     "FileName", Doc.FileName,
-                    "FileType", Doc.FileName,
-                    "FileSummary", Doc.FileName,
-                    "FileData", Doc.FileName,
-                    "UploadedBy", Doc.FileName,
-                    "UploadedTime", Doc.FileName
+                    "FileType", Doc.FileType,
+                    "FileData", Doc.FileData,
+                    "FileSummary", Doc.FileSummary,
+                    "UploadedBy", Doc.UploadedBy,
+                    "UploadedTime", Doc.UploadedTime
                 });
             }
             else
@@ -100,11 +100,11 @@
                 {
                     "DocID", Doc.DocID,
                     "FileName", Doc.FileName,
-                    "FileType", Doc.FileName,
-                    "FileSummary", Doc.FileName,
-                    "FileData", Doc.FileName,
-                    "UploadedBy", Doc.FileName,
-                    "UploadedTime", Doc.FileName
+                    "FileType", Doc.FileType,
+                    "FileData", Doc.FileData,
+                    "FileSummary", Doc.FileSummary,
+                    "UploadedBy", Doc.UploadedBy,
+                    "UploadedTime", Doc.UploadedTime
                 });
             }
             else
@@ -154,7 +154,7 @@
             document.FileType = Db.GetValue(reader, "FileType", "");
             document.FileSummary = Db.GetValue(reader, "FileType", "");
             document.FileData = reader["FileData"] != null ? (byte[])reader["FileData"] : null;
-            document.UploadedBy = Db.GetValue(reader, "UploadedBy", 0);
+            document.UploadedBy = Db.GetValue(reader, "UploadedBy", "");
             document.UploadedTime = Db.GetValue(reader, "UploadedTime", DateTime.Now);
 
             return document;

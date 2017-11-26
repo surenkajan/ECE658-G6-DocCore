@@ -42,8 +42,15 @@ namespace UoW.DocCore.BusinessObjects
             set { fileData = value; }
         }
 
-        private int uploadedBy;
-        public int UploadedBy
+        //private int uploadedBy;
+        //public int UploadedBy
+        //{
+        //    get { return uploadedBy; }
+        //    set { uploadedBy = value; }
+        //}
+
+        private string uploadedBy;
+        public string UploadedBy
         {
             get { return uploadedBy; }
             set { uploadedBy = value; }

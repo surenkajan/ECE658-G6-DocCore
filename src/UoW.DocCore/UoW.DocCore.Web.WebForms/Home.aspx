@@ -49,6 +49,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <asp:Label runat="server" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Description:</asp:Label>
+                    <div class="col-md-10">
+                        <asp:TextBox ID="txtFileDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Share with:</asp:Label>
                     <div class="col-md-10">
                         <%-- People Picker--%>
@@ -59,7 +65,7 @@
                     <div style="width: 25%; margin-left: 10%; min-width: 250px;">
                         <div style="float: left;">
                             <div class="col-md-offset-2 col-md-10">
-                                <asp:Button runat="server" OnClick="btnUpload_Click" Text="Upload" CssClass="btn btn-default" />
+                                <asp:Button runat="server" OnClick="btnSave_Click" Text="Save" CssClass="btn btn-default" />
                             </div>
                         </div>
                         <div style="float: right;">

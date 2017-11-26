@@ -309,6 +309,108 @@ namespace UoW.DocCore.Web.WebForms
         #endregion
 
 
+        #region Documents
+
+        public List<DocumentDto> GetAllDocuments()
+        {
+            List<DocumentDto> docList = null;
+            string Json_docList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/GetAllDocuments", "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_docList != null)
+            {
+                docList = json_list_serializer.Deserialize<List<DocumentDto>>(Json_docList);
+            }
+            return docList;
+        }
+
+        public DocumentDto GetDocumentByDocID(string DocID)
+        {
+            DocumentDto document = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            //Get the User
+            string doc = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/GetDocumentByDocID?DocID=" + DocID, "GET", json_type, null);
+
+            //How to Consume this in DocCore Front End: Deserialize the object(s)
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            json_serializer.MaxJsonLength = int.MaxValue;
+            if (doc != null)
+            {
+                document = json_serializer.Deserialize<DocumentDto>(doc);
+            }
+            return document;
+        }
+
+        public List<DocumentDto> GetAllDocumentsUploadedByEmailID(string EmailID)
+        {
+            List<DocumentDto> docList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_docList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/GetAllDocumentsUploadedByEmailID?Email=", "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_docList != null)
+            {
+                docList = json_list_serializer.Deserialize<List<DocumentDto>>(Json_docList);
+            }
+            return docList;
+        }
+
+        public List<DocumentDto> GetAllSharedDocumentsForEmailID(string EmailID)
+        {
+            List<DocumentDto> docList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_docList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/GetAllSharedDocumentsForEmailID?Email=", "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_docList != null)
+            {
+                docList = json_list_serializer.Deserialize<List<DocumentDto>>(Json_docList);
+            }
+            return docList;
+        }
+
+        public int AddDocument(DocumentDto Doc)
+        {
+            int status = -1;
+
+            if (Doc != null)
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                js.MaxJsonLength = int.MaxValue;
+                string docjson = js.Serialize(Doc);
+
+                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/AddDocuments", "POST", json_type, docjson);
+                status = val != null ? Int32.Parse(val) : -1;
+            }
+            return status;
+        }
+
+        public int UpdateDocument(DocumentDto Doc)
+        {
+            int status = -1;
+            if (Doc != null)
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string userjson = js.Serialize(Doc);
+
+                //Update existing Document
+                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/UpdateDocuments", "PUT", json_type, userjson);
+                status = val != null ? Int32.Parse(val) : -1;
+            }
+            return status;
+        }
+
+        public int DeleteDocument(string DocID)
+        {
+            //DELETE the Document
+            string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/DeleteDocuments?DocID=" + DocID, "DELETE", json_type, null);
+            int status = val != null ? Int32.Parse(val) : -1;
+            return status;
+        }
+
+        #endregion
+
+
     }
 
     #region All Dto
@@ -516,6 +618,68 @@ namespace UoW.DocCore.Web.WebForms
         {
             get { return question; }
             set { question = value; }
+        }
+
+        #endregion
+    }
+
+    public class DocumentDto
+    {
+        #region Database properties
+        private int docID;
+        public int DocID
+        {
+            get { return docID; }
+            set { docID = value; }
+        }
+
+        private string fileName;
+        public string FileName
+        {
+            get { return fileName; }
+            set { fileName = value; }
+        }
+
+        private string fileType;
+        public string FileType
+        {
+            get { return fileType; }
+            set { fileType = value; }
+        }
+
+        private string fileSummary;
+        public string FileSummary
+        {
+            get { return fileSummary; }
+            set { fileSummary = value; }
+        }
+
+        private byte[] fileData;
+        public byte[] FileData
+        {
+            get { return fileData; }
+            set { fileData = value; }
+        }
+
+        //private int uploadedBy;
+        //public int UploadedBy
+        //{
+        //    get { return uploadedBy; }
+        //    set { uploadedBy = value; }
+        //}
+
+        private string uploadedBy;
+        public string UploadedBy
+        {
+            get { return uploadedBy; }
+            set { uploadedBy = value; }
+        }
+
+        private DateTime uploadedTime;
+        public DateTime UploadedTime
+        {
+            get { return uploadedTime; }
+            set { uploadedTime = value; }
         }
 
         #endregion
