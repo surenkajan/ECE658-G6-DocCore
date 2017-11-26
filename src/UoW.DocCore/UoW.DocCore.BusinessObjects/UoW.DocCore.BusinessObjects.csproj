@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="BusinessObject.cs" />
+    <Compile Include="Document.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectManager.cs" />
     <Compile Include="ProjectMember.cs" />

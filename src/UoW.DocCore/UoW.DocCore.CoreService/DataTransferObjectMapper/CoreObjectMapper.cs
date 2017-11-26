@@ -180,5 +180,45 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             };
         }
 
+        //Documents Mapper
+        public static DocumentDto DocumentDaoToDto(Document document)
+        {
+            if (document == null) return null;
+            DocumentDto dto = new DocumentDto();
+            dto.DocID = document.DocID;
+            dto.FileData = document.FileData;
+            dto.FileName = document.FileName;
+            dto.FileSummary = document.FileSummary;
+            dto.FileType = document.FileType;
+            dto.UploadedBy = document.UploadedBy;
+            dto.UploadedTime = document.UploadedTime;
+
+            return dto;
+
+        }
+
+        public static Document DocumentDtoToDao(DocumentDto docDto)
+        {
+            if (docDto == null) return null;
+            return new Document()
+            {
+                DocID = docDto.DocID,
+                FileData = docDto.FileData,
+                FileName = docDto.FileName,
+                FileSummary = docDto.FileSummary,
+                FileType = docDto.FileType,
+                UploadedBy = docDto.UploadedBy,
+                UploadedTime = docDto.UploadedTime
+            };
+        }
+
+        public static List<DocumentDto> DocumentDaoToDto(List<Document> DocumentList)
+        {
+            if (DocumentList == null) return null;
+            var DocList = (from docObj in DocumentList
+                           select DocumentDaoToDto(docObj)).ToList();
+            return DocList;
+        }
+
     }
 }
