@@ -70,7 +70,7 @@
             {
                 return Db.Insert(
                     Db.QueryType.StoredProcedure,
-                    "[doccore].[AddDocument]",
+                    "[doccore].[CoreAddDocument]",
                     "DocCoreMSSQLConnection",
                     new object[]
                 {
