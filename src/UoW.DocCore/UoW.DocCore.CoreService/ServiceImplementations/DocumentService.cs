@@ -67,5 +67,12 @@ namespace UoW.DocCore.CoreService
             return commentdao.AddCommentsByEmailID(CoreObjectMapper.CommentsDtoToDao(comments));
         }
 
+        public List<UserDto> GetAllSharedUsersForDocID(int DocID)
+        {
+            DocumentDao docDao = new DocumentDao();
+            List<UserDto> usrList =  CoreObjectMapper.UserDaoToDto(docDao.GetAllSharedUsersForDocID(DocID));
+
+            return usrList;
+        }
     }
 }

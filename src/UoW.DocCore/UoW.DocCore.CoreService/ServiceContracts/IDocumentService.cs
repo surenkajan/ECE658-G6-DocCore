@@ -84,5 +84,12 @@ namespace UoW.DocCore.CoreService
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "/AddCommentsByEmailID")]
         int AddCommentsByEmailID(CommentsDto comments);
+
+        [OperationContract(Name = "GetAllSharedUsersForDocID")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetAllSharedUsersForDocID?DocID={DocID}")]
+        List<UserDto> GetAllSharedUsersForDocID(int DocID);
     }
 }

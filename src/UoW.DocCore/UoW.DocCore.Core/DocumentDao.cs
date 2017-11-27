@@ -15,7 +15,7 @@
         public List<Document> GetAllDocuments()
         {
             return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[GetAllDocuments]",
-                GetUserFromReader, "DocCoreMSSQLConnection",
+                GetDocumentFromReader, "DocCoreMSSQLConnection",
                 new object[] { "UserTablePreFix", "AU" });
         }
 
@@ -24,7 +24,7 @@
             try
             {
                 return Db.Read(Db.QueryType.StoredProcedure, "[doccore].[GetDocumentByDocID]",
-                    GetUserFromReader, "DocCoreMSSQLConnection",
+                    GetDocumentFromReader, "DocCoreMSSQLConnection",
                     new object[] { "DocID", DocID, "UserTablePreFix", "AU" });
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@
             try
             {
                 return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[GetAllDocumentsUploadedByEmailID]",
-                GetUserFromReader, "DocCoreMSSQLConnection",
+                GetDocumentFromReader, "DocCoreMSSQLConnection",
                 new object[] { "EmailID", EmailID, "UserTablePreFix", "AU" });
             }
             catch (Exception ex)
@@ -56,13 +56,36 @@
                 return Db.ReadList(
                     Db.QueryType.StoredProcedure, 
                     "[doccore].[GetAllSharedDocumentsForEmailID]",
-                    GetUserFromReader, 
+                    GetDocumentFromReader, 
                     "DocCoreMSSQLConnection",
                     new object[] 
                     {
                         "EmailID", EmailID,
                         "UserTablePreFix", "AU"
                     });
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Core Service", ex.Message + "\n Stack trace: " + ex.StackTrace);
+                throw;
+            }
+        }
+        
+        public List<User> GetAllSharedUsersForDocID(int DocID)
+        {
+            try
+            {
+                List<User> userList =  Db.ReadList(
+                    Db.QueryType.StoredProcedure,
+                    "[doccore].[GetAllSharedUsersForDocID]",
+                    GetUserFromReader,
+                    "DocCoreMSSQLConnection",
+                    new object[]
+                    {
+                        "DocID", DocID
+                    });
+
+                return userList;
             }
             catch (Exception ex)
             {
@@ -175,7 +198,7 @@
         /// </summary>
         /// <param name="reader">The reader.</param>
         /// <returns></returns>
-        private Document GetUserFromReader(IDataReader reader)
+        private Document GetDocumentFromReader(IDataReader reader)
         {
             return GetDocumentFromReader(reader, "AU");
         }
@@ -189,6 +212,8 @@
         public static Document GetDocumentFromReader(IDataReader reader, string namePreFix)
         {
             UserDao userDao = new UserDao();
+            DocumentDao docDao = new DocumentDao();
+
             Document document = new Document();
             document.DocID = Db.GetValue(reader, "DocID", 0);
             document.FileName = Db.GetValue(reader, "FileName", "");
@@ -214,8 +239,48 @@
             //TODO: Do not do like this since it will reduce the perfomance by introducing more SQL Queries. Handle this in Stored Procedures with Nested Joins
             document.CreatedUser = userDao.GetUserByEmailID(document.UploadedBy);
             document.ModifiedUser = userDao.GetUserByEmailID(document.ModifiedBy);
-
+            document.SharedWith = docDao.GetAllSharedUsersForDocID(document.DocID);
             return document;
+        }
+
+        public User GetUserFromReader(IDataReader reader)
+        {
+            return GetUserFromReader(reader, "AU");
+        }
+
+        /// <summary>
+        /// Gets the employee from reader.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="namePreFix">The name pre fix.</param>
+        /// <returns></returns>
+        public static User GetUserFromReader(IDataReader reader, string namePreFix)
+        {
+            User user = new User();
+
+            user.UserID = Db.GetValue(reader, "ID", 0);
+            user.UserName = Db.GetValue(reader, "UserName", "");
+            user.FirstName = Db.GetValue(reader, "FirstName", "");
+            user.LastName = Db.GetValue(reader, "LastName", "");
+            user.FullName = Db.GetValue(reader, "FullName", "");
+            user.EmailAddress = Db.GetValue(reader, "EmailAddress", "");
+            user.DateOfBirth = Db.GetValue(reader, "DateOfBirth", DateTime.Now);
+            user.Sex = Db.GetValue(reader, "Sex", "");
+            user.Uid = Db.GetValue(reader, "ID", 0);
+            //user.ProjectRole = Db.GetValue(reader, "projectRole", "");
+            if (!DBNull.Value.Equals(reader["ProfilePhoto"]))
+            {
+                byte[] imgBytes = (byte[])reader["ProfilePhoto"];
+                string imgString = Convert.ToBase64String(imgBytes);
+                user.ProfilePhoto = String.Format("data:image/jpg;base64,{1}", "jpg", imgString);
+            }
+            else
+            {
+                //Image image = Image.FromFile(@"\images\avator.png");
+                //user.ProfilePhoto = Common.ImageToBase64(image);
+                user.ProfilePhoto = null;
+            }
+            return user;
         }
     }
 }

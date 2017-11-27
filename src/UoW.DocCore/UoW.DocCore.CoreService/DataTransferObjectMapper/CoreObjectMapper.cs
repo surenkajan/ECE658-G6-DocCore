@@ -206,6 +206,9 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             dto.Modified = document.Modified;
             dto.ModifiedBy = document.ModifiedBy;
             dto.IsCheckedIn = document.IsCheckedIn;
+            dto.CreatedUser = document.CreatedUser;
+            dto.ModifiedUser = document.ModifiedUser;
+            dto.SharedWith = document.SharedWith;
             return dto;
 
         }
@@ -225,7 +228,10 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
                 UploadedTime = docDto.UploadedTime,
                 Modified = docDto.Modified,
                 ModifiedBy = docDto.ModifiedBy,
-                IsCheckedIn = docDto.IsCheckedIn
+                IsCheckedIn = docDto.IsCheckedIn,
+                CreatedUser = docDto.CreatedUser,
+                ModifiedUser = docDto.ModifiedUser,
+                SharedWith = docDto.SharedWith
             };
         }
 

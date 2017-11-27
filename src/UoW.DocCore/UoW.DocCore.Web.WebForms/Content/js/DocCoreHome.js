@@ -36,11 +36,11 @@
         tagString = '<span id="tags" style="margin-left:15px;color:#365899;"> <span class="checkinclass" style="color:#999999">with</span> ' + documentString + '</span>'
     }
 
-    var checkinString = "";
-    if (document.Location) {
-        //checkinString += '<p style="display:inline" class="checkinclass small" style="color:black"> - ' + document.Location + '</p>';
-        checkinString += 'Delete this later';
-    }
+    //var checkinString = "";
+    //if (document.Location) {
+    //    //checkinString += '<p style="display:inline" class="checkinclass small" style="color:black"> - ' + document.Location + '</p>';
+    //    checkinString += 'Delete this later';
+    //}
 
     var descriptionString = "";
     if (document.FileSummary) {
@@ -52,10 +52,10 @@
     $('#SharedDocumentsContainer').append('<div id="rect' + id + '" class="rect" style="height:650px;border-radius:8px;">' +
         '<div style="height:50px;display:block;border-bottom-style:inset;">' +
         '<h4 class="username1Div' + id + '" style="color:grey">' +
-        '<a href="' + DocCoreAppBaseAddress + '/myprofile?uid=' + document.UserID + '" style="text-decoration: none;color: inherit;"><img class ="img-circle" src="' + document.ProfilePhoto + '" /> ' +
-        '<p style="display:inline;color:#365899;">' + document.FirstName + " " + document.LastName + '</p><a/>' + checkinString + '</h4> </div > ' +
+        '<a href="' + DocCoreAppBaseAddress + '/myprofile?uid=' + document.CreatedUser.UserID + '" style="text-decoration: none;color: inherit;"><img class ="img-circle" src="' + document.CreatedUser.ProfilePhoto + '" /> ' +
+        '<p style="display:inline;color:#365899;">' + document.CreatedUser.FirstName + " " + document.CreatedUser.LastName + '</p><a/></h4> </div > ' +
         '<div id="userpicDiv' + id + '" style="height:300px;display:block;border-bottom-style:inset;text-align:center;background-color: #f3f0f0">' +
-        '<span class="helper"></span><img src="' + document.ProfilePhoto + '"onclick="imagezoom(' + id + ')" id="image' + id + '" style="max-width:100%;max-height:100%;object-fit: contain" />' +
+        '<span class="helper"></span><img src="' + document.CreatedUser.ProfilePhoto + '"onclick="imagezoom(' + id + ')" id="image' + id + '" style="max-width:100%;max-height:100%;object-fit: contain" />' +
         '</div >' +
         '<span id="' + id + '"class="glyphicon glyphicon-heart-empty" style="margin-left: 12px; font-size:20px; cursor: pointer;color:#365899;" onclick="likecounter(this.id)"></span>' +
         '<span style="position: relative; font-size: 20px; margin-left: 15px;color:#365899;cursor: pointer;" class="glyphicon glyphicon-comment" onclick="showcommentDiv(' + id + ')"></span> ' +
