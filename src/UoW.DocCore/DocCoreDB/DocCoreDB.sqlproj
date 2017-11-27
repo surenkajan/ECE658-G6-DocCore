@@ -103,5 +103,7 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateDocument.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreDeleteProjectByID.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateMetaDataDocument.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllProject.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateProjectByID.proc.sql" />
   </ItemGroup>
 </Project>

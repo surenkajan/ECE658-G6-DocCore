@@ -18,13 +18,11 @@
             <asp:Table runat="server">
 
                 <asp:TableRow Height="30px" >
-                    <asp:TableCell VerticalAlign="Top" Width="30%">
-                   <b>Project</b> 
-                    </asp:TableCell>
-                    <asp:TableCell HorizontalAlign="Center">
-                        <ul>
-                    <li><asp:Label ID="lblName" runat="server"  Text='<%# Bind( "projectName")%>' /></li>
-                        </ul>
+                    
+                    <asp:TableCell HorizontalAlign="Center" Width="100%">
+                       
+                   <asp:Label ID="lblName" runat="server" Font-Size="Medium" ForeColor="#3366cc" Text='<%# Bind( "projectName")%>' /></li>
+                      
                             <asp:HiddenField runat="server" id="HiddenField1" Value='<%# Bind("pID") %>' />
                             
                     </asp:TableCell></asp:TableRow>
