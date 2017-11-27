@@ -222,6 +222,13 @@ namespace UoW.DocCore.Web.WebForms
             }
             return status;
         }
+        public static List<ProjectDto> ProjectDaoToDto(List<Project> projectDaoList)
+        {
+            if (projectDaoList == null) return null;
+            var userList = (from userObj in projectDaoList
+                            select ProjectDaoToDto(userObj)).ToList();
+            return userList;
+        }
 
         public int DeleteProjectByProjectID(int ID)
         {

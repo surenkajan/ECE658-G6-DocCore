@@ -51,9 +51,23 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             dto.ProjectName = projectDao.ProjectName;
             dto.ProjectManager = projectDao.ProjectManager;
             dto.TeamMember = projectDao.TeamMember;
-            //dto.pID = projectDao.pID;
+            dto.pID = projectDao.pID;
             return dto;
 
+        }
+
+        public List<ProjectDto> GetAllProject()
+        {
+            List<ProjectDto> projectList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetAllProject", "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
+
+            if (Json_usrList != null)
+            {
+                projectList = json_list_serializer.Deserialize<List<ProjectDto>>(Json_usrList);
+            }
+            return projectList;
         }
 
         public static User UserDtoToDao(UserDto userDto)
