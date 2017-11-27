@@ -56,18 +56,12 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
 
         }
 
-        public List<ProjectDto> GetAllProject()
+        public static List<ProjectDto> ProjectDaoToDto(List<Project> projectDaoList)
         {
-            List<ProjectDto> projectList = null;
-            //TODO : Do not hard code the method name here, Move to App.Settings
-            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetAllProject", "GET", json_type, null);
-            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
-
-            if (Json_usrList != null)
-            {
-                projectList = json_list_serializer.Deserialize<List<ProjectDto>>(Json_usrList);
-            }
-            return projectList;
+            if (projectDaoList == null) return null;
+            var userList = (from userObj in projectDaoList
+                            select ProjectDaoToDto(userObj)).ToList();
+            return userList;
         }
 
         public static User UserDtoToDao(UserDto userDto)
