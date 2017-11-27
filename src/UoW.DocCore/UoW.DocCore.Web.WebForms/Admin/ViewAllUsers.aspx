@@ -91,13 +91,22 @@
             </tr>
         </table>
     <hr />
-    <asp:GridView ID="gvCustomers" runat="server" AutoGenerateColumns="false" 
-        OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="gvCustomers_SelectedIndexChanged" >
+		<asp:gridview ID="gvCustomers" runat="server" 
+AutoGenerateColumns="False" CellPadding="4" PageSize="2"
+ AllowPaging="True"
+OnPageIndexChanging="gvCustomers_PageIndexChanging" OnSelectedIndexChanged="gvCustomers_SelectedIndexChanged"  EmptyDataText="No Friends Found!!!">
+<pagersettings mode="NextPreviousFirstLast"
+            nextpagetext="Next"
+            previouspagetext="Prev" />
+            <alternatingrowstyle BackColor="White" ForeColor="#284775"></alternatingrowstyle>
+       
+        
+        
         <Columns>
-            <asp:BoundField HeaderStyle-Width="150px"  DataField="ImageUrl"  HeaderText="First Name"
+            <asp:BoundField HeaderStyle-Width="150px"  DataField="FullName"  HeaderText="Full Name"
                 ItemStyle-CssClass="ContactName" HtmlEncode = "false"  />
-            <asp:BoundField HeaderStyle-Width="150px" DataField="Profile_Name" HeaderText="Last Name" />
-            <asp:HyperLinkField DataNavigateUrlFields="Action" HeaderText="Action" DataNavigateUrlFormatString="UserAccess.aspx?Edit={0}" DataTextField="Action" />
+            <asp:BoundField HeaderStyle-Width="150px" DataField="ProjectRole" HeaderText="Project Role" />
+            <asp:HyperLinkField DataNavigateUrlFields="Uid" HeaderText="Action" DataNavigateUrlFormatString="UserAccess.aspx?Uid={0}" DataTextField="Action" />
            
             
         </Columns>

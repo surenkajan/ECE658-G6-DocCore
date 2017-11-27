@@ -23,13 +23,19 @@ namespace UoW.DocCore.Web.WebForms
             DataTable dt = new DataTable();
             dt.Columns.Add("FullName");
             dt.Columns.Add("ProjectRole");
+            dt.Columns.Add("Uid");
             dt.Columns.Add("Action");
-            List<UserDto> user = DocCoreBDelegate.Instance.GetAllUsers();
+            List<UserDto> user = DocCoreBDelegate.Instance.GetAllUserDetails();
 
-            for (int i = 0; i < 20; i++)
+            foreach (UserDto newuser in user)
             {
+                DataRow dr = dt.NewRow();
+                dr["FullName"] = newuser.FullName;
+                dr["ProjectRole"] = newuser.ProjectRole;
+                dr["Uid"] = newuser.Uid;
+                dr["Action"] = "Edit";
 
-                
+
 
                 dt.Rows.Add(dr);
                 // }
@@ -44,7 +50,7 @@ namespace UoW.DocCore.Web.WebForms
         }
         protected void gvCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+          
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -56,8 +62,8 @@ namespace UoW.DocCore.Web.WebForms
                 //}, RegexOptions.IgnoreCase);
             }
         }
-        private void BindGrid()
-        {
+        //private void BindGrid()
+        //{
             //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
             //using (SqlConnection con = new SqlConnection(constr))
             //{
@@ -75,12 +81,12 @@ namespace UoW.DocCore.Web.WebForms
             //        }
             //    }
             //}
-        }
-
-        //protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvCustomers.PageIndex = e.NewPageIndex;
-        //    BindGrid();
         //}
+
+        protected void gvCustomers_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvCustomers.PageIndex = e.NewPageIndex;
+            LoadGridData();
+        }
     }
 }
