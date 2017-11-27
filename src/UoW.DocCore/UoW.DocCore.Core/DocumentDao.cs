@@ -188,18 +188,33 @@
         /// <returns></returns>
         public static Document GetDocumentFromReader(IDataReader reader, string namePreFix)
         {
+            UserDao userDao = new UserDao();
             Document document = new Document();
             document.DocID = Db.GetValue(reader, "DocID", 0);
             document.FileName = Db.GetValue(reader, "FileName", "");
             document.FileType = Db.GetValue(reader, "FileType", "");
             document.FileSummary = Db.GetValue(reader, "FileType", "");
             document.FileSizeInKB = Db.GetValue(reader, "FileSizeInKB", 0);
-            document.FileData = reader["FileData"] != null ? (byte[])reader["FileData"] : null;
+            //document.FileData = (reader["FileData"] != null || !DBNull.Value.Equals(reader["FileData"])) ? (byte[])reader["FileData"] : null;
+
+            if (!DBNull.Value.Equals(reader["FileData"]))
+            {
+                document.FileData = (byte[])reader["FileData"];
+            }
+            else
+            {
+                document.FileData = null;
+            }
+
             document.UploadedBy = Db.GetValue(reader, "UploadedBy", "");
             document.UploadedTime = Db.GetValue(reader, "UploadedTime", DateTime.Now);
             document.IsCheckedIn = Db.GetValue(reader, "IsCheckedIn", 0);
             document.ModifiedBy = Db.GetValue(reader, "ModifiedBy", "");
             document.Modified = Db.GetValue(reader, "Modified", DateTime.Now);
+            //TODO: Do not do like this since it will reduce the perfomance by introducing more SQL Queries. Handle this in Stored Procedures with Nested Joins
+            document.CreatedUser = userDao.GetUserByEmailID(document.UploadedBy);
+            document.ModifiedUser = userDao.GetUserByEmailID(document.ModifiedBy);
+
             return document;
         }
     }

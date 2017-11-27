@@ -15,7 +15,8 @@ CREATE PROCEDURE [doccore].[GetAllSharedDocumentsForEmailID]
 	@EmailID VARCHAR(240),
 	@UserTablePreFix varchar(10)
 AS
-SELECT * FROM [doccore].[Documents]
+SELECT [DocID],[Id],[FileName],[FileType],[FileSummary],[FileData] = Null,[UploadedBy],[UploadedTime],[FileSizeInKB],[IsCheckedIn],[Modified],[ModifiedBy] 
+FROM [doccore].[Documents]
 WHERE DocID in 
 	(SELECT DocID FROM [doccore].[SharedWith] 
 		WHERE sharedTo = (SELECT TOP 1 ID from [doccore].[User] where EmailAddress = @EmailID))

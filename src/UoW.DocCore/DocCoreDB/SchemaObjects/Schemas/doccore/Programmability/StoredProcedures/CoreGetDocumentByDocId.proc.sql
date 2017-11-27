@@ -15,7 +15,8 @@ CREATE PROCEDURE [doccore].[GetDocumentByDocID]
 	@DocID int, 
 	@UserTablePreFix varchar(10)
 AS
-SELECT * FROM [doccore].[Documents] WHERE DocID = @DocID
+SELECT [DocID],[Id],[FileName],[FileType],[FileSummary],[FileData] = Null,[UploadedBy],[UploadedTime],[FileSizeInKB],[IsCheckedIn],[Modified],[ModifiedBy] 
+FROM [doccore].[Documents] WHERE DocID = @DocID
 GO
 
 --EXEC [doccore].[CoreGetUserByEmailIDtemp] @EmailAddress= 'surenkajan@gmail.com'

@@ -250,7 +250,7 @@
             user.DateOfBirth = Db.GetValue(reader, "DateOfBirth", DateTime.Now);
             user.Sex = Db.GetValue(reader, "Sex", "");
             user.Uid = Db.GetValue(reader, "ID", 0);
-            user.ProjectRole = Db.GetValue(reader, "projectRole", "");
+            //user.ProjectRole = Db.GetValue(reader, "projectRole", "");
             if (!DBNull.Value.Equals(reader["ProfilePhoto"]))
             {
                 byte[] imgBytes = (byte[])reader["ProfilePhoto"];

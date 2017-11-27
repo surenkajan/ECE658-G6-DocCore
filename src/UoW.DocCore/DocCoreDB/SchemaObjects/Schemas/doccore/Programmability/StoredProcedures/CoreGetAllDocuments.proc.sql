@@ -14,7 +14,8 @@ GO
 CREATE PROCEDURE [doccore].[GetAllDocuments]
 	@UserTablePreFix varchar(10)
 AS
-SELECT * FROM [doccore].[Documents]
+SELECT [DocID],[Id],[FileName],[FileType],[FileSummary],[FileData] = Null,[UploadedBy],[UploadedTime],[FileSizeInKB],[IsCheckedIn],[Modified],[ModifiedBy] 
+FROM [doccore].[Documents]
 GO
 
 --EXEC [doccore].[CoreAllUsers] @UserTablePreFix= 'AU'

@@ -117,6 +117,27 @@ namespace UoW.DocCore.CoreService.DataTransferObjects
             set { sharedWith = value; }
         }
 
+        private User createdUser;
+        [DataMember]
+        public User CreatedUser
+        {
+            get { return createdUser; }
+            set { createdUser = value; }
+        }
+
+        private User modifiedUser;
+        [DataMember]
+        public User ModifiedUser
+        {
+            get { return modifiedUser; }
+            set { modifiedUser = value; }
+        }
+
+
+
         #endregion
+
+
+
     }
 }

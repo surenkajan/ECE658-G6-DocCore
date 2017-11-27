@@ -752,6 +752,20 @@ namespace UoW.DocCore.Web.WebForms
             set { sharedWith = value; }
         }
 
+        private User createdUser;
+        public User CreatedUser
+        {
+            get { return createdUser; }
+            set { createdUser = value; }
+        }
+
+        private User modifiedUser;
+        public User ModifiedUser
+        {
+            get { return modifiedUser; }
+            set { modifiedUser = value; }
+        }
+
         #endregion
     }
 
