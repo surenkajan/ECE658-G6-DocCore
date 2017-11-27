@@ -10,24 +10,29 @@
     }
 
     var tagString = "";
-    if (document.Tags) {
-        var tags = document.Tags.split(',');
+    if (document.SharedWith) {
+        //var tags = document.Tags.split(',');
         var documentString = ""
-        for (index in tags) {
-            tags[index] = tags[index].trim();
-            var editor = {
-                setSource: function () {
-                    return GetUserDetailsbyFullName(tags[index]);
-                }
-            }
+        //for (index in tags) {
+        //    tags[index] = tags[index].trim();
+        //    var editor = {
+        //        setSource: function () {
+        //            return GetUserDetailsbyFullName(tags[index]);
+        //        }
+        //    }
 
-            $.when(editor.setSource()).then(function (user) {
-                if (user.length != 0) {
-                    documentString += '<a href=' + DocCoreAppBaseAddress + '/myprofile?uid=' + user[0].UserID + '>' + user[0].FullName + '</a>, '
-                }
+        //    $.when(editor.setSource()).then(function (user) {
+        //        if (user.length != 0) {
+        //            documentString += '<a href=' + DocCoreAppBaseAddress + '/myprofile?uid=' + user[0].UserID + '>' + user[0].FullName + '</a>, '
+        //        }
 
-            });
+        //    });
+        //}
+        for (i = 0; i < document.SharedWith.length; i++) {
+            documentString += '<a href=' + DocCoreAppBaseAddress + '/myprofile?uid=' + document.SharedWith[i].UserID + '>' + document.SharedWith[i].FullName + '</a>, '
         }
+
+
 
         if (documentString != "") {
             documentString = documentString.slice(0, -2);
@@ -57,7 +62,6 @@
         '<div id="userpicDiv' + id + '" style="height:300px;display:block;border-bottom-style:inset;text-align:center;background-color: #f3f0f0">' +
         '<span class="helper"></span><img src="' + document.CreatedUser.ProfilePhoto + '"onclick="imagezoom(' + id + ')" id="image' + id + '" style="max-width:100%;max-height:100%;object-fit: contain" />' +
         '</div >' +
-        '<span id="' + id + '"class="glyphicon glyphicon-heart-empty" style="margin-left: 12px; font-size:20px; cursor: pointer;color:#365899;" onclick="likecounter(this.id)"></span>' +
         '<span style="position: relative; font-size: 20px; margin-left: 15px;color:#365899;cursor: pointer;" class="glyphicon glyphicon-comment" onclick="showcommentDiv(' + id + ')"></span> ' +
         '<div id="description' + id + '" style="margin-top:5px;margin-bottom:5px;margin-left:15px;height:50px;">' + descriptionString + tagString + '</div>' +
         '<div class="detailBox"><div class="titleBox"><label>Comments</label></div ><div class="actionBox"> <ul id="commentList' + id + '" class="commentList">' + commentString + '</ul></div>' +
