@@ -69,7 +69,7 @@
 }
 
 $(document).ready(function () {
-    var userEmail = $('#DocCore_hdnf_CurrentUserEmailID').val();
+    var userEmail = $('#DocCore_hdnf_LoggedInUserEmailID').val();
 
     var sharedDocuments = GetsharedDocumentsService(userEmail);
 
@@ -127,7 +127,7 @@ $(document).ready(function () {
 
 //    var img2 = image.split(/,(.+)/)[1];
 //    var desc = $("#description").html();
-//    var LoggedInUser = document.getElementById('DocCore_hdnf_CurrentUserEmailID').value;
+//    var LoggedInUser = document.getElementById('DocCore_hdnf_LoggedInUserEmailID').value;
 
 //    var tags = ($('#myULTags').tagit("assignedTags")).toString();
 //    var checkin = document.getElementById("pac-input").value;
@@ -190,7 +190,7 @@ function showcommentDiv(id) {
 
 function addcommentToDiv(id) {
     if ($('#AddCommentDiv' + id).val()) {
-        var useremail = $('#DocCore_hdnf_CurrentUserEmailID').val();
+        var useremail = $('#DocCore_hdnf_LoggedInUserEmailID').val();
         var newComment = $('#AddCommentDiv' + id).val();
         commentobject = {
             DocID: id,
@@ -214,7 +214,7 @@ function addcommentToDiv(id) {
 
 //function likecounter(DocID) {
 //    //document.getElementById("usernameDiv").innerHTML = "Jaspreet";
-//    var LoggedInUser = document.getElementById('DocCore_hdnf_CurrentUserEmailID').value;
+//    var LoggedInUser = document.getElementById('DocCore_hdnf_LoggedInUserEmailID').value;
 //    //console.log(serverName);
 //    var likeData = {
 //        "DocID": parseInt(DocID),

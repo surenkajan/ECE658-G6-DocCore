@@ -31,6 +31,15 @@ namespace UoW.DocCore.Web.WebForms {
         protected global::System.Web.UI.WebControls.HiddenField DocCore_hdnf_LoggedInUserEmailID;
         
         /// <summary>
+        /// DocCore_hdnf_CurrentUserEmailID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField DocCore_hdnf_CurrentUserEmailID;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

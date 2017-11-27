@@ -89,6 +89,7 @@
         </div>
         <div class="container body-content">
             <asp:HiddenField ID="DocCore_hdnf_LoggedInUserEmailID" runat="server"/>
+            <asp:HiddenField ID="DocCore_hdnf_CurrentUserEmailID" runat="server"/>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
