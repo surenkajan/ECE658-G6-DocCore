@@ -15,6 +15,8 @@ namespace UoW.DocCore.Web.WebForms
         {
             currentUserEmailID = HttpContext.Current.User.Identity.Name;
             UploadedDocumentDetailsPH.Visible = false;
+            HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_LoggedInUserEmailID");
+            hdnf_CurrentUserEmailID.Value = currentUserEmailID;
             if (!IsPostBack)
             {
 

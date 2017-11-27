@@ -4,6 +4,10 @@
     <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="Content/js/DocCreBDelegate.js"></script>
+    <script src="Content/js/DocCoreHome.js" type="text/javascript"></script>
+    <script src="Content/js/tag-it.js" type="text/javascript"></script>
+    <script src="Content/js/tag-it.min.js" type="text/javascript"></script>
     <%--<script type="text/javascript">
         function ShowImagePreview(input) {
             if (input.files && input.files[0]) {
@@ -18,6 +22,75 @@
             }
     </script>--%>
 
+    <script type="text/javascript">   
+        function ShowImagePreview(input) {
+            document.getElementById("DocID").style.display = "block";
+            document.getElementById("description").style.display = "block";
+            document.getElementById("tagDiv").style.display = "block";
+            document.getElementById("locationField").style.display = "block";
+            console.log(input);
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#<%=ImgPrv.ClientID%>').prop('src', e.target.result)
+                        .width(252)
+                        .height(190);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script src="Content/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+    <script>
+        $(function () {
+            var userEmail = $('#DocCore_hdnf_LoggedInUserEmailID').val();
+
+            var editor = {
+                setSource: function () {
+                    //Replace with All Employees of the project
+                    return GetFriendsListService(userEmail);
+                }
+            }
+
+            $.when(editor.setSource()).then(function (friends) {
+                var sampleTags = [];
+
+                for (index in friends) {
+                    sampleTags.push(friends[index].FullName);
+                }
+
+                $('#myULTags').tagit({
+                    availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+                    // configure the name of the input field (will be submitted with form), default: item[tags]
+                    itemName: 'item',
+                    fieldName: 'tags',
+                    allowSpaces: true
+                });
+
+            });
+
+        });
+
+        function initAutocomplete() {
+
+            autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('pac-input')),
+                { types: ['geocode'] });
+
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        function fillInAddress() {
+            var place = autocomplete.getPlace();
+            console.log(place);
+        }
+
+    </script>
+
+
+
+
     <h4>Upload New Documents to DocCore:</h4>
     <div class="form-horizontal">
         <asp:FileUpload ID="DocumentUpload" runat="server" onchange="this.form.submit()" />
@@ -29,7 +102,7 @@
                     <asp:Image ID="ImgPrv" runat="server" /><br />
                 </div>
             </div>
-            <div class="col-md-9" style="min-height: 275px;margin-top: 10px;">
+            <div class="col-md-9" style="min-height: 275px; margin-top: 10px;">
                 <div class="form-group">
                     <asp:Label runat="server" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Document Name:</asp:Label>
                     <div class="col-md-10">
@@ -85,4 +158,6 @@
             </div>
         </asp:PlaceHolder>
     </div>
+
+
 </asp:Content>

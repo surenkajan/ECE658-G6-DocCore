@@ -243,6 +243,10 @@
     <Content Include="Content\Images\ext\xml.png" />
     <Content Include="Content\Images\ext\zip.png" />
     <Content Include="Content\Images\ext\zip256.png" />
+    <Content Include="Content\js\DocCoreHome.js" />
+    <Content Include="Content\js\DocCoreBDelegate.js" />
+    <Content Include="Content\js\tag-it.js" />
+    <Content Include="Content\js\tag-it.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
@@ -531,7 +535,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
