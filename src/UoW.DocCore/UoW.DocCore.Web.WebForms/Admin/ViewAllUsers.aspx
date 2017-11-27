@@ -106,7 +106,7 @@ OnPageIndexChanging="gvCustomers_PageIndexChanging" OnSelectedIndexChanged="gvCu
             <asp:BoundField HeaderStyle-Width="150px"  DataField="FullName"  HeaderText="Full Name"
                 ItemStyle-CssClass="ContactName" HtmlEncode = "false"  />
             <asp:BoundField HeaderStyle-Width="150px" DataField="ProjectRole" HeaderText="Project Role" />
-            <asp:HyperLinkField DataNavigateUrlFields="Uid" HeaderText="Action" DataNavigateUrlFormatString="UserAccess.aspx?Uid={0}" DataTextField="Action" />
+            <asp:HyperLinkField DataNavigateUrlFields="Uid" HeaderText="Action" DataNavigateUrlFormatString="UserRegistration.aspx?Uid={0}" DataTextField="Action" />
            
             
         </Columns>

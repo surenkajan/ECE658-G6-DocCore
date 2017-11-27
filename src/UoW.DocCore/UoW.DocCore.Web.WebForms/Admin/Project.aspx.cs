@@ -69,7 +69,7 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 Label4.Visible = false;
                 ErrorMsg.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
-                //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("doccore_hdnf_CurrentUserEmailID");
+                //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
                 //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);

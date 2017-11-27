@@ -11,7 +11,7 @@
         type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            $('[id*=ListBox1]').multiselect({
+            $('[id*=lstBoxProject]').multiselect({
                 includeSelectAllOption: true
             });
         });
@@ -108,6 +108,7 @@
                         CssClass="text-danger" ErrorMessage="The email field is required." />
                 </div>
             </div>
+            <asp:PlaceHolder ID="PasswordSection" runat="server">
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Password</asp:Label>
                 <div class="col-md-10">
@@ -126,6 +127,7 @@
                         CssClass="text-danger" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
                 </div>
             </div>
+                </asp:PlaceHolder>
             <h4>Permission Level:</h4>
 
             <div class="form-group">

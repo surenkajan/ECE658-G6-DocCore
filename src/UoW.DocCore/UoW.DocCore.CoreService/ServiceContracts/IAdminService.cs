@@ -97,5 +97,13 @@ namespace UoW.DocCore.CoreService
        UriTemplate = "GetAllProject")]
       List<ProjectDto> GetAllProject();
 
+        [OperationContract]
+        [Description("Get  Project details of user")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+       RequestFormat = WebMessageFormat.Json,
+       ResponseFormat = WebMessageFormat.Json,
+       UriTemplate = "GetProjectDetailsByUid?Uid={ID}")]
+        List<ProjectDto> GetProjectDetailsByUid( int ID);
+
     }
 }

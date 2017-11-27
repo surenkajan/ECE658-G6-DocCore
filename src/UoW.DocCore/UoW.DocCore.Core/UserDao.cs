@@ -217,7 +217,7 @@
         {
             User user = new User();
 
-            user.UserID = Db.GetValue(reader, "ID", 0);
+            //user.UserID = Db.GetValue(reader, "ID", 0);
             user.UserName = Db.GetValue(reader, "UserName", "");
             user.FirstName = Db.GetValue(reader, "FirstName", "");
             user.LastName = Db.GetValue(reader, "LastName", "");

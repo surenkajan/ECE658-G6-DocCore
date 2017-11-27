@@ -110,5 +110,6 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetDocumentByDocIdWithFileContent.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllUserDetails.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllSharedUsersForDocID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetProjectDetailsByUid.proc.sql" />
   </ItemGroup>
 </Project>

@@ -50,7 +50,7 @@ namespace UoW.DocCore.Core
             project.ProjectName = Db.GetValue(reader, "projectName", "");
             project.ProjectManager = Db.GetValue(reader, "ProjectManagers", "");
             project.TeamMember = Db.GetValue(reader, "ProjectMembers", "");
-        
+
             return project;
         }
         public int DeleteProjectByProjectID(int ID)
@@ -81,7 +81,7 @@ namespace UoW.DocCore.Core
                     "ProjectID",proj.pID ,
                     "ProjectManagers", proj.ProjectManager,
                     "TeamMembers", proj.TeamMember
-                   
+
                 });
             }
             else
@@ -94,6 +94,12 @@ namespace UoW.DocCore.Core
             return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllProject]",
             GetProjectFromReader, "DocCoreMSSQLConnection",
             new object[] { "UserTablePreFix", "AU" });
+        }
+        public List<Project>  GetProjectDetailsByUid(int ID)
+            {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetProjectDetailsByUid]",
+           GetProjectFromReader, "DocCoreMSSQLConnection",
+           new object[] { "Uid", ID });
         }
         private Project GetProjectFromReader(IDataReader reader)
         {

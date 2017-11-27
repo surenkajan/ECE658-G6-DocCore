@@ -14,32 +14,80 @@ namespace UoW.DocCore.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string currentUserEmailID;
+
+
+
             //If the user does not have access, Redirect to Error Page
             //if()
             //{
-                  //Session["ErrorCode"] = 001;
+            //Session["ErrorCode"] = 001;
             //    Response.Redirect("/Error");
             //}
 
             if (!this.IsPostBack)
             {
+                PasswordSection.Visible = false;
+                currentUserEmailID = HttpContext.Current.User.Identity.Name;
+                //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
+                //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
+                UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
+                Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
+                string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
+                //uid = "19";
+                //if (user.ProjectRole == "Admin")
+                //{
                 PopulateAllProjects();
                 PopulateAllRoles();
+                if (string.IsNullOrEmpty(uid))
+                {
+                    // My Profile
+                    PasswordSection.Visible = true;
+
+                }
+                else
+                {
+
+                    LoadData(uid);
+
+                }
+
+                //}
+
+
+                
             }
             
         }
 
         private void PopulateAllProjects()
         {
-            var products = new List<Product>();
-            products.Add(new Product() { Name = "Project Manager" });
-            products.Add(new Product() { Name = "Team Member" });
-            lstBoxProject.DataSource = products;
-            lstBoxProject.DataTextField = "Name";
+            List<ProjectDto> AllProject = DocCoreBDelegate.Instance.GetAllProject();
+           
+            lstBoxProject.DataSource = AllProject;
+            lstBoxProject.DataTextField = "ProjectName";
             //DropDownList1.DataValueField = "LastName";
             lstBoxProject.DataBind();
         }
+        private void LoadData(string uid)
+        {
+            PasswordSection.Visible = false;
+            int UserID = Int32.Parse(uid);
+            UserDto user = DocCoreBDelegate.Instance.GetUserByUid(UserID);
+            FName.Text = user.FirstName;
+            LName.Text = user.LastName;
+            FullName.Text = user.FullName;
+            string gender = user.Sex;
+            Gender.SelectedValue = gender;
+            DateTime date = user.DateOfBirth ?? DateTime.Now;
+            //Gender.SelectedIndex = Gender.Items.IndexOf(Gender.Items.FindByText(gender));
+            DOB.Text = user.DateOfBirth != null ? date.ToString("dd/MM/yyyy") : "";
+            Email.Text = user.EmailAddress;
 
+
+
+
+        }
         private void PopulateAllRoles()
         {
             var products = new List<Product>();

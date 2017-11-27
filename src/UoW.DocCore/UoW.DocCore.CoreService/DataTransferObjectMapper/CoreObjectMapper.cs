@@ -40,6 +40,7 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
 			    dto.ProfilePhoto = userDao.ProfilePhoto;
             dto.UserID = userDao.UserID;
             dto.ProjectRole = userDao.ProjectRole;
+            dto.Uid = userDao.Uid;
 
             return dto;
 
@@ -76,9 +77,10 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
                 EmailAddress = userDto.EmailAddress,
                 DateOfBirth = userDto.DateOfBirth,
                 Sex = userDto.Sex,
-				 ProfilePhoto = userDto.ProfilePhoto,
-                 UserID = userDto.UserID
-                  
+                ProfilePhoto = userDto.ProfilePhoto,
+                Uid = userDto.Uid,
+                UserID = userDto.UserID
+
 
             };
         }
