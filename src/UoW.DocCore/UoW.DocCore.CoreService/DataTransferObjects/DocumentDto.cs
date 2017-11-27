@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using UoW.DocCore.BusinessObjects;
 
 namespace UoW.DocCore.CoreService.DataTransferObjects
 {
@@ -106,6 +107,14 @@ namespace UoW.DocCore.CoreService.DataTransferObjects
         {
             get { return modified; }
             set { modified = value; }
+        }
+
+        private List<User> sharedWith;
+        [DataMember]
+        public List<User> SharedWith
+        {
+            get { return sharedWith; }
+            set { sharedWith = value; }
         }
 
         #endregion

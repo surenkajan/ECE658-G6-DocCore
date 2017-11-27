@@ -91,6 +91,13 @@ namespace UoW.DocCore.BusinessObjects
             set { modified = value; }
         }
 
+        private List<User> sharedWith;
+        public List<User> SharedWith
+        {
+            get { return sharedWith; }
+            set { sharedWith = value; }
+        }
+
         #endregion
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="SecurityAnswerPair.cs" />
     <Compile Include="SecurityAnswers.cs" />
     <Compile Include="SecurityQuestion.cs" />
+    <Compile Include="Share.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

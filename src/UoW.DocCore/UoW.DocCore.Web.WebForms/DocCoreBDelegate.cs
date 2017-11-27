@@ -745,8 +745,102 @@ namespace UoW.DocCore.Web.WebForms
             set { modified = value; }
         }
 
+        private List<User> sharedWith;
+        public List<User> SharedWith
+        {
+            get { return sharedWith; }
+            set { sharedWith = value; }
+        }
+
         #endregion
     }
+
+    public class User
+    {
+        #region Database Properties
+
+        private int uid;
+        public int Uid
+        {
+            get { return uid; }
+            set { uid = value; }
+        }
+
+        private string userName;
+        public string UserName
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
+
+        private int userID;
+        public int UserID
+        {
+            get { return userID; }
+            set { userID = value; }
+        }
+
+
+        private string lastName;
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        private DateTime? dateOfBirth;
+        public DateTime? DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set { dateOfBirth = value; }
+        }
+
+        private string emailAddress;
+        public string EmailAddress
+        {
+            get { return emailAddress; }
+            set { emailAddress = value; }
+        }
+
+        private string firstName;
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+
+        private string fullName;
+        public string FullName
+        {
+            get { return fullName; }
+            set { fullName = value; }
+        }
+
+        private string sex;
+        public string Sex
+        {
+            get { return sex; }
+            set { sex = value; }
+        }
+        private string projectRole;
+        public string ProjectRole
+        {
+            get { return projectRole; }
+            set { projectRole = value; }
+        }
+
+        #endregion
+
+        #region External Properties
+        private string profilePhoto;
+        public string ProfilePhoto
+        {
+            get { return profilePhoto; }
+            set { profilePhoto = value; }
+        }
+        #endregion
+    }
+
 
     #endregion
 }
