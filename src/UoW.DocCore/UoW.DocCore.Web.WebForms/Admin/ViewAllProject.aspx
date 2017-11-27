@@ -19,7 +19,7 @@
 
                 <asp:TableRow Height="30px" >
                     
-                    <asp:TableCell HorizontalAlign="Center" Width="100%">
+                    <asp:TableCell HorizontalAlign="Left" Width="40%">
                        
                    <asp:Label ID="lblName" runat="server" Font-Size="Medium" ForeColor="#3366cc" Text='<%# Bind( "projectName")%>' /></li>
                       
@@ -34,9 +34,9 @@
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell VerticalAlign="Top"  Width="200px" >
+                    <asp:TableCell VerticalAlign="Top"  >
                         <b>Project Managers</b>
-                         </asp:TableCell><asp:TableCell>
+                         </asp:TableCell><asp:TableCell Width="50%">
                          <asp:DataList ID="DataList2" runat="server">
                     <ItemTemplate > 
                         <ul>
@@ -54,7 +54,7 @@
                 </asp:TableRow>
                 <asp:TableRow  >
                     
-                    <asp:TableCell VerticalAlign="Top" Width="200px">
+                    <asp:TableCell VerticalAlign="Top" >
                         <b>Team Members</b>
                     </asp:TableCell>
                     <asp:TableCell >
@@ -69,7 +69,7 @@
 
                 </asp:DataList>
                     </asp:TableCell>
-                     <asp:TableCell Width="100%" HorizontalAlign="Right">
+                     <asp:TableCell  HorizontalAlign="Center" Width="40%">
                        
                          <asp:HyperLink Runat =server NavigateUrl ='<%#"Project.aspx?Uid=" + DataBinder.Eval(Container.DataItem, "pID").ToString()%>' ID="Hyperlink1">
                               Edit Project

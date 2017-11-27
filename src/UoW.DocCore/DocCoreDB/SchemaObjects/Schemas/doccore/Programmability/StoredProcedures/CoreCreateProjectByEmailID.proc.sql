@@ -17,18 +17,31 @@ CREATE PROCEDURE [doccore].[CoreCreateProjectByEmailID]
 	@TeamMember				varchar(400)
 	
 AS
+DECLARE @err_message int
+if (@ProjectName not in (select projectName from [doccore].[Project]) )
+Begin
+
 	INSERT INTO [doccore].[Project]
 	(projectName) VALUES
 	(
 		@ProjectName
-	);
+	)   ;
 	insert into [doccore].[ProjectManager] (ManagerID,pID) select  (Select TOP 1 u.ID from [doccore].[User] u  where u.FullName = Items) ,
-	(select TOP 1 projectID from [doccore].[Project] ORDER BY projectID DESC)  from [doccore].[Split](@ProjectManager, ',') ;
+	(select TOP 1 projectID from [doccore].[Project] ORDER BY projectID DESC)  from [doccore].[Split](@ProjectManager, ',')  ;
 	
 	insert into [doccore].[Members] (memberID,pID) select  (Select TOP 1 u.ID from [doccore].[User] u  where u.FullName = Items) ,
 	(select TOP 1 projectID from [doccore].[Project] ORDER BY projectID DESC)  from [doccore].[Split](@TeamMember, ',') ;
 	
 RETURN 0
+end
+
+
+else
+begin
+SET @err_message = 'Existing project'
+RAISERROR (@err_message,10,1)
+end
+
 
 
 --select * from [doccore].[User]

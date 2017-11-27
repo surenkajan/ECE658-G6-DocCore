@@ -62,6 +62,12 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 SuccessMesg.Visible = false;
                 DeleteMsg.Visible = false;
                 UpdateMsg.Visible = false;
+                Button2.Visible = false;
+                Button3.Visible = false;
+                Button1.Visible = false;
+                TextBox1.Visible = false;
+                Label4.Visible = false;
+                ErrorMsg.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
                 //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("doccore_hdnf_CurrentUserEmailID");
                 //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
@@ -93,10 +99,10 @@ namespace UoW.DocCore.Web.WebForms.Admin
         private void LoadGridDataFirst()
 
         {
-            Label4.Visible = false;
+           
             TextBox1.Visible = true;
-            Button2.Visible = false;
-            Button3.Visible = false;
+            Button1.Visible = true;
+            
             List<UserDto> User = DocCoreBDelegate.Instance.GetAllManagers();
             ListBox1.DataSource = User;
             ListBox1.DataTextField = "FullName";
@@ -113,7 +119,8 @@ namespace UoW.DocCore.Web.WebForms.Admin
             if (!String.IsNullOrEmpty(uID))
 
             {
-                Button1.Visible = true;
+                Button2.Visible = true;
+                Button3.Visible = true;
                 TextBox1.Visible = false;
                 int ProjectID = Int32.Parse(uID);
                 ProjectDto project = DocCoreBDelegate.Instance.GetProjectDetailsByID(ProjectID);
@@ -279,9 +286,16 @@ namespace UoW.DocCore.Web.WebForms.Admin
             ProjectDto project = new ProjectDto() { ProjectName = projectName, ProjectManager = managers, TeamMember = members };
             int AddStatus = DocCoreBDelegate.Instance.CreateProject(project);
             //LoadGridData();
-            
+            if (AddStatus==0)
+            {
             SuccessMesg.Visible = true;
             ClearData();
+            }
+            else
+            {
+                ErrorMsg.Visible = true;
+                   
+            }
 
         }
         protected void DeleteProject(object sender, EventArgs e)
