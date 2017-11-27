@@ -11,7 +11,8 @@ namespace UoW.DocCore.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //TODO: Need to fix this. Change the default behaviour to home page. Redirect is not effective.
+            Response.Redirect("/Home");
         }
     }
 }

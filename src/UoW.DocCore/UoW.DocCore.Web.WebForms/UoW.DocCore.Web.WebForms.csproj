@@ -249,6 +249,7 @@
     <Content Include="Content\Images\ext\zip256.png" />
     <Content Include="Content\js\DocCoreHome.js" />
     <Content Include="Content\js\DocCoreBDelegate.js" />
+    <Content Include="Content\js\DocCoreMyProfile.js" />
     <Content Include="Content\js\tag-it.js" />
     <Content Include="Content\js\tag-it.min.js" />
     <Content Include="Content\Site.css" />

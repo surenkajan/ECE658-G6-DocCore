@@ -24,6 +24,13 @@ namespace UoW.DocCore.Web.WebForms.Account
             {
                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }
+
+            string LoggedInUserEmailID = HttpContext.Current.User.Identity.Name;
+            if (!string.IsNullOrEmpty(LoggedInUserEmailID))
+            {
+                Response.Redirect("/Home");
+            }
+
         }
 
         protected void LogIn(object sender, EventArgs e)
