@@ -14,10 +14,10 @@ GO
 CREATE PROCEDURE [doccore].[CoreGetAllTeamMembersByID]
 @projectID int
 AS
-SELECT FullName,EmailAddress,ID FROM [doccore].[User] e ,  (select a.projectRole,b.aID from [doccore].[Permission] a,
-[doccore].[Access] b,[doccore].[Project] f where a.pID=b.pID and a.projectRole ='TeamMember' and f.projectID=@projectID ) d where d.aID=e.ID
-
+		select b.FullName,b.EmailAddress,b.ID  from [doccore].[Members] a, [doccore].[User] b where a.memberID=b.ID and a.pID=@projectID
 GO
+
+
 
 --EXEC [doccore].[CoreGetAllTeamMembersByID] @projectID= 18
 --select * from [doccore].[User]

@@ -32,6 +32,7 @@
                     </asp:TableCell>
                     <asp:TableCell>
                         <asp:TextBox  ID="TextBox1" runat="server"  Width="100%" CssClass="form-control"></asp:TextBox>
+                        <asp:Label ID="Label4" runat="server" Text="Project Name" > </asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>

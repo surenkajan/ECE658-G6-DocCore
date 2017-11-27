@@ -67,8 +67,8 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
-                string uid = HttpUtility.ParseQueryString(myUri.Query).Get("uid");
-                uid = "19";
+                string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
+                //uid = "19";
                 //if (user.ProjectRole == "Admin")
                 //{
                 //FriendProfiles new1 = new FriendProfiles();
@@ -91,7 +91,12 @@ namespace UoW.DocCore.Web.WebForms.Admin
 
         }
         private void LoadGridDataFirst()
+
         {
+            Label4.Visible = false;
+            TextBox1.Visible = true;
+            Button2.Visible = false;
+            Button3.Visible = false;
             List<UserDto> User = DocCoreBDelegate.Instance.GetAllManagers();
             ListBox1.DataSource = User;
             ListBox1.DataTextField = "FullName";
@@ -106,10 +111,14 @@ namespace UoW.DocCore.Web.WebForms.Admin
         private void LoadGridData(string uID)
         {
             if (!String.IsNullOrEmpty(uID))
+
             {
+                Button1.Visible = true;
+                TextBox1.Visible = false;
                 int ProjectID = Int32.Parse(uID);
                 ProjectDto project = DocCoreBDelegate.Instance.GetProjectDetailsByID(ProjectID);
-                TextBox1.Text = project.ProjectName;
+                Label4.Visible = true;
+                Label4.Text = project.ProjectName;
                 string listboxvalues = project.ProjectManager;
                 List<string> lstdays = new List<string>();
                 string[] newDays = listboxvalues.Split(',');
@@ -168,12 +177,6 @@ namespace UoW.DocCore.Web.WebForms.Admin
 
 
                 }
-
-
-
-
-
-
 
                 string members = project.TeamMember;
                 List<string> memberlist = new List<string>();
@@ -276,49 +279,22 @@ namespace UoW.DocCore.Web.WebForms.Admin
             ProjectDto project = new ProjectDto() { ProjectName = projectName, ProjectManager = managers, TeamMember = members };
             int AddStatus = DocCoreBDelegate.Instance.CreateProject(project);
             //LoadGridData();
-            TextBox1.Text = "";
-            for (int I = ListBox1.Items.Count - 1; I >= 0; I += -1)
-            {
-                if (ListBox1.Items[I].Selected)
-                {
-                    ListBox1.Items.RemoveAt(I);
-                }
-            }
-            for (int I = ListBox2.Items.Count - 1; I >= 0; I += -1)
-            {
-                if (ListBox2.Items[I].Selected)
-                {
-                    ListBox2.Items.RemoveAt(I);
-                }
-            }
+            
             SuccessMesg.Visible = true;
+            ClearData();
 
         }
         protected void DeleteProject(object sender, EventArgs e)
         {
             Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
-            string uid = HttpUtility.ParseQueryString(myUri.Query).Get("uid");
-            uid = "9";
+            string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
+            //uid = "9";
             int ProjectID = Int32.Parse(uid);
             int k = DocCoreBDelegate.Instance.DeleteProjectByProjectID(ProjectID);
             if (k != -1)
             {
                 DeleteMsg.Visible = true;
-                TextBox1.Text = "";
-                for (int I = ListBox1.Items.Count - 1; I >= 0; I += -1)
-                {
-                    if (ListBox1.Items[I].Selected)
-                    {
-                        ListBox1.Items.RemoveAt(I);
-                    }
-                }
-                for (int I = ListBox2.Items.Count - 1; I >= 0; I += -1)
-                {
-                    if (ListBox2.Items[I].Selected)
-                    {
-                        ListBox2.Items.RemoveAt(I);
-                    }
-                }
+                ClearData();
 
             }
         }
@@ -326,8 +302,8 @@ namespace UoW.DocCore.Web.WebForms.Admin
         protected void UpdateProject(object sender, EventArgs e)
         {
             Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
-            string uid = HttpUtility.ParseQueryString(myUri.Query).Get("uid");
-            uid = "19";
+            string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
+            //uid = "19";
             int ProjectID = Int32.Parse(uid);
             List<string> list = new List<string>();
             if (ListBox1.Items.Count > 0)
@@ -365,25 +341,29 @@ namespace UoW.DocCore.Web.WebForms.Admin
             //LoadGridData();
             if (Status != -1)
             {
-                TextBox1.Text = "";
-                for (int I = ListBox1.Items.Count - 1; I >= 0; I += -1)
-                {
-                    if (ListBox1.Items[I].Selected)
-                    {
-                        ListBox1.Items.RemoveAt(I);
-                    }
-                }
-                for (int I = ListBox2.Items.Count - 1; I >= 0; I += -1)
-                {
-                    if (ListBox2.Items[I].Selected)
-                    {
-                        ListBox2.Items.RemoveAt(I);
-                    }
-                }
 
+                ClearData();
                 UpdateMsg.Visible = true;
             }
 
+        }
+        private void ClearData()
+        {
+            TextBox1.Text = "";
+            for (int I = ListBox1.Items.Count - 1; I >= 0; I += -1)
+            {
+                if (ListBox1.Items[I].Selected)
+                {
+                    ListBox1.Items.RemoveAt(I);
+                }
+            }
+            for (int I = ListBox2.Items.Count - 1; I >= 0; I += -1)
+            {
+                if (ListBox2.Items[I].Selected)
+                {
+                    ListBox2.Items.RemoveAt(I);
+                }
+            }
         }
     }
 }

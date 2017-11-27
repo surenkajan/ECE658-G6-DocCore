@@ -9,25 +9,14 @@ namespace UoW.DocCore.Web.WebForms.Admin
 {
     public partial class ViewAllProject : Page
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // pageload when page is loaded first time
-
-                //FriendProfiles new1 = new FriendProfiles();
-                // DataList1.DataSource = new1.FriendProfiless();
-                //DataList1.DataBind();
-                var products = new List<Product>();
-                products.Add(new Product() { ProductID = 1, Name = "Bike", Price = 150.00 });
-                products.Add(new Product() { ProductID = 2, Name = "Helmet", Price = 19.99 });
-                products.Add(new Product() { ProductID = 3, Name = "Tire", Price = 10.00 });
-
-
-                DataList1.DataSource = products;
+                List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
+                DataList1.DataSource = project;
                 DataList1.DataBind();
-
-
 
             }
 
@@ -35,20 +24,37 @@ namespace UoW.DocCore.Web.WebForms.Admin
 
         protected void outerRep_ItemDataBound(object sender, DataListItemEventArgs e)
         {
+            //DataListItem selectedDataListItem;
+            HiddenField databaseKeyHiddenField;
+            string databaseKey;
             if (e.Item.ItemType == ListItemType.Item || (e.Item.ItemType == ListItemType.AlternatingItem))
             {
-                var test = new List<Test>();
-                test.Add(new Test() { testName = "Bike1" });
-                test.Add(new Test() { testName = "Bike2" });
-                test.Add(new Test() { testName = "Bike3" });
-
+                
+                //var test = new List<Test>();
+                //test.Add(new Test() { testName = "Bike1" });
+                //test.Add(new Test() { testName = "Bike2" });
+                //test.Add(new Test() { testName = "Bike3" });
+                // databaseKeyHiddenField = (HiddenField)selectedDataListItem.FindControl("DatabaseKeyHiddenField");
+                //databaseKey = databaseKeyHiddenField.Value;
                 //System.Data.DataRowView drv = e.Item.DataItem as System.Data.DataRowView;
+
+                databaseKeyHiddenField = e.Item.FindControl("HiddenField1") as HiddenField;
+                databaseKey = databaseKeyHiddenField.Value;
+                int ProjectID = Int32.Parse(databaseKey);
+
+                
+                List<UserDto> managers = DocCoreBDelegate.Instance.GetAllManagersByProjectID(ProjectID);
+                List<UserDto> members = DocCoreBDelegate.Instance.GetAllTeamMembersByProjectID(ProjectID);
                 DataList innerDataList = e.Item.FindControl("DataList2") as DataList;
                 DataList innerDataList1 = e.Item.FindControl("DataList3") as DataList;
-                innerDataList.DataSource = test;
+                
+                innerDataList.DataSource = managers;
                 innerDataList.DataBind();
-                innerDataList1.DataSource = test;
+                innerDataList1.DataSource = members;
                 innerDataList1.DataBind();
+
+                //Control tbx = this.FindControl("Button3");
+                //tbx.ID = databaseKey;
             }
         }
         public class Product
@@ -62,6 +68,19 @@ namespace UoW.DocCore.Web.WebForms.Admin
         {
             public string testName { get; set; }
 
+        }
+
+        protected void UpdateProject(object sender, EventArgs e)
+        {
+            //HiddenField pIDField;
+            //string ProjectID;
+            //pIDField = (HiddenField)FindControl("HiddenField2") as HiddenField;
+           
+            Button button = (Button)sender;
+            string buttonId = button.ID;
+           // ProjectID = pIDField.Value;
+            int ProjID = Int32.Parse(buttonId);
+            Response.Redirect("Project.aspx?Uid=" + ProjID);
         }
 
     }

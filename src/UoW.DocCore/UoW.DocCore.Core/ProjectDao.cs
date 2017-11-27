@@ -89,7 +89,26 @@ namespace UoW.DocCore.Core
                 return -1;
             }
         }
+        public List<Project> GetAllProject()
+        {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllProject]",
+            GetProjectFromReader, "DocCoreMSSQLConnection",
+            new object[] { "UserTablePreFix", "AU" });
+        }
+        private Project GetProjectFromReader(IDataReader reader)
+        {
+            return GetProjectFromReader(reader, "AU");
+        }
+        public static Project GetProjectFromReader(IDataReader reader, string namePreFix)
+        {
+            Project project = new Project();
 
+            project.ProjectName = Db.GetValue(reader, "projectName", "");
+            project.pID = Db.GetValue(reader, "projectID", 0);
+            
+
+            return project;
+        }
 
 
     }

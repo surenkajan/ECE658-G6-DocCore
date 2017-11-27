@@ -48,20 +48,20 @@ namespace UoW.DocCore.CoreService
         List<UserDto> GetAllTeamMembers();
 
         [OperationContract]
-        [Description("Get All team Members by project")]
+        [Description("Get All Managers by project")]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
      RequestFormat = WebMessageFormat.Json,
      ResponseFormat = WebMessageFormat.Json,
-     UriTemplate = "GetAllTeamMembersByProject?projectID={ID}")]
-        List<UserDto> GetAllTeamMembersByProjectID(int ID);
+     UriTemplate = "GetAllManagersByProjectID?projectID={ID}")]
+        List<UserDto> GetAllManagersByProjectID(int ID);
 
         [OperationContract]
-        [Description("Get All project managers by project")]
+        [Description("Get All Team Members by project")]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
     RequestFormat = WebMessageFormat.Json,
     ResponseFormat = WebMessageFormat.Json,
     UriTemplate = "GetAllTeamMembersByProjectID?projectId={ID}")]
-        List<UserDto> GetAllManagersByProjectID(int ID);
+        List<UserDto> GetAllTeamMembersByProjectID(int ID);
 
         [OperationContract]
         [Description("Get Project Details By ID")]
@@ -88,6 +88,14 @@ namespace UoW.DocCore.CoreService
            ResponseFormat = WebMessageFormat.Json,
            UriTemplate = "UpdateProjectByID")]
         int UpdateProjectByID(ProjectDto project);
+
+        [OperationContract]
+        [Description("Get all Project")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+       RequestFormat = WebMessageFormat.Json,
+       ResponseFormat = WebMessageFormat.Json,
+       UriTemplate = "GetAllProject")]
+      List<ProjectDto> GetAllProject();
 
     }
 }

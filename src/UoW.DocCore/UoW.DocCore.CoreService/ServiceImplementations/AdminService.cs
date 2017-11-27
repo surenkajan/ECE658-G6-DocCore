@@ -71,5 +71,10 @@ namespace UoW.DocCore.CoreService
             return projectDao.UpdateProjectByID(CoreObjectMapper.ProjectDtoToDao(project));
 
         }
+        public List<ProjectDto> GetAllProject()
+        {
+            ProjectDao projectDao = new ProjectDao();
+            return CoreObjectMapper.ProjectDaoToDto(projectDao.GetAllProject());
+        }
     }
 }

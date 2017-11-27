@@ -7,34 +7,42 @@
         <h2>View All Project </h2>
         <hr />
    <asp:DataList ID="DataList1" runat="server"  
-            BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2"
-            Font-Names="Verdana" Font-Size="Small" GridLines="Both" RepeatColumns="1" RepeatDirection="Horizontal"
+            BorderStyle="None"  CellPadding="3" CellSpacing="2"
+            Font-Names="Verdana" Font-Size="Small" GridLines="Horizontal" RepeatColumns="1" RepeatDirection="Horizontal"
             Width="100%" OnItemDataBound="outerRep_ItemDataBound"  >
+
            
             
-       <ItemStyle BackColor="White"   BorderWidth="2px" />
+       <ItemStyle BackColor="White"   />
         <ItemTemplate>
             <asp:Table runat="server">
+
                 <asp:TableRow Height="30px" >
-                    <asp:TableCell VerticalAlign="Top" Width="200px">
+                    <asp:TableCell VerticalAlign="Top" Width="30%">
                    <b>Project</b> 
                     </asp:TableCell>
                     <asp:TableCell HorizontalAlign="Center">
-                    <asp:Label ID="lblName" runat="server"  Text='<%# Bind( "Name")%>' />
+                        <ul>
+                    <li><asp:Label ID="lblName" runat="server"  Text='<%# Bind( "projectName")%>' /></li>
+                        </ul>
+                            <asp:HiddenField runat="server" id="HiddenField1" Value='<%# Bind("pID") %>' />
+                            
                     </asp:TableCell></asp:TableRow>
+
+             
                  <asp:TableRow>
                     <asp:TableCell Height="20px">
 
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell VerticalAlign="Top" Width="200px">
+                    <asp:TableCell VerticalAlign="Top"  Width="200px" >
                         <b>Project Managers</b>
                          </asp:TableCell><asp:TableCell>
                          <asp:DataList ID="DataList2" runat="server">
                     <ItemTemplate > 
                         <ul>
-                    <li><asp:Label ID="lblName1" runat="server" Text='<%# Bind( "testName")%>'></asp:Label></li>
+                    <li><asp:Label ID="lblName1" runat="server" Text='<%# Bind( "FullName")%>'></asp:Label></li>
                             </ul>
                      </ItemTemplate>
 
@@ -56,9 +64,21 @@
                     <ItemTemplate  >
                        <ul>
                            <li>
-                       <asp:Label ID="lblName3" runat="server" Text='<%# Bind( "testName")%>'></asp:Label></li>
+                       <asp:Label ID="lblName3" runat="server" Text='<%# Bind( "FullName")%>'></asp:Label></li>
                            </ul>
                      </ItemTemplate>
 
+
                 </asp:DataList>
-                    </asp:TableCell></asp:TableRow></asp:Table></ItemTemplate></asp:DataList></asp:Panel></asp:Content>
+                    </asp:TableCell>
+                     <asp:TableCell Width="100%" HorizontalAlign="Right">
+                       
+                         <asp:HyperLink Runat =server NavigateUrl ='<%#"Project.aspx?Uid=" + DataBinder.Eval(Container.DataItem, "pID").ToString()%>' ID="Hyperlink1">
+                              Edit Project
+                           </asp:HyperLink>
+                          
+
+                         <%--<asp:Button ID="Button3" runat="server" Text="Edit Project" OnClick="UpdateProject" CssClass="btn btn-default" />  --%>
+                      
+                     </asp:TableCell>
+                </asp:TableRow></asp:Table></ItemTemplate></asp:DataList></asp:Panel></asp:Content>
