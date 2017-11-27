@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTransferObjectMapper\CoreObjectMapper.cs" />
+    <Compile Include="DataTransferObjects\CommentsDto.cs" />
     <Compile Include="DataTransferObjects\DocumentDto.cs" />
     <Compile Include="DataTransferObjects\ProjectDto.cs" />
     <Compile Include="DataTransferObjects\SecurityAnswersDto.cs" />

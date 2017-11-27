@@ -237,5 +237,54 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
             return DocList;
         }
 
+        //Comments
+
+        public static CommentsDto CommentDaoToDto(Comments comment)
+        {
+            if (comment == null) return null;
+            CommentsDto dto = new CommentsDto();
+            dto.Comments = comment.Comment;
+            dto.FirstName = comment.FirstName;
+            dto.UploadTimeStamp = comment.CommentsTime;
+            dto.LastName = comment.LastName;
+            dto.FullName = comment.FullName;
+            dto.UserID = comment.UserID;
+            dto.DocID = comment.DocID;
+            dto.ProfilePhoto = comment.ProfilePhoto;
+            return dto;
+
+        }
+
+        public static List<CommentsDto> CommentDaoToDto(List<Comments> CommentDaoList)
+        {
+            if (CommentDaoList == null) return null;
+
+            var commentList = (from userObj in CommentDaoList
+                               select CommentDaoToDto(userObj)).ToList();
+            return commentList;
+
+
+
+        }
+
+        public static Comments CommentsDtoToDao(CommentsDto comments)
+        {
+            if (comments == null) return null;
+            return new Comments()
+            {
+                UserID = comments.UserID,
+                DocID = comments.DocID,
+                Comment = comments.Comments,
+                CommentsTime = comments.UploadTimeStamp,
+                FirstName = comments.FirstName,
+                LastName = comments.LastName,
+                FullName = comments.FullName,
+                EmailAddress = comments.EmailAddress
+
+            };
+
+        }
+
+
     }
 }

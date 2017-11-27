@@ -67,5 +67,22 @@ namespace UoW.DocCore.CoreService
            ResponseFormat = WebMessageFormat.Json,
            UriTemplate = "DeleteDocuments?DocID={DocID}")]
         int DeleteDocumentsByDocID(string DocID);
+
+        [OperationContract]
+        [Description("Get Comment By docID")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetCommentsByID?DocID={docID}")]
+        List<CommentsDto> GetCommentsByID(int docID);
+
+        [OperationContract]
+        [Description("Add Comments By EmailID")]
+        [WebInvoke(Method = "POST",
+        BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "/AddCommentsByEmailID")]
+        int AddCommentsByEmailID(CommentsDto comments);
     }
 }

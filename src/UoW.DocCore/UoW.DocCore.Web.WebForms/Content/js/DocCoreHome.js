@@ -6,7 +6,7 @@
     //var likes = Object.keys(GetLikesService(document.DocID)).length;
     for (index in comments) {
         var date = new Date(parseInt(comments[index].UploadTimeStamp.substr(6)));
-        commentString += "<li><a href='" + DocCoreAppBaseAddress + "/myprofile/myprofile?uid=" + comments[index].UserID + "'><div class='commenterImage'><img src= " + comments[index].ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + comments[index].FullName + " </strong></a>" + comments[index].Comments + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
+        commentString += "<li><a href='" + DocCoreAppBaseAddress + "/myprofile?uid=" + comments[index].UserID + "'><div class='commenterImage'><img src= " + comments[index].ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + comments[index].FullName + " </strong></a>" + comments[index].Comments + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
     }
 
     var tagString = "";
@@ -23,7 +23,7 @@
 
             $.when(editor.setSource()).then(function (user) {
                 if (user.length != 0) {
-                    documentString += '<a href=' + DocCoreAppBaseAddress + '/myprofile/myprofile?uid=' + user[0].UserID + '>' + user[0].FullName + '</a>, '
+                    documentString += '<a href=' + DocCoreAppBaseAddress + '/myprofile?uid=' + user[0].UserID + '>' + user[0].FullName + '</a>, '
                 }
 
             });
@@ -38,12 +38,13 @@
 
     var checkinString = "";
     if (document.Location) {
-        checkinString += '<p style="display:inline" class="checkinclass small" style="color:black"> - ' + document.Location + '</p>';
+        //checkinString += '<p style="display:inline" class="checkinclass small" style="color:black"> - ' + document.Location + '</p>';
+        checkinString += 'Delete This';
     }
 
     var descriptionString = "";
     if (document.PhotoDescription) {
-        descriptionString = document.PhotoDescription;
+        descriptionString = document.FileSummary;
     }
 
     var id = document.DocID;
@@ -51,7 +52,7 @@
     $('#FriendContainer').append('<div id="rect' + id + '" class="rect" style="height:650px;border-radius:8px;">' +
         '<div style="height:50px;display:block;border-bottom-style:inset;">' +
         '<h4 class="username1Div' + id + '" style="color:grey">' +
-        '<a href="' + DocCoreAppBaseAddress + '/myprofile/myprofile?uid=' + document.UserID + '" style="text-decoration: none;color: inherit;"><img class ="img-circle" src="' + document.ProfilePhoto + '" /> ' +
+        '<a href="' + DocCoreAppBaseAddress + '/myprofile?uid=' + document.UserID + '" style="text-decoration: none;color: inherit;"><img class ="img-circle" src="' + document.ProfilePhoto + '" /> ' +
         '<p style="display:inline;color:#365899;">' + document.FirstName + " " + document.LastName + '</p><a/>' + checkinString + '</h4> </div > ' +
         '<div id="userpicDiv' + id + '" style="height:300px;display:block;border-bottom-style:inset;text-align:center;background-color: #f3f0f0">' +
         '<span class="helper"></span><img src="' + document.ActualPhoto + '"onclick="imagezoom(' + id + ')" id="image' + id + '" style="max-width:100%;max-height:100%;object-fit: contain" />' +
@@ -203,7 +204,7 @@ function addcommentToDiv(id) {
         var date = new Date();
 
         $('#commentList' + id).prepend(
-            "<li><a href='" + DocCoreAppBaseAddress + "/myprofile/myprofile?uid=" + userDetails.UserID + "'><div class='commenterImage'><img src= " + userDetails.ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + userDetails.FullName + " </strong></a>" + newComment + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
+            "<li><a href='" + DocCoreAppBaseAddress + "/myprofile?uid=" + userDetails.UserID + "'><div class='commenterImage'><img src= " + userDetails.ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + userDetails.FullName + " </strong></a>" + newComment + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
         );
 
         $('#AddCommentDiv' + id).val("");

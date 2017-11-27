@@ -98,11 +98,11 @@ function CallCommentRestService(DocID) {
     return comment;
 }
 
-function CallAddMyLikesService(likeData) {
-    var url = DocCoreServicesBaseAddress + "/likesRest/AddLikesByDocID";
-    DocCorePOSTService(url, likeData);
-    //return addLikes;
-}
+//function CallAddMyLikesService(likeData) {
+//    var url = DocCoreServicesBaseAddress + "/likesRest/AddLikesByDocID";
+//    DocCorePOSTService(url, likeData);
+//    //return addLikes;
+//}
 
 function CallRestService() {
     var userData = {
@@ -130,6 +130,7 @@ function CallRestService() {
 //}
 
 function GetAllUsersByProjectID(Pid) {
+    //TODO : Have not Implemented yet
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/userrest/GetAllUsersByProjectID?PID=" + Pid))
 }
 
@@ -152,8 +153,8 @@ function GetUserDetailsService(emailID) {
 
 //}
 
-function DeletePhotoService(DocID) {
-    var url = DocCoreServicesBaseAddress + "/DocRest/DeletePhotoByDocID?DocID=" + DocID;
+function DeleteDocumentService(DocID) {
+    var url = DocCoreServicesBaseAddress + "/DocRest/DeleteDocuments?DocID=" + DocID;
     var result = DocCorePUTService(url, DocID);
     console.log(result);
 
@@ -169,7 +170,7 @@ function PostCommentRestService(commentobj) {
         FirstName: null,
         LastName: null
     }
-    var result = DocCorePOSTService(DocCoreServicesBaseAddress + "/DocRest/AddDocuments", commentobj);
+    var result = DocCorePOSTService(DocCoreServicesBaseAddress + "/DocRest/AddCommentsByEmailID", commentobj);
 
     console.log("Result of the Service is" + result);
 

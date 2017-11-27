@@ -105,5 +105,7 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateMetaDataDocument.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllProject.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreUpdateProjectByID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreAddCommentsByEmailID.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetCommentsByID.proc.sql" />
   </ItemGroup>
 </Project>

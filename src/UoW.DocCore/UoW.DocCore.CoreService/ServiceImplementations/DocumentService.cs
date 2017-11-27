@@ -54,5 +54,18 @@ namespace UoW.DocCore.CoreService
             DocumentDao docDao = new DocumentDao();
             return docDao.UpdateDocument(CoreObjectMapper.DocumentDtoToDao(document));
         }
+
+        public List<CommentsDto> GetCommentsByID(int DocID)
+        {
+            CommentsDao commentdao = new CommentsDao();
+            return CoreObjectMapper.CommentDaoToDto(commentdao.GetCommentsByID(DocID));
+        }
+
+        public int AddCommentsByEmailID(CommentsDto comments)
+        {
+            CommentsDao commentdao = new CommentsDao();
+            return commentdao.AddCommentsByEmailID(CoreObjectMapper.CommentsDtoToDao(comments));
+        }
+
     }
 }

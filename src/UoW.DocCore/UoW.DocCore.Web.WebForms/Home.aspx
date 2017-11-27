@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script src="Content/js/DocCreBDelegate.js"></script>
+    <script src="Content/js/DocCoreBDelegate.js"></script>
     <script src="Content/js/DocCoreHome.js" type="text/javascript"></script>
     <script src="Content/js/tag-it.js" type="text/javascript"></script>
     <script src="Content/js/tag-it.min.js" type="text/javascript"></script>

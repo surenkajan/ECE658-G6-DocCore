@@ -53,9 +53,16 @@
         {
             try
             {
-                return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[GetAllSharedDocumentsForEmailID]",
-                GetUserFromReader, "DocCoreMSSQLConnection",
-                new object[] { "EmailID", EmailID, "UserTablePreFix", "AU" });
+                return Db.ReadList(
+                    Db.QueryType.StoredProcedure, 
+                    "[doccore].[GetAllSharedDocumentsForEmailID]",
+                    GetUserFromReader, 
+                    "DocCoreMSSQLConnection",
+                    new object[] 
+                    {
+                        "EmailID", EmailID,
+                        "UserTablePreFix", "AU"
+                    });
             }
             catch (Exception ex)
             {
