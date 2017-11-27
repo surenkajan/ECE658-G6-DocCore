@@ -91,7 +91,19 @@ namespace UoW.DocCore.Web.WebForms
             }
             return usrList;
         }
+        public List<UserDto> GetAllUserDetails()
+        {
+            List<UserDto> usrList = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/userRest/GetAllUserDetails", "GET", json_type, null);
+            JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
 
+            if (Json_usrList != null)
+            {
+                usrList = json_list_serializer.Deserialize<List<UserDto>>(Json_usrList);
+            }
+            return usrList;
+        }
         public int InsertUser(UserDto newUser)
         {
             int status = -1;

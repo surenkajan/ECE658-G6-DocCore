@@ -171,8 +171,14 @@
         public List<User> GetAllUsers()
         {
             return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreAllUsers]",
-                GetUserFromReader, "DocCoreMSSQLConnection",
+                GetAllUserFromReader, "DocCoreMSSQLConnection",
                 new object[] { "UserTablePreFix", "AU" });
+        }
+        public List<User> GetAllUserDetails()
+        {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllUserDetails]",
+                GetAllUserFromReader, "DocCoreMSSQLConnection",
+                new object[] {});
         }
         public List<User> GetAllManagers()
         {
@@ -198,10 +204,42 @@
                 GetMemberFromReader, "DocCoreMSSQLConnection",
                 new object[] { "ProjectID", ID });
         }
-
         private User GetMemberFromReader(IDataReader reader)
         {
             return GetMemberFromReader(reader, "AU");
+        }
+
+        private User GetAllUserFromReader(IDataReader reader)
+        {
+            return GetAllUserFromReader(reader, "AU");
+        }
+        public static User GetAllUserFromReader(IDataReader reader, string namePreFix)
+        {
+            User user = new User();
+
+            user.UserID = Db.GetValue(reader, "ID", 0);
+            user.UserName = Db.GetValue(reader, "UserName", "");
+            user.FirstName = Db.GetValue(reader, "FirstName", "");
+            user.LastName = Db.GetValue(reader, "LastName", "");
+            user.FullName = Db.GetValue(reader, "FullName", "");
+            user.EmailAddress = Db.GetValue(reader, "EmailAddress", "");
+            user.DateOfBirth = Db.GetValue(reader, "DateOfBirth", DateTime.Now);
+            user.Sex = Db.GetValue(reader, "Sex", "");
+            user.Uid = Db.GetValue(reader, "ID", 0);
+            user.ProjectRole = Db.GetValue(reader, "projectRole", "");
+            if (!DBNull.Value.Equals(reader["ProfilePhoto"]))
+            {
+                byte[] imgBytes = (byte[])reader["ProfilePhoto"];
+                string imgString = Convert.ToBase64String(imgBytes);
+                user.ProfilePhoto = String.Format("data:image/jpg;base64,{1}", "jpg", imgString);
+            }
+            else
+            {
+                //Image image = Image.FromFile(@"\images\avator.png");
+                //user.ProfilePhoto = Common.ImageToBase64(image);
+                user.ProfilePhoto = null;
+            }
+            return user;
         }
         public static User GetMemberFromReader(IDataReader reader, string namePreFix)
         {

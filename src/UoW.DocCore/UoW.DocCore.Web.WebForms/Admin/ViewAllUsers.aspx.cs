@@ -21,24 +21,15 @@ namespace UoW.DocCore.Web.WebForms
         {
             //I am adding dummy data here. You should bring data from your repository.
             DataTable dt = new DataTable();
-            dt.Columns.Add("ImageUrl");
-            dt.Columns.Add("Profile_Name");
+            dt.Columns.Add("FullName");
+            dt.Columns.Add("ProjectRole");
             dt.Columns.Add("Action");
-
+            List<UserDto> user = DocCoreBDelegate.Instance.GetAllUsers();
 
             for (int i = 0; i < 20; i++)
             {
 
-
-                DataRow dr = dt.NewRow();
-                dr["ImageUrl"] = "../Content/Images/friends.png";
-                dr["Profile_Name"] = "User " + (i + 1);
-                dr["Action"] = "Edit";
-                string prof = dr["Profile_Name"].ToString();
-                string textdata = txtSearch.ToString();
-                // if (prof == textdata)
-
-                //{
+                
 
                 dt.Rows.Add(dr);
                 // }

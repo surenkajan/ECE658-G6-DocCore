@@ -72,6 +72,11 @@ namespace UoW.DocCore.CoreService
             UserDao userDao = new UserDao();
             return CoreObjectMapper.UserDaoToDto(userDao.GetAllUsers());
         }
+        public List<UserDto> GetAllUserDetails()
+        {
+            UserDao userDao = new UserDao();
+            return CoreObjectMapper.UserDaoToDto(userDao.GetAllUserDetails());
+        }
 
         public int UpdateUserByEmailID(UserDto user)
         {

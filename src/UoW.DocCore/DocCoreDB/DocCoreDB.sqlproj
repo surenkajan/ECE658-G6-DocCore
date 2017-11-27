@@ -108,5 +108,6 @@
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreAddCommentsByEmailID.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetCommentsByID.proc.sql" />
     <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetDocumentByDocIdWithFileContent.proc.sql" />
+    <Build Include="SchemaObjects\Schemas\doccore\Programmability\StoredProcedures\CoreGetAllUserDetails.proc.sql" />
   </ItemGroup>
 </Project>

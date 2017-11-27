@@ -72,6 +72,11 @@ namespace UoW.DocCore.CoreService
       UriTemplate = "GetUserByUid?Uid={Uid}")]
         UserDto GetUserByUid(int Uid);
 
-        
+        [OperationContract(Name = "Get All Users")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+     RequestFormat = WebMessageFormat.Json,
+     ResponseFormat = WebMessageFormat.Json,
+     UriTemplate = "GetAllUserDetails")]
+        List<UserDto> GetAllUserDetails();
     }
 }
