@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
     <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
+    <link rel="stylesheet" href="/Content/css/home.css" type="text/css" />
+    <link rel="stylesheet" href="/Content/css/displayDiv.css" type="text/css" />
+    <link rel="stylesheet" href="/Content/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/Content/css/jquery.tagit.css" type="text/css" />
+    <link rel="stylesheet" href="/Content/css/tagit.ui-zendesk.css" type="text/css" />
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script src="Content/js/DocCoreBDelegate.js"></script>
@@ -157,6 +162,19 @@
                 </div>
             </div>
         </asp:PlaceHolder>
+
+        <div id="SharedDocuments" style="overflow-x: auto;">
+            <table>
+                <tr>
+                    <td style="vertical-align: top; width: 280px;"></td>
+
+
+                    <td style="vertical-align: top; height: 100px; width: 660px; background-color: white">
+                        <div id="SharedDocumentsContainer" class="SharedDocumentsContainerclass" style="height: auto;"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
 

@@ -39,27 +39,26 @@
     var checkinString = "";
     if (document.Location) {
         //checkinString += '<p style="display:inline" class="checkinclass small" style="color:black"> - ' + document.Location + '</p>';
-        checkinString += 'Delete This';
+        checkinString += 'Delete this later';
     }
 
     var descriptionString = "";
-    if (document.PhotoDescription) {
+    if (document.FileSummary) {
         descriptionString = document.FileSummary;
     }
 
     var id = document.DocID;
 
-    $('#FriendContainer').append('<div id="rect' + id + '" class="rect" style="height:650px;border-radius:8px;">' +
+    $('#SharedDocumentsContainer').append('<div id="rect' + id + '" class="rect" style="height:650px;border-radius:8px;">' +
         '<div style="height:50px;display:block;border-bottom-style:inset;">' +
         '<h4 class="username1Div' + id + '" style="color:grey">' +
         '<a href="' + DocCoreAppBaseAddress + '/myprofile?uid=' + document.UserID + '" style="text-decoration: none;color: inherit;"><img class ="img-circle" src="' + document.ProfilePhoto + '" /> ' +
         '<p style="display:inline;color:#365899;">' + document.FirstName + " " + document.LastName + '</p><a/>' + checkinString + '</h4> </div > ' +
         '<div id="userpicDiv' + id + '" style="height:300px;display:block;border-bottom-style:inset;text-align:center;background-color: #f3f0f0">' +
-        '<span class="helper"></span><img src="' + document.ActualPhoto + '"onclick="imagezoom(' + id + ')" id="image' + id + '" style="max-width:100%;max-height:100%;object-fit: contain" />' +
+        '<span class="helper"></span><img src="' + document.ProfilePhoto + '"onclick="imagezoom(' + id + ')" id="image' + id + '" style="max-width:100%;max-height:100%;object-fit: contain" />' +
         '</div >' +
         '<span id="' + id + '"class="glyphicon glyphicon-heart-empty" style="margin-left: 12px; font-size:20px; cursor: pointer;color:#365899;" onclick="likecounter(this.id)"></span>' +
         '<span style="position: relative; font-size: 20px; margin-left: 15px;color:#365899;cursor: pointer;" class="glyphicon glyphicon-comment" onclick="showcommentDiv(' + id + ')"></span> ' +
-        '<div id="likeres' + document.DocID + '" style="height: 20px;margin-left:15px;font-weight:700;cursor:pointer;" data-toggle="modal" data-target="#LikesModal" onclick="populateLikes(' + id + ')">' + likes + ' Likes</div>' +
         '<div id="description' + id + '" style="margin-top:5px;margin-bottom:5px;margin-left:15px;height:50px;">' + descriptionString + tagString + '</div>' +
         '<div class="detailBox"><div class="titleBox"><label>Comments</label></div ><div class="actionBox"> <ul id="commentList' + id + '" class="commentList">' + commentString + '</ul></div>' +
         '<div class="input-group" style="z-index:0.5;"><input id="AddCommentDiv' + id + '" class="form-control inputcomment" type="text" placeholder="Your comments" onkeyup="handleAddButtonCss(' + id + ')" />' +
