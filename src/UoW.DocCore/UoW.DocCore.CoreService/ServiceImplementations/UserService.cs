@@ -90,5 +90,11 @@ namespace UoW.DocCore.CoreService
             UserDao userDao = new UserDao();
             return userDao.DeleteUserByEmailID(EmailID);
         }
+
+        public UserDto GetAllUserDetailsByUid(int Uid)
+        {
+            UserDao userDao = new UserDao();
+            return CoreObjectMapper.UserDaoToDto(userDao.GetAllUserDetailsByUid(Uid));
+        }
     }
 }

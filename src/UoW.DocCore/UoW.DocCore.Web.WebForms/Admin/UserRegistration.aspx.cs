@@ -34,15 +34,16 @@ namespace UoW.DocCore.Web.WebForms
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-                //uid = "19";
+                uid = "4";
                 //if (user.ProjectRole == "Admin")
                 //{
-                PopulateAllProjects();
-                PopulateAllRoles();
+               
+                //PopulateAllRoles();
                 if (string.IsNullOrEmpty(uid))
                 {
                     // My Profile
                     PasswordSection.Visible = true;
+                    PopulateAllProjects();
 
                 }
                 else
@@ -83,21 +84,76 @@ namespace UoW.DocCore.Web.WebForms
             //Gender.SelectedIndex = Gender.Items.IndexOf(Gender.Items.FindByText(gender));
             DOB.Text = user.DateOfBirth != null ? date.ToString("dd/MM/yyyy") : "";
             Email.Text = user.EmailAddress;
+            UserDto user1 = DocCoreBDelegate.Instance.GetAllUserDetailsByUid(UserID);
+            ddlRole.SelectedValue = user1.ProjectRole;
+           List<ProjectDto> user2 = DocCoreBDelegate.Instance.GetProjectDetailsByUid(UserID);
+            List<ProjectDto> AllProject = DocCoreBDelegate.Instance.GetAllProject();
+            List<string> lstdays = new List<string>();
+           foreach (ProjectDto proj1 in user2)
+            {
+                lstdays.Add(proj1.ProjectName);
+            }
+            foreach (ProjectDto dto in AllProject)
+            {
+                bool flag = false;
+                foreach (ProjectDto proj1 in user2)
+                {
+                    if (proj1.ProjectName.Trim().Equals(dto.ProjectName.Trim()))
+                    {
+                        flag = true;
+                        break;
+
+
+
+                    }
+
+                }
+                if (flag == false)
+                {
+                    lstdays.Add(dto.ProjectName);
+                }
+
+
+            }
+            lstBoxProject.DataSource = lstdays;
+            //lstBoxProject.DataTextField = "ProjectName";
+            lstBoxProject.DataBind();
+            for (int I = lstBoxProject.Items.Count - 1; I >= 0; I += -1)
+            {
+
+                bool flag2 = false;
+                String MyStr = lstBoxProject.Items[I].ToString();
+                foreach (ProjectDto proj1 in user2)
+                {
+                    if (proj1.ProjectName.Trim().Equals(MyStr.Trim()))
+                    {
+                        flag2 = true;
+                        break;
+                    }
+                }
+                if (flag2 == true)
+                {
+                    lstBoxProject.Items[I].Selected = true;
+                }
+
+
+
+            }
 
 
 
 
         }
-        private void PopulateAllRoles()
-        {
-            var products = new List<Product>();
-            products.Add(new Product() { Name = "Project Manager" });
-            products.Add(new Product() { Name = "Team Member" });
-            ddlRole.DataSource = products;
-            ddlRole.DataTextField = "Name";
-            ddlRole.DataBind();
-            ddlRole.Items.Insert(0, new ListItem("--Select Customer--", "0"));
-        }
+        //private void PopulateAllRoles()
+        //{
+        //    var products = new List<Product>();
+        //    products.Add(new Product() { Name = "Manager" });
+        //    products.Add(new Product() { Name = "TeamMember" });
+        //    ddlRole.DataSource = products;
+        //    ddlRole.DataTextField = "Name";
+        //    ddlRole.DataBind();
+        //    ddlRole.Items.Insert(0, new ListItem("--Select Customer--", "0"));
+        //}
 
         protected void CreateUser_Click(object sender, EventArgs e)
         {
