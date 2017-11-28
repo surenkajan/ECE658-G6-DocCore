@@ -85,6 +85,26 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
 
             };
         }
+        public static User UpdateUserDtoToDao(UserDto userDto)
+        {
+            if (userDto == null) return null;
+            return new User()
+            {
+                UserName = userDto.UserName,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                FullName = userDto.FullName,
+                EmailAddress = userDto.EmailAddress,
+                DateOfBirth = userDto.DateOfBirth,
+                Sex = userDto.Sex,
+                ProfilePhoto = userDto.ProfilePhoto,
+                ProjectRole= userDto.ProjectRole
+
+
+
+
+            };
+        }
         public static User NewUserDtoToDao(UserDto userDto)
         {
             if (userDto == null) return null;

@@ -30,13 +30,15 @@ namespace UoW.DocCore.Web.WebForms
                 PasswordSection.Visible = false;
                 PlaceHolder2.Visible = false;
                 PlaceHolder1.Visible = false;
+                Email.Visible = false;
+                LabelEmail.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
                 //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
                 //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-                uid = "4";
+                uid = "1";
                 //if (user.ProjectRole == "Admin")
                 //{
                
@@ -46,6 +48,7 @@ namespace UoW.DocCore.Web.WebForms
                     // My Profile
                     PasswordSection.Visible = true;
                     PlaceHolder1.Visible = true;
+                    Email.Visible = true;
                     //PopulateAllProjects();
 
                 }
@@ -77,6 +80,7 @@ namespace UoW.DocCore.Web.WebForms
         {
             PasswordSection.Visible = false;
             PlaceHolder2.Visible = true;
+            LabelEmail.Visible = true;
             int UserID = Int32.Parse(uid);
             UserDto user = DocCoreBDelegate.Instance.GetUserByUid(UserID);
             FName.Text = user.FirstName;
@@ -87,7 +91,7 @@ namespace UoW.DocCore.Web.WebForms
             DateTime date = user.DateOfBirth ?? DateTime.Now;
             //Gender.SelectedIndex = Gender.Items.IndexOf(Gender.Items.FindByText(gender));
             DOB.Text = user.DateOfBirth != null ? date.ToString("dd/MM/yyyy") : "";
-            Email.Text = user.EmailAddress;
+            LabelEmail.Text = user.EmailAddress;
             UserDto user1 = DocCoreBDelegate.Instance.GetAllUserDetailsByUid(UserID);
             ddlRole.SelectedValue = user1.ProjectRole;
            List<ProjectDto> user2 = DocCoreBDelegate.Instance.GetProjectDetailsByUid(UserID);
@@ -187,7 +191,7 @@ namespace UoW.DocCore.Web.WebForms
                 };
                 UserDto UserAccess = new UserDto()
                 {
-                    EmailAddress = Email.Text,
+                    EmailAddress = LabelEmail.Text,
                     ProjectRole = ddlRole.Text
                 };
                 int AddStatus = DocCoreBDelegate.Instance.InsertUser(newUser);
@@ -210,6 +214,45 @@ namespace UoW.DocCore.Web.WebForms
         protected void UpdateProject(object sender, EventArgs e)
         {
             //Response.Redirect("/Account/Login");
+            //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+            //var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
+            //IdentityResult result = manager.Create(user, Password.Text);
+            //if (result.Succeeded)
+            //{
+
+                UserDto newUser = new UserDto()
+                
+                {
+                    EmailAddress = LabelEmail.Text,
+                    DateOfBirth = Convert.ToDateTime(DOB.Text),  //DateTime.Parse(DOB.Text.Trim()).ToString("MM dd,yyyy", CultureInfo.InvariantCulture),
+                                                                 //
+                    FirstName = FName.Text,
+                    FullName = FullName.Text,
+                    LastName = LName.Text,
+                    Sex = Gender.Text,
+                    UserName = LabelEmail.Text,
+                    ProfilePhoto = ImageToBase64()
+                   
+                };
+                UserDto UserAccess = new UserDto()
+                {
+                    EmailAddress = LabelEmail.Text,
+                    ProjectRole = ddlRole.Text
+                };
+                int status = DocCoreBDelegate.Instance.UpdateUser(newUser);
+                int newStatus = DocCoreBDelegate.Instance.UpdateUserAccess(UserAccess);
+
+                RegisterStatusPH.Visible = true;
+                DocCoreRegisterUserPH.Visible = false;
+                ClearData();
+                registerStatus.Text = "User has been updated successfully!";
+            //}
+            //else
+            //{
+            //    ErrorMessage.Text = result.Errors.FirstOrDefault();
+            //}
+
         }
 
         public class Product
@@ -223,13 +266,19 @@ namespace UoW.DocCore.Web.WebForms
         protected void DeleteProject(object sender, EventArgs e)
         {
 
-
-            string EmailAddress = Email.Text;
-            int status = DocCoreBDelegate.Instance.DeleteUserByEmailID(EmailAddress);
-            RegisterStatusPH.Visible = true;
-            DocCoreRegisterUserPH.Visible = false;
-            ClearData();
-            registerStatus.Text = "The user has been successfully deleted!";
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
+            IdentityResult result = manager.Create(user, Password.Text);
+            if (result.Succeeded)
+            {
+                string EmailAddress = Email.Text;
+                int status = DocCoreBDelegate.Instance.DeleteUserByEmailID(EmailAddress);
+                RegisterStatusPH.Visible = true;
+                DocCoreRegisterUserPH.Visible = false;
+                ClearData();
+                registerStatus.Text = "The user has been successfully deleted!";
+            }
 
         }
 
@@ -239,7 +288,7 @@ namespace UoW.DocCore.Web.WebForms
         }
         protected void CreateUserCancel_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/ViewAllUsers.aspx");
         }
         protected void ClearData()
         {

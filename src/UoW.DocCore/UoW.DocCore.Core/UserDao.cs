@@ -156,6 +156,7 @@
                     "DateOfBirth", user.DateOfBirth,
                     "Sex", user.Sex,
                     "ProfilePhoto", Convert.FromBase64String(user.ProfilePhoto)
+                   
                 });
             }
             else
@@ -163,7 +164,28 @@
                 return -1;
             }
         }
+        public int UpdateUserAccess(User user)
+        {
+            if (user != null && user.EmailAddress != null && user.ProjectRole != null )
+            {
+                return Db.Update(
+                    Db.QueryType.StoredProcedure,
+                    "[doccore].[CoreUpdateUserAccessByEmailID]",
+                    "DocCoreMSSQLConnection",
+                    new object[]
+                {
 
+                    "EmailAddress", user.EmailAddress,
+                    "ProjectRole" ,user.ProjectRole
+                   
+
+                });
+            }
+            else
+            {
+                return -1;
+            }
+        }
 
         /// <summary>
         /// Delete User By EmailID

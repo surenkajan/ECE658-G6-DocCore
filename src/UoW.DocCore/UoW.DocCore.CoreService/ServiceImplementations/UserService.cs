@@ -71,6 +71,11 @@ namespace UoW.DocCore.CoreService
             UserDao userDao = new UserDao();
             return userDao.CreateUserAccess(CoreObjectMapper.NewUserDtoToDao(user));
         }
+        public int  UpdateUserAccess(UserDto user)
+        {
+            UserDao userDao = new UserDao();
+            return userDao.UpdateUserAccess(CoreObjectMapper.NewUserDtoToDao(user));
+        }
         public List<UserDto> GetAllUsers()
         {
             UserDao userDao = new UserDao();
