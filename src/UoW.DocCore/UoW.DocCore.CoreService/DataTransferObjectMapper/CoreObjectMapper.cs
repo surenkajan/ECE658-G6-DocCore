@@ -79,7 +79,28 @@ namespace UoW.DocCore.CoreService.DataTransferObjectMapper
                 Sex = userDto.Sex,
                 ProfilePhoto = userDto.ProfilePhoto,
                 Uid = userDto.Uid,
-                UserID = userDto.UserID
+               
+                
+
+
+            };
+        }
+        public static User NewUserDtoToDao(UserDto userDto)
+        {
+            if (userDto == null) return null;
+            return new User()
+            {
+                //DateOfBirth = userDto.DateOfBirth,
+                //Sex = userDto.Sex,
+                //ProfilePhoto = userDto.ProfilePhoto,
+                //Uid = userDto.Uid,
+                EmailAddress = userDto.EmailAddress,
+                ProjectRole= userDto.ProjectRole
+                //UserName = userDto.UserName,
+                //FirstName = userDto.FirstName,
+                //LastName = userDto.LastName,
+                //FullName = userDto.FullName,
+
 
 
             };

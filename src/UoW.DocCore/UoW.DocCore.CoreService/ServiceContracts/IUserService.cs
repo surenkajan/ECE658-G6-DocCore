@@ -85,5 +85,14 @@ namespace UoW.DocCore.CoreService
    ResponseFormat = WebMessageFormat.Json,
    UriTemplate = "GetAllUserDetailsByUid?Uid={Uid}")]
         UserDto GetAllUserDetailsByUid(int Uid);
+
+        [OperationContract]
+        [Description("Add Access level to user")]
+        [WebInvoke(Method = "POST",
+           BodyStyle = WebMessageBodyStyle.Bare,
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "/CreateUserAccess")]
+        int CreateUserAccess(UserDto user);
     }
 }

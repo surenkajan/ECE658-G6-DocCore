@@ -36,11 +36,11 @@ RETURN 0
 end
 
 
-else
-begin
-SET @err_message = 'Existing project'
-RAISERROR (@err_message,10,1)
-end
+--else
+--begin
+--SET @err_message = 'Existing project'
+--RAISERROR (@err_message,10,1)
+--end
 
 
 

@@ -28,13 +28,15 @@ namespace UoW.DocCore.Web.WebForms
             if (!this.IsPostBack)
             {
                 PasswordSection.Visible = false;
+                PlaceHolder2.Visible = false;
+                PlaceHolder1.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
                 //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
                 //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-                uid = "4";
+                //uid = "4";
                 //if (user.ProjectRole == "Admin")
                 //{
                
@@ -43,7 +45,8 @@ namespace UoW.DocCore.Web.WebForms
                 {
                     // My Profile
                     PasswordSection.Visible = true;
-                    PopulateAllProjects();
+                    PlaceHolder1.Visible = true;
+                    //PopulateAllProjects();
 
                 }
                 else
@@ -63,16 +66,17 @@ namespace UoW.DocCore.Web.WebForms
 
         private void PopulateAllProjects()
         {
-            List<ProjectDto> AllProject = DocCoreBDelegate.Instance.GetAllProject();
-           
-            lstBoxProject.DataSource = AllProject;
-            lstBoxProject.DataTextField = "ProjectName";
-            //DropDownList1.DataValueField = "LastName";
-            lstBoxProject.DataBind();
+            //List<ProjectDto> AllProject = DocCoreBDelegate.Instance.GetAllProject();
+            
+            //lstBoxProject.DataSource = AllProject;
+            //lstBoxProject.DataTextField = "ProjectName";
+            ////DropDownList1.DataValueField = "LastName";
+            //lstBoxProject.DataBind();
         }
         private void LoadData(string uid)
         {
             PasswordSection.Visible = false;
+            PlaceHolder2.Visible = true;
             int UserID = Int32.Parse(uid);
             UserDto user = DocCoreBDelegate.Instance.GetUserByUid(UserID);
             FName.Text = user.FirstName;
@@ -87,58 +91,58 @@ namespace UoW.DocCore.Web.WebForms
             UserDto user1 = DocCoreBDelegate.Instance.GetAllUserDetailsByUid(UserID);
             ddlRole.SelectedValue = user1.ProjectRole;
            List<ProjectDto> user2 = DocCoreBDelegate.Instance.GetProjectDetailsByUid(UserID);
-            List<ProjectDto> AllProject = DocCoreBDelegate.Instance.GetAllProject();
-            List<string> lstdays = new List<string>();
-           foreach (ProjectDto proj1 in user2)
-            {
-                lstdays.Add(proj1.ProjectName);
-            }
-            foreach (ProjectDto dto in AllProject)
-            {
-                bool flag = false;
-                foreach (ProjectDto proj1 in user2)
-                {
-                    if (proj1.ProjectName.Trim().Equals(dto.ProjectName.Trim()))
-                    {
-                        flag = true;
-                        break;
+            //List<ProjectDto> AllProject = DocCoreBDelegate.Instance.GetAllProject();
+            //List<string> lstdays = new List<string>();
+           //foreach (ProjectDto proj1 in user2)
+           // {
+           //     lstdays.Add(proj1.ProjectName);
+           // }
+            //foreach (ProjectDto dto in AllProject)
+            //{
+            //    bool flag = false;
+            //    foreach (ProjectDto proj1 in user2)
+            //    {
+            //        if (proj1.ProjectName.Trim().Equals(dto.ProjectName.Trim()))
+            //        {
+            //            flag = true;
+            //            break;
 
 
 
-                    }
+            //        }
 
-                }
-                if (flag == false)
-                {
-                    lstdays.Add(dto.ProjectName);
-                }
-
-
-            }
-            lstBoxProject.DataSource = lstdays;
-            //lstBoxProject.DataTextField = "ProjectName";
-            lstBoxProject.DataBind();
-            for (int I = lstBoxProject.Items.Count - 1; I >= 0; I += -1)
-            {
-
-                bool flag2 = false;
-                String MyStr = lstBoxProject.Items[I].ToString();
-                foreach (ProjectDto proj1 in user2)
-                {
-                    if (proj1.ProjectName.Trim().Equals(MyStr.Trim()))
-                    {
-                        flag2 = true;
-                        break;
-                    }
-                }
-                if (flag2 == true)
-                {
-                    lstBoxProject.Items[I].Selected = true;
-                }
+            //    }
+            //    if (flag == false)
+            //    {
+            //        lstdays.Add(dto.ProjectName);
+            //    }
 
 
+            //}
+            //lstBoxProject.DataSource = lstdays;
+            ////lstBoxProject.DataTextField = "ProjectName";
+            //lstBoxProject.DataBind();
+            //for (int I = lstBoxProject.Items.Count - 1; I >= 0; I += -1)
+            //{
 
-            }
+            //    bool flag2 = false;
+            //    String MyStr = lstBoxProject.Items[I].ToString();
+            //    foreach (ProjectDto proj1 in user2)
+            //    {
+            //        if (proj1.ProjectName.Trim().Equals(MyStr.Trim()))
+            //        {
+            //            flag2 = true;
+            //            break;
+            //        }
+            //    }
+            //    if (flag2 == true)
+            //    {
+            //        lstBoxProject.Items[I].Selected = true;
+            //    }
+
+
+
+            //}
 
 
 
@@ -181,12 +185,19 @@ namespace UoW.DocCore.Web.WebForms
                     UserName = Email.Text,
                     ProfilePhoto = ImageToBase64()
                 };
+                UserDto UserAccess = new UserDto()
+                {
+                    EmailAddress = Email.Text,
+                    ProjectRole = ddlRole.Text
+                };
                 int AddStatus = DocCoreBDelegate.Instance.InsertUser(newUser);
+                int status = DocCoreBDelegate.Instance.CreateUserAccess(UserAccess);
 
                 //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                 //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 RegisterStatusPH.Visible = true;
                 DocCoreRegisterUserPH.Visible = false;
+                ClearData();
                 registerStatus.Text = "New account has been created successfully and is ready to use";
             }
             else
@@ -196,7 +207,7 @@ namespace UoW.DocCore.Web.WebForms
             
         }
 
-        protected void CreateUserCancel_Click(object sender, EventArgs e)
+        protected void UpdateProject(object sender, EventArgs e)
         {
             //Response.Redirect("/Account/Login");
         }
@@ -218,7 +229,25 @@ namespace UoW.DocCore.Web.WebForms
         {
 
         }
+        protected void CreateUserCancel_Click(object sender, EventArgs e)
+        {
 
+        }
+        protected void ClearData()
+        {
+            
+            FName.Text ="";
+            LName.Text = "";
+            FullName.Text = "";
+            string gender = "Gender:";
+            Gender.SelectedValue = gender;
+
+            //Gender.SelectedIndex = Gender.Items.IndexOf(Gender.Items.FindByText(gender));
+            DOB.Text = "";
+            Email.Text = "";
+            
+            ddlRole.SelectedValue = "Project Role:";
+        }
         public string ImageToBase64()
         {
             string base64String = null;

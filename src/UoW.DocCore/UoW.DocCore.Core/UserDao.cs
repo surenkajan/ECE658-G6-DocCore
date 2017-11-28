@@ -111,6 +111,26 @@
                 return -1;
             }
         }
+        public int CreateUserAccess(User user)
+        {
+            if (user != null && user.EmailAddress != null && user.ProjectRole != null )
+            {
+                return Db.Insert(
+                    Db.QueryType.StoredProcedure,
+                    "[doccore].[CoreCreateUserAccess]",
+                    "DocCoreMSSQLConnection",
+                    new object[]
+                {
+                    
+                    "EmailAddress", user.EmailAddress,
+                    "ProjectRole",user.ProjectRole
+                });
+            }
+            else
+            {
+                return -1;
+            }
+        }
 
         //UpdateUserByEmailID
         /// <summary>

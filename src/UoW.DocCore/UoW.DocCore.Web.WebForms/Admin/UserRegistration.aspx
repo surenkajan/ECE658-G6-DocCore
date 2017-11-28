@@ -141,12 +141,13 @@
                     </asp:DropDownList>
                 </div>
             </div>
-            <div class="form-group">
+           <%-- <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="lstBoxProject" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Project</asp:Label>
                 <div class="col-md-10">
                     <asp:ListBox ID="lstBoxProject" runat="server" SelectionMode="Multiple" Width="100%" CssClass="form-control" style="max-width: 280px;"></asp:ListBox>
                 </div>
-            </div>
+            </div>--%>
+               <asp:PlaceHolder ID="PlaceHolder1" runat="server">
 
             <div class="form-group">
                 <div style="width: 25%; margin-left: 10%; min-width: 250px;">
@@ -162,6 +163,24 @@
                     </div>
                 </div>
             </div>
+           </asp:PlaceHolder>
+             <asp:PlaceHolder ID="PlaceHolder2" runat="server">
+
+            <div class="form-group">
+                <div style="width: 25%; margin-left: 10%; min-width: 250px;">
+                    <div style="float: left;">
+                        <div class="col-md-offset-2 col-md-10">
+                            <asp:Button runat="server" OnClick="DeleteProject" Text="Register" CssClass="btn btn-default" />
+                        </div>
+                    </div>
+                    <div style="float: right;">
+                        <div class="col-md-offset-2 col-md-10">
+                            <asp:Button runat="server" OnClick="UpdateProject" Text="Cancel" CssClass="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </asp:PlaceHolder>
 
         </asp:PlaceHolder>
 

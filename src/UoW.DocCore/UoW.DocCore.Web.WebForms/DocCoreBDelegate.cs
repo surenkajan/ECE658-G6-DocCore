@@ -147,6 +147,21 @@ namespace UoW.DocCore.Web.WebForms
             }
             return status;
         }
+        public int CreateUserAccess(UserDto newUser)
+        {
+            int status = -1;
+
+            if (newUser != null)
+            {
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string userjson = js.Serialize(newUser);
+
+                //Add New user
+                string val = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/userRest/CreateUserAccess", "POST", json_type, userjson);
+                status = val != null ? Int32.Parse(val) : -1;
+            }
+            return status;
+        }
 
         public int CreateProject(ProjectDto projectdto)
         {
