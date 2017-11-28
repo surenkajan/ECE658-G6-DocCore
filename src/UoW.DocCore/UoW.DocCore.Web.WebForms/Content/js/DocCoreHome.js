@@ -59,9 +59,16 @@
         '<h4 class="username1Div' + id + '" style="color:grey">' +
         '<a href="' + DocCoreAppBaseAddress + '/myprofile?uid=' + document.CreatedUser.UserID + '" style="text-decoration: none;color: inherit;"><img class ="img-circle" src="' + document.CreatedUser.ProfilePhoto + '" /> ' +
         '<p style="display:inline;color:#365899;">' + document.CreatedUser.FirstName + " " + document.CreatedUser.LastName + '</p><a/></h4> </div > ' +
-        '<div id="userpicDiv' + id + '" style="height:300px;display:block;border-bottom-style:inset;text-align:center;background-color: #f3f0f0">' +
-        '<span class="helper"></span><img src="' + document.CreatedUser.ProfilePhoto + '"onclick="imagezoom(' + id + ')" id="image' + id + '" style="max-width:100%;max-height:100%;object-fit: contain" />' +
-        '</div >' +
+        '<div id="userpicDiv' + id + '" style="height:200px;display:block;border-bottom-style:inset;background-color: #f3f0f0">' +
+        '<span class="helper"></span>' +
+        '<img src= "Content\\Images\\ext\\' + document.FileType.toLowerCase() + '256.png" onclick= "imagezoom(' + id + ')" id= "image' + id + '" style= "min-width:200px;max-width:100%;max-height:100%;object-fit: contain" />' +
+        '<div class="helper dochelper">' +
+        '<div><span class="docMetaData-title">Project Name:</span><span class="docMetaData-value">' + document.FileName +'</span></div>' +
+        '<div><span class="docMetaData-title">Created Time:</span><span class="docMetaData-value">' + document.UploadedTime +'</span></div>' +
+        '<div><span class="docMetaData-title">Modified By:</span><span class="docMetaData-value">' + document.ModifiedBy +'</span></div>' +
+        '<div><span class="docMetaData-title">Modified Time:</span><span class="docMetaData-value">' + document.Modified +'</span></div>' +
+        '</div>' +
+        '</div>' +
         '<span style="position: relative; font-size: 20px; margin-left: 15px;color:#365899;cursor: pointer;" class="glyphicon glyphicon-comment" onclick="showcommentDiv(' + id + ')"></span> ' +
         '<div id="description' + id + '" style="margin-top:5px;margin-bottom:5px;margin-left:15px;height:50px;">' + descriptionString + tagString + '</div>' +
         '<div class="detailBox"><div class="titleBox"><label>Comments</label></div ><div class="actionBox"> <ul id="commentList' + id + '" class="commentList">' + commentString + '</ul></div>' +

@@ -117,7 +117,7 @@ function CallRestService() {
     }
     var result = DocCorePOSTService(DocCoreServicesBaseAddress + "/userRest/AddUserByEmailID", userData);
 
-    alert("Result of the Service is" + result);
+    alert("Result of the Service is" + resuldeleteDocumentServicet);
 
 }
 
