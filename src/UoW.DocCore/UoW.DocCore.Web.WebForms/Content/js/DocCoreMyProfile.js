@@ -39,18 +39,20 @@
         tagString = '<span id="tags" style="margin-left:15px;color:#365899;"> <span class="checkinclass" style="color:#999999">with</span> ' + documentString + '</span>'
     }
 
-    var checkinString = "";
-    if (document.Location) {
-        checkinString += '<p style="display:inline" class="checkinclass small" style="color:black"> - ' + document.Location + '</p>';
-    }
+    //var checkinString = "";
+    //if (document.Location) {
+    //    checkinString += '<p style="display:inline" class="checkinclass small" style="color:black"> - ' + document.Location + '</p>';
+    //}
 
     var descriptionString = "";
     if (document.FileSummary) {
         descriptionString = document.FileSummary;
     }
 
-    var currentLoggedInUser = document.getElementById('DocCore_hdnf_LoggedInUserEmailID').value;
-    var currentProfileUser = document.getElementById('DocCore_hdnf_CurrentUserEmailID').value;
+    var currentLoggedInUser = $('#DocCore_hdnf_LoggedInUserEmailID').val();
+    var currentProfileUser = $('#DocCore_hdnf_CurrentUserEmailID').val()
+    //currentLoggedInUser = document.getElementById('DocCore_hdnf_LoggedInUserEmailID').value;
+    //var currentProfileUser =  document.getElementById('DocCore_hdnf_CurrentUserEmailID').value;
     var deleteString = "";
     var id = document.DocID;
 
@@ -88,17 +90,17 @@ $('#close').on('mouseover mouseout', function () {
 //initialize();
 $(document).ready(function () {
     //var LoggeedInUser = document.getElementById("DocCore_hdnf_CurrentUserEmailID").value;
-    var currentLoggedInUser = document.getElementById('DocCore_hdnf_LoggedInUserEmailID').value;
+    var T_currentLoggedInUser = document.getElementById('DocCore_hdnf_LoggedInUserEmailID').value;
     var currentProfileUser = document.getElementById('DocCore_hdnf_CurrentUserEmailID').value;
     var data = null;
-    if (string_a.localeCompare(string_b) = 0)
+    if (T_currentLoggedInUser.localeCompare(currentProfileUser) == 0)
     {
         //Current user see his profile
-        data = GetMyUploadedDocumentsService(currentLoggedInUser);
+        data = GetMyUploadedDocumentsService(T_currentLoggedInUser);
     }
     else {
         //Current user(currentLoggedInUser) see other's profile(currentProfileUser)
-        data = GetUploadedAndSharedDocumentsWithMeService(currentProfileUser, currentLoggedInUser);
+        data = GetUploadedAndSharedDocumentsWithMeService(currentProfileUser, T_currentLoggedInUser);
     }
 
     for (var i = 0; i < Object.keys(data).length; i++) {

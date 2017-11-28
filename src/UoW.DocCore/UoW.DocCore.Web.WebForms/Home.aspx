@@ -54,7 +54,7 @@
             var editor = {
                 setSource: function () {
                     //Replace with All Employees of the project
-                    return GetFriendsListService(userEmail);
+                    //return GetAllUsersByProjectID(userEmail);
                 }
             }
 
