@@ -36,7 +36,7 @@ namespace UoW.DocCore.Web.WebForms
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-                //uid = "4";
+                uid = "4";
                 //if (user.ProjectRole == "Admin")
                 //{
                
@@ -222,6 +222,14 @@ namespace UoW.DocCore.Web.WebForms
 
         protected void DeleteProject(object sender, EventArgs e)
         {
+
+
+            string EmailAddress = Email.Text;
+            int status = DocCoreBDelegate.Instance.DeleteUserByEmailID(EmailAddress);
+            RegisterStatusPH.Visible = true;
+            DocCoreRegisterUserPH.Visible = false;
+            ClearData();
+            registerStatus.Text = "The user has been successfully deleted!";
 
         }
 

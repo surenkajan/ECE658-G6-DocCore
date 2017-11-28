@@ -170,12 +170,12 @@
                 <div style="width: 25%; margin-left: 10%; min-width: 250px;">
                     <div style="float: left;">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="DeleteProject" Text="Register" CssClass="btn btn-default" />
+                            <asp:Button runat="server" OnClick="DeleteProject" Text="Delete" CssClass="btn btn-default" />
                         </div>
                     </div>
                     <div style="float: right;">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="UpdateProject" Text="Cancel" CssClass="btn btn-default" />
+                            <asp:Button runat="server" OnClick="UpdateProject" Text="Update" CssClass="btn btn-default" />
                         </div>
                     </div>
                 </div>
