@@ -174,6 +174,12 @@
                 GetAllUserFromReader, "DocCoreMSSQLConnection",
                 new object[] { "UserTablePreFix", "AU" });
         }
+        public User GetAllUserDetailsByUid(int ID)
+        {
+            return Db.Read(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllUserDetailsByUid]",
+               GetAllUserFromReader, "DocCoreMSSQLConnection",
+               new object[] { "Uid", ID });
+        }
         public List<User> GetAllUserDetails()
         {
             return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[CoreGetAllUserDetails]",

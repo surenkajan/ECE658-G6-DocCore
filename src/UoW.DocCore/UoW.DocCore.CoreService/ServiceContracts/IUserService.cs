@@ -78,5 +78,12 @@ namespace UoW.DocCore.CoreService
      ResponseFormat = WebMessageFormat.Json,
      UriTemplate = "GetAllUserDetails")]
         List<UserDto> GetAllUserDetails();
+
+        [OperationContract(Name = "Get All Users details by Uid")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+   RequestFormat = WebMessageFormat.Json,
+   ResponseFormat = WebMessageFormat.Json,
+   UriTemplate = "GetAllUserDetailsByUid?Uid={Uid}")]
+        UserDto GetAllUserDetailsByUid(int Uid);
     }
 }

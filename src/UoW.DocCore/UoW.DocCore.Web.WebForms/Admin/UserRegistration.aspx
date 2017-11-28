@@ -133,7 +133,12 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="ddlRole" CssClass="col-md-2 control-label"><span class="man-ast-field">*</span>Role</asp:Label>
                 <div class="col-md-10">
-                    <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control" style="max-width: 280px;"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control" style="max-width: 280px;">
+                       <asp:ListItem Text="Project Role:"></asp:ListItem>
+                        <asp:ListItem Text="Manager"></asp:ListItem>
+                        <asp:ListItem Text="TeamMember"></asp:ListItem>
+                       
+                    </asp:DropDownList>
                 </div>
             </div>
             <div class="form-group">

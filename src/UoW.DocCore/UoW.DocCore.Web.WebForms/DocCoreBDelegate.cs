@@ -91,16 +91,31 @@ namespace UoW.DocCore.Web.WebForms
             }
             return usrList;
         }
-        public List<UserDto> GetProjectDetailsByUid(int ID)
+        public UserDto GetAllUserDetailsByUid(int ID)
         {
-            List<UserDto> usrList = null;
+            UserDto user = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            //Get the User
+            string usr = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/userRest/GetAllUserDetailsByUid?Uid=" + ID, "GET", json_type, null);
+
+            //How to Consume this in DocCore Front End: Deserialize the object(s)
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            if (usr != null)
+            {
+                user = json_serializer.Deserialize<UserDto>(usr);
+            }
+            return user;
+        }
+        public List<ProjectDto> GetProjectDetailsByUid(int ID)
+        {
+            List<ProjectDto> usrList = null;
             //TODO : Do not hard code the method name here, Move to App.Settings
             string Json_usrList = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/adminRest/GetProjectDetailsByUid?Uid=" + ID, "GET", json_type, null);
             JavaScriptSerializer json_list_serializer = new JavaScriptSerializer();
 
             if (Json_usrList != null)
             {
-                usrList = json_list_serializer.Deserialize<List<UserDto>>(Json_usrList);
+                usrList = json_list_serializer.Deserialize<List<ProjectDto>>(Json_usrList);
             }
             return usrList;
         }
