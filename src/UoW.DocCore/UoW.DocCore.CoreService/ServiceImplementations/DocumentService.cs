@@ -74,5 +74,11 @@ namespace UoW.DocCore.CoreService
 
             return usrList;
         }
+
+        public List<DocumentDto> GetUploadedAndSharedWithMeByEmailID(string U_User, string L_User)
+        {
+            DocumentDao docDao = new DocumentDao();
+            return CoreObjectMapper.DocumentDaoToDto(docDao.GetUploadedAndSharedWithMeByEmailID(U_User, L_User));
+        }
     }
 }

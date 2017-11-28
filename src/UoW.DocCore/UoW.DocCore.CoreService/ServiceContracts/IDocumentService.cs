@@ -35,6 +35,13 @@ namespace UoW.DocCore.CoreService
         UriTemplate = "GetAllDocumentsUploadedByEmailID?Email={EmailID}")]
         List<DocumentDto> GetAllDocumentsUploadedByEmailID(string EmailID);
 
+        [OperationContract(Name = "Get Uploaded By Others And Shared With Me ByEmailID")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetUploadedAndSharedWithMeByEmailID?Up_User={U_User}&Lo_User={L_User}")]
+        List<DocumentDto> GetUploadedAndSharedWithMeByEmailID(string U_User, string L_User);
+
         [OperationContract(Name = "GetAllSharedDocumentsForEmailID")]
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
         RequestFormat = WebMessageFormat.Json,

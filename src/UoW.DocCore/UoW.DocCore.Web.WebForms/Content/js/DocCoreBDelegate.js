@@ -61,7 +61,7 @@ function DocCorePUTService(Url, data) {
 }
 
 //Delete
-function DocCorePUTService(Url, data) {
+function DocCoreDeleteService(Url, data) {
     var result;
     $.ajax({
         type: "DELETE",
@@ -138,6 +138,14 @@ function GetsharedDocumentsService(emailID) {
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/DocRest/GetAllSharedDocumentsForEmailID?Email=" + emailID))
 }
 
+function GetMyUploadedDocumentsService(emailID) {
+    return (DocCoreGETService(DocCoreServicesBaseAddress + "/DocRest/GetAllDocumentsUploadedByEmailID?Email=" + emailID))
+}
+
+function GetUploadedAndSharedDocumentsWithMeService(U_User, L_User) {
+    return (DocCoreGETService(DocCoreServicesBaseAddress + "/DocRest/GetUploadedAndSharedWithMeByEmailID?Up_User=" + U_User + "&Lo_User=" + L_User))
+}
+
 function GetUserDetailsService(emailID) {
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/userrest/GetUserByEmailID?Email=" + emailID))
 }
@@ -155,23 +163,9 @@ function GetUserDetailsService(emailID) {
 
 function DeleteDocumentService(DocID) {
     var url = DocCoreServicesBaseAddress + "/DocRest/DeleteDocuments?DocID=" + DocID;
-    var result = DocCorePUTService(url, DocID);
-    console.log(result);
-
+    var result = DocCoreDeleteService(url, DocID);
 }
 
 function PostCommentRestService(commentobj) {
-    var commentData = {
-        DocID: '4',
-        EmailAddress: "s@s.com",
-        Comments: "haan mujhe bhi badi mast lagi raapchik",
-        UploadTimeStamp: "/Date(753636849000-0500)/",
-        FullName: null,
-        FirstName: null,
-        LastName: null
-    }
     var result = DocCorePOSTService(DocCoreServicesBaseAddress + "/DocRest/AddCommentsByEmailID", commentobj);
-
-    console.log("Result of the Service is" + result);
-
 }

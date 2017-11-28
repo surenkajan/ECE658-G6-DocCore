@@ -53,6 +53,9 @@
                         </table>
                     </div>
                 </td>
+                <td style="vertical-align: top; height: 100px; width: 660px; background-color: white">
+                    <div id="UploadedDocumentsContainer" class="UploadedDocumentsContainerclass" style="height: auto;"></div>
+                </td>
             </tr>
         </table>
     </div>

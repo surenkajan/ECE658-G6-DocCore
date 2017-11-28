@@ -70,7 +70,30 @@
                 throw;
             }
         }
-        
+
+        public List<Document> GetUploadedAndSharedWithMeByEmailID(string U_User, string L_User)
+        {
+            try
+            {
+                return Db.ReadList(
+                    Db.QueryType.StoredProcedure,
+                    "[doccore].[GetUploadedAndSharedWithMeByEmailID]",
+                    GetDocumentFromReader,
+                    "DocCoreMSSQLConnection",
+                    new object[]
+                    {
+                        "U_User", U_User,
+                        "L_User", L_User,
+                        "UserTablePreFix", "AU"
+                    });
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Core Service", ex.Message + "\n Stack trace: " + ex.StackTrace);
+                throw;
+            }
+        }
+
         public List<User> GetAllSharedUsersForDocID(int DocID)
         {
             try
