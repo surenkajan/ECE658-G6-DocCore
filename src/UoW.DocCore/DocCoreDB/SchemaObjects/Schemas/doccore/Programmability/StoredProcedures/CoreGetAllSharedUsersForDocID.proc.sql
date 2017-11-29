@@ -25,7 +25,7 @@ Begin
 	usr.EmailAddress as EmailAddress,
 	usr.DateOfBirth as DateOfBirth,
 	usr.Sex as Sex,
-	usr.ProfilePhoto as ProfilePhoto
+	Null as ProfilePhoto
 	FROM [doccore].[SharedWith] as shared
 	INNER JOIN [doccore].[User] as usr
 	ON shared.[sharedTo] = usr.[ID]
