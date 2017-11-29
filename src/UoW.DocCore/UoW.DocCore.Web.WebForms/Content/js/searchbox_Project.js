@@ -2,11 +2,11 @@
     $.ajax({
         type: "GET",
         dataType: "jsonp",
-        url: DocCoreServicesBaseAddress + "/userRest/GetAllUserDetails",
+        url: DocCoreServicesBaseAddress + "/adminRest/GetAllProject",
         success: function (friends) {
 
             for (index in friends) {
-                friends[index].value = friends[index].FullName;
+                friends[index].value = friends[index].ProjectName;
             }
             $("#MainContent_txtSearch").autocomplete({
                 source: friends,
@@ -16,7 +16,7 @@
                     return false;
                 },
                 select: function (event, ui) {
-                    location.href = DocCoreAppBaseAddress + "/Admin/ViewAllUsers?Uid=" + ui.item.Uid;
+                    location.href = DocCoreAppBaseAddress + "/Admin/ViewAllProject?Uid=" + ui.item.pID;
                     return false;
                 }
             });
@@ -32,3 +32,4 @@
 
 
 
+   

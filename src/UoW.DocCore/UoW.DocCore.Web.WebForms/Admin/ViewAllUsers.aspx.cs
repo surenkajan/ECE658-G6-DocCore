@@ -25,9 +25,12 @@ namespace UoW.DocCore.Web.WebForms
             dt.Columns.Add("ProjectRole");
             dt.Columns.Add("Uid");
             dt.Columns.Add("Action");
-            List<UserDto> user = DocCoreBDelegate.Instance.GetAllUserDetails();
-            if (txtSearch.Text == "")
+
+            Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
+            string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
+            if (string.IsNullOrEmpty(uid))
             {
+                List<UserDto> user = DocCoreBDelegate.Instance.GetAllUserDetails();
                 foreach (UserDto newuser in user)
                 {
                     DataRow dr = dt.NewRow();
@@ -46,22 +49,19 @@ namespace UoW.DocCore.Web.WebForms
             }
             else
             {
-                foreach (UserDto newuser in user)
-                {
-                    if (newuser.FullName == txtSearch.Text)
-                    {
-                        DataRow dr = dt.NewRow();
-                        dr["FullName"] = newuser.FullName;
-                        dr["ProjectRole"] = newuser.ProjectRole;
-                        dr["Uid"] = newuser.Uid;
-                        dr["Action"] = "Edit";
+                int ID = Int32.Parse(uid);
+                UserDto user = DocCoreBDelegate.Instance.GetAllUserDetailsByUid(ID);
+
+                DataRow dr = dt.NewRow();
+                dr["FullName"] = user.FullName;
+                dr["ProjectRole"] = user.ProjectRole;
+                dr["Uid"] = user.Uid;
+                dr["Action"] = "Edit";
 
 
 
-                        dt.Rows.Add(dr);
-                    }
-                    // }
-                }
+                dt.Rows.Add(dr);
+
                 gvCustomers.DataSource = dt;
                 gvCustomers.DataBind();
 
