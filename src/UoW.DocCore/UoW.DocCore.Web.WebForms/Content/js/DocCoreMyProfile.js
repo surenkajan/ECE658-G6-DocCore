@@ -3,9 +3,11 @@
     var commentString = "";
 
     //var likes = Object.keys(GetLikesService(document.DocID)).length;
-    for (index in comments) {
-        var date = new Date(parseInt(comments[index].UploadTimeStamp.substr(6)));
-        commentString += "<li><a href='" + DocCoreAppBaseAddress + "/myprofile?uid=" + comments[index].UserID + "'><div class='commenterImage'><img src= " + comments[index].ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + comments[index].FullName + " </strong></a>" + comments[index].Comments + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
+    if (comments != -1) {
+        for (index in comments) {
+            var date = new Date(parseInt(comments[index].UploadTimeStamp.substr(6)));
+            commentString += "<li><a href='" + DocCoreAppBaseAddress + "/myprofile?uid=" + comments[index].UserID + "'><div class='commenterImage'><img src= " + comments[index].ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + comments[index].FullName + " </strong></a>" + comments[index].Comments + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
+        }
     }
 
 
@@ -105,8 +107,7 @@ $(document).ready(function () {
     var T_currentLoggedInUser = document.getElementById('DocCore_hdnf_LoggedInUserEmailID').value;
     var currentProfileUser = document.getElementById('DocCore_hdnf_CurrentUserEmailID').value;
     var data = null;
-    if (T_currentLoggedInUser.localeCompare(currentProfileUser) == 0)
-    {
+    if (T_currentLoggedInUser.localeCompare(currentProfileUser) == 0) {
         //Current user see his profile
         data = GetMyUploadedDocumentsService(T_currentLoggedInUser);
     }
@@ -115,8 +116,10 @@ $(document).ready(function () {
         data = GetUploadedAndSharedDocumentsWithMeService(currentProfileUser, T_currentLoggedInUser);
     }
 
-    for (var i = 0; i < Object.keys(data).length; i++) {
-        initialize(data[i]);
+    if (data != -1) {
+        for (var i = 0; i < Object.keys(data).length; i++) {
+            initialize(data[i]);
+        }
     }
 });
 

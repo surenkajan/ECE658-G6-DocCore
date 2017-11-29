@@ -172,6 +172,7 @@
                 </div>
             </div>
         </asp:PlaceHolder>
+        <asp:Button runat="server" OnClick="btnTest_Click" Text="Test" CssClass="btn btn-default" />
 
         <div id="SharedDocuments" style="overflow-x: auto;">
             <%--<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>--%>

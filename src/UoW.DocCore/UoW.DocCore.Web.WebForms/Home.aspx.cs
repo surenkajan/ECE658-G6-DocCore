@@ -28,11 +28,11 @@ namespace UoW.DocCore.Web.WebForms
                 if (IsPostBack && DocumentUpload.HasFile)
                 {
                     //Populate details of Uploaded Documents
-                    
+
                     string fileName = DocumentUpload.FileName;
                     string fileExtension = System.IO.Path.GetExtension(fileName);
                     txtDocName.Text = fileName;
-                    FileExtImage.ImageUrl = "\\Content\\Images\\ext\\" + fileExtension.Replace(".","").ToLower() + "256.png";
+                    FileExtImage.ImageUrl = "\\Content\\Images\\ext\\" + fileExtension.Replace(".", "").ToLower() + "256.png";
                     lblUploadedBy.Text = currentUserEmailID;
                     lblUploadedDate.Text = DateTime.Now.ToString("g");
                     lblDocSize.Text = DocumentUpload.FileBytes.Length.ToString();
@@ -55,7 +55,7 @@ namespace UoW.DocCore.Web.WebForms
 
                     int addDocumentStatus = DocCoreBDelegate.Instance.AddDocument(document);
 
-                    if(addDocumentStatus != -1)
+                    if (addDocumentStatus != -1)
                     {
                         //Retrieve the document 
                         Session["DocID"] = addDocumentStatus;
@@ -131,13 +131,18 @@ namespace UoW.DocCore.Web.WebForms
         //    return 0;
         //}
 
+        //btnTest_Click
+        protected void btnTest_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/DownloadFile.ashx?Docid=" + 43);
+        }
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
             //Consume the service and insert the document
-            int D_ID =  (int)(Session["DocID"]);
+            int D_ID = (int)(Session["DocID"]);
 
-            if(D_ID != -1)
+            if (D_ID != -1)
             {
                 DocumentDto document = new DocumentDto()
                 {
@@ -163,7 +168,7 @@ namespace UoW.DocCore.Web.WebForms
                     Response.Redirect("/Home");
                 }
             }
-            
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

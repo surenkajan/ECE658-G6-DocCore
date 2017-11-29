@@ -1,5 +1,5 @@
-﻿var DocCoreServicesBaseAddress = "http://localhost:7194/Service.svc";
-var DocCoreAppBaseAddress = "http://localhost:6600";
+﻿var DocCoreServicesBaseAddress = "http://localhost:2085/Service.svc";
+var DocCoreAppBaseAddress = "http://localhost:8520";
 
 //GET
 function DocCoreGETService(Url) {

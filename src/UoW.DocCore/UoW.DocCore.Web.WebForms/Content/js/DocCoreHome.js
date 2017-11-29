@@ -4,10 +4,13 @@
     var commentString = "";
 
     //var likes = Object.keys(GetLikesService(document.DocID)).length;
-    for (index in comments) {
-        var date = new Date(parseInt(comments[index].UploadTimeStamp.substr(6)));
-        commentString += "<li><a href='" + DocCoreAppBaseAddress + "/myprofile?uid=" + comments[index].UserID + "'><div class='commenterImage'><img src= " + comments[index].ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + comments[index].FullName + " </strong></a>" + comments[index].Comments + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
+    if (comments != -1) {
+        for (index in comments) {
+            var date = new Date(parseInt(comments[index].UploadTimeStamp.substr(6)));
+            commentString += "<li><a href='" + DocCoreAppBaseAddress + "/myprofile?uid=" + comments[index].UserID + "'><div class='commenterImage'><img src= " + comments[index].ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + comments[index].FullName + " </strong></a>" + comments[index].Comments + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
+        }
     }
+
 
     var tagString = "";
     if (document.SharedWith) {
@@ -63,10 +66,10 @@
         '<span class="helper"></span>' +
         '<img src= "Content\\Images\\ext\\' + document.FileType.toLowerCase() + '256.png" onclick= "imagezoom(' + id + ')" id= "image' + id + '" style= "min-width:200px;max-width:100%;max-height:100%;object-fit: contain" />' +
         '<div class="helper dochelper">' +
-        '<div><span class="docMetaData-title">Project Name:</span><span class="docMetaData-value">' + document.FileName +'</span></div>' +
-        '<div><span class="docMetaData-title">Created Time:</span><span class="docMetaData-value">' + document.UploadedTime +'</span></div>' +
-        '<div><span class="docMetaData-title">Modified By:</span><span class="docMetaData-value">' + document.ModifiedBy +'</span></div>' +
-        '<div><span class="docMetaData-title">Modified Time:</span><span class="docMetaData-value">' + document.Modified +'</span></div>' +
+        '<div><span class="docMetaData-title">Project Name:</span><span class="docMetaData-value">' + document.FileName + '</span></div>' +
+        '<div><span class="docMetaData-title">Created Time:</span><span class="docMetaData-value">' + document.UploadedTime + '</span></div>' +
+        '<div><span class="docMetaData-title">Modified By:</span><span class="docMetaData-value">' + document.ModifiedBy + '</span></div>' +
+        '<div><span class="docMetaData-title">Modified Time:</span><span class="docMetaData-value">' + document.Modified + '</span></div>' +
         '</div>' +
         '</div>' +
         '<span style="position: relative; font-size: 20px; margin-left: 15px;color:#365899;cursor: pointer;" class="glyphicon glyphicon-comment" onclick="showcommentDiv(' + id + ')"></span> ' +
@@ -84,10 +87,13 @@ $(document).ready(function () {
 
     var sharedDocuments = GetsharedDocumentsService(userEmail);
 
-    for (index in sharedDocuments) {
-        initialize(sharedDocuments[index]);
+    if (sharedDocuments != -1) {
+        for (index in sharedDocuments) {
+            initialize(sharedDocuments[index]);
 
+        }
     }
+
 
 });
 

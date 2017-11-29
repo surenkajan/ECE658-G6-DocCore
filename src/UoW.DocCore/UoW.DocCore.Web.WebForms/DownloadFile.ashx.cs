@@ -28,16 +28,18 @@ namespace UoW.DocCore.Web.WebForms
             if (isCreated || isModified || isShared)
             {
                 DocumentDto documentContent = DocCoreBDelegate.Instance.GetDocumentWithContentByDocID(DocID);
-                context.Response.Redirect("/home");
+                //context.Response.Redirect("/home");
                 response.ClearContent();
                 response.Clear();
                 //response.ContentType = "text/plain";
                 response.ContentType = MIMEType.Get(documentContent.FileType);
                 response.AddHeader("Content-Disposition", "attachment; filename=" + documentContent.FileName + ";");
                 //response.TransmitFile(Server.MapPath("FileDownload.csv"));
-                response.BinaryWrite(documentContent.FileData);
-                response.Flush();
+                //response.BinaryWrite(documentContent.FileData);
+                response.OutputStream.Write(documentContent.FileData, 0, documentContent.FileData.Length);
+                //response.Flush();
                 response.End();
+                response.Close();
             }
             else
             {
@@ -63,6 +65,7 @@ namespace UoW.DocCore.Web.WebForms
         #region MIME type list
         private static readonly Dictionary<String, String> MimeTypeDict = new Dictionary<String, String>()
         {
+                {       "bin","text/plain" },
                 {      "pdf", "application/pdf" },
                 {     "xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
                 {     "docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }
