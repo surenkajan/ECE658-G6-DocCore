@@ -224,6 +224,7 @@
     <Content Include="Content\Images\doccore_favicon3.png" />
     <Content Include="Content\Images\doccore_favicon4.png" />
     <Content Include="Content\Images\doccore_favicon5.png" />
+    <Content Include="Content\Images\ext\file256.png" />
     <Content Include="Content\Images\Google-Calendar-icon.png" />
     <Content Include="Content\Images\Google-Calendar-icon2.png" />
     <Content Include="Content\Images\ext\html.png" />

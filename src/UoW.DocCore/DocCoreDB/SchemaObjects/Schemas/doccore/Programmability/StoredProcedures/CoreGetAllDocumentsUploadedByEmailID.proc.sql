@@ -22,6 +22,7 @@ SELECT
 (SELECT TOP 1 EmailAddress from [doccore].[User] where  ID = [ModifiedBy]) as [ModifiedBy]  
 FROM [doccore].[Documents] 
 where UploadedBy = (SELECT TOP 1 ID from [doccore].[User] where EmailAddress = @EmailID)
+order by UploadedTime desc
 GO
 
 --EXEC [doccore].[CoreAllUsers] @UserTablePreFix= 'AU'

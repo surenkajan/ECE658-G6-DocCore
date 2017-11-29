@@ -37,11 +37,14 @@ namespace UoW.DocCore.Web.WebForms
                     lblUploadedDate.Text = DateTime.Now.ToString("g");
                     lblDocSize.Text = DocumentUpload.FileBytes.Length.ToString();
                     //Consume the service and insert the document
+                    string ext = System.IO.Path.GetExtension(DocumentUpload.FileName).Replace(".", "").ToLower();
+
+
                     DocumentDto document = new DocumentDto()
                     {
                         FileData = DocumentUpload.FileBytes,
                         FileName = DocumentUpload.FileName,
-                        FileType = System.IO.Path.GetExtension(DocumentUpload.FileName).Replace(".", "").ToLower(),
+                        FileType = (ext != null && !ext.Equals(string.Empty)) ? ext : "file",
                         FileSizeInKB = DocumentUpload.FileBytes.Length,
                         UploadedBy = currentUserEmailID,
                         UploadedTime = DateTime.Now,
