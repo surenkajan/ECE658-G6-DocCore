@@ -17,8 +17,8 @@ CREATE PROCEDURE [doccore].[CoreCreateProjectByEmailID]
 	@TeamMember				varchar(400)
 	
 AS
-DECLARE @err_message int
-if (@ProjectName not in (select projectName from [doccore].[Project]) )
+
+
 Begin
 
 	INSERT INTO [doccore].[Project]
