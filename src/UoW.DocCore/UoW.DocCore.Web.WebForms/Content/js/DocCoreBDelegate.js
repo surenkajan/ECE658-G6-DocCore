@@ -1,5 +1,5 @@
-﻿var DocCoreServicesBaseAddress = "http://localhost:2085/Service.svc";
-var DocCoreAppBaseAddress = "http://localhost:8520";
+﻿var DocCoreServicesBaseAddress = "http://localhost:7194/Service.svc";
+var DocCoreAppBaseAddress = "http://localhost:6600";
 
 //GET
 function DocCoreGETService(Url) {
@@ -134,6 +134,10 @@ function GetAllUsersByProjectID(Pid) {
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/userrest/GetAllUsersByProjectID?PID=" + Pid))
 }
 
+function GetAllUserDetails() {
+    //TODO : Have not Implemented yet
+    return (DocCoreGETService(DocCoreServicesBaseAddress + "/userRest/GetAllUserDetails"))
+}
 function GetsharedDocumentsService(emailID) {
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/DocRest/GetAllSharedDocumentsForEmailID?Email=" + emailID))
 }

@@ -7,49 +7,8 @@
 
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-     <script src="/Admin/ViewAllUsers.js" type="text/javascript"></script>
-     
-     
-     <script>
-         $(function (){
-            
-                 $("#MainContent_txtSearch").autocomplete({
-                     source: function (request, response) {
-
-                         $.ajax({
-
-                             type: "POST",
-
-                             contentType: "application/json; charset=utf-8",
-
-                             url: "ViewAllUsers.aspx/GetFirstNames",
-
-                             data: "{}",
-
-                             dataType: "json",
-
-                             delay: 1000,
-
-                             minLength: 3,
-
-                             success: function (data) {
-
-                                 response(data.d)
-
-                             },
-
-                             error: function (response) {
-
-                                 alert("Error" + res.responseText);
-
-                             }
-
-                         });
-
-                     }
-                 });
-             });
-  </script>
+    <script src="../Content/js/DocCoreBDelegate.js" type="text/javascript"></script>
+    <script src="../Content/js/searchbox.js" type="text/javascript"></script>
 
     <h3>View All Users</h3>
    
@@ -86,8 +45,8 @@
         <tr>
   <td><asp:Label ID="Label1" runat="server" Text="Search:" > </asp:Label></td>
    
-    <td><asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" /></td>
-    <td><asp:Button Text="Search" runat="server" OnClick="Search" CssClass="btn btn-default" /></td>
+    <td><asp:TextBox ID="txtSearch" runat="server" OnTextChanged="Search" CssClass="form-control" /></td>
+   <%-- <td><asp:Button Text="Search" runat="server" OnClick="Search" CssClass="btn btn-default" /></td>--%>
             </tr>
         </table>
     <hr />

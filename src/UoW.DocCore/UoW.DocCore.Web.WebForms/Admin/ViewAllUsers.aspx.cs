@@ -46,7 +46,31 @@ namespace UoW.DocCore.Web.WebForms
 
         protected void Search(object sender, EventArgs e)
         {
-            this.LoadGridData();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("FullName");
+            dt.Columns.Add("ProjectRole");
+            dt.Columns.Add("Uid");
+            dt.Columns.Add("Action");
+            List<UserDto> user = DocCoreBDelegate.Instance.GetAllUserDetails();
+
+            foreach (UserDto newuser in user)
+            {
+                if (newuser.FullName == txtSearch.Text)
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["FullName"] = newuser.FullName;
+                    dr["ProjectRole"] = newuser.ProjectRole;
+                    dr["Uid"] = newuser.Uid;
+                    dr["Action"] = "Edit";
+
+
+
+                    dt.Rows.Add(dr);
+                }
+                // }
+            }
+            gvCustomers.DataSource = dt;
+            gvCustomers.DataBind();
         }
         protected void gvCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
