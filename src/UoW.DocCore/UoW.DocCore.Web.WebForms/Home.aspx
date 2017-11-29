@@ -7,33 +7,21 @@
     <link rel="stylesheet" href="/Content/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/Content/css/jquery.tagit.css" type="text/css" />
     <link rel="stylesheet" href="/Content/css/tagit.ui-zendesk.css" type="text/css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="Content/js/DocCoreBDelegate.js"></script>
     <script src="Content/js/DocCoreHome.js" type="text/javascript"></script>
     <script src="Content/js/tag-it.js" type="text/javascript"></script>
     <script src="Content/js/tag-it.min.js" type="text/javascript"></script>
-    <%--<script type="text/javascript">
-        function ShowImagePreview(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#<%=ImgPrv.ClientID%>').prop('src', e.target.result)
-                        .width(240)
-                        .height(150);
-                };
-                reader.readAsDataURL(input.files[0]);
-                }
-            }
-    </script>--%>
-
-    <script type="text/javascript">   
-        function ShowImagePreview(input) {
+    
+    <%--<script type="text/javascript">   
+        function ShowDocumentPreview(input) {
             document.getElementById("DocID").style.display = "block";
             document.getElementById("description").style.display = "block";
             document.getElementById("tagDiv").style.display = "block";
-            document.getElementById("locationField").style.display = "block";
-            console.log(input);
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -44,7 +32,7 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-    </script>
+    </script>--%>
     <script src="Content/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 
     <script>
@@ -54,7 +42,7 @@
             var editor = {
                 setSource: function () {
                     //Replace with All Employees of the project
-                    //return GetAllUsersByProjectID(userEmail);
+                   // return GetAllUsersByProjectID(userEmail);
                 }
             }
 
@@ -102,6 +90,63 @@
         //}
 
     </script>
+
+
+<%--    <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" style="margin-left: 470px; width: 200px; margin-top: 20px"><span class="glyphicon glyphicon-picture"></span>&nbsp;Upload Document</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content Style="border-radius: 6px; background-color: #e7e7e7; color: black; width: 32%;"-->
+                <div class="modal-content">
+                    <div id="DocID" class="modal-header" style="display: none">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <asp:Image ID="Image1" Height="188px" Width="254px" runat="server" Style="border: dashed; border-radius: 4px; border-width: 1px; border-style: inset; margin-top: 40px; float: left" /><br />
+
+                    </div>
+                    <div class="modal-body">
+                        <div id="description" class="tagorCheckin" data-placeholder="Say something about this..." contenteditable="true" style="height: 80px; display: none"></div>
+
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div id="tagDiv" class="tagorCheckin" data-placeholder="Tag your friends..." contenteditable="true" style="display: none; border: none; margin-top: -20px; margin-left: -5px;">
+                            <div id="wrapper">
+                                <div id="content">
+                                    <form>
+                                        <ul id="myULTags">
+                                            <!-- Existing list items will be pre-added to the tags. -->
+                                        </ul>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <label class="file-upload">
+                            <span><strong style="font-size: 18px">Select Document</strong></span>
+                            <asp:FileUpload ID="FileUpload2" runat="server" onchange="ShowDocumentPreview(this)"></asp:FileUpload>
+                        </label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="HandleUpload()">Upload</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div style="display: none; width: 600px; height: 300px; position: relative">
+                <canvas id="image" width="800px" height="400px" style="display: none"></canvas>
+            </div>
+        </div>
+
+    </div>--%>
 
 
 

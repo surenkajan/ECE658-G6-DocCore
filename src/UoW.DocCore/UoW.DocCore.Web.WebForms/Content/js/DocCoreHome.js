@@ -64,7 +64,7 @@
         '<p style="display:inline;color:#365899;">' + document.CreatedUser.FirstName + " " + document.CreatedUser.LastName + '</p><a/></h4> </div > ' +
         '<div id="userpicDiv' + id + '" style="height:200px;display:block;border-bottom-style:inset;background-color: #f3f0f0">' +
         '<span class="helper"></span>' +
-        '<img src= "Content\\Images\\ext\\' + document.FileType.toLowerCase() + '256.png" onclick= "imagezoom(' + id + ')" id= "image' + id + '" style= "min-width:200px;max-width:100%;max-height:100%;object-fit: contain" />' +
+        '<img src= "Content\\Images\\extNew\\' + document.FileType.toLowerCase() + '-icon-128x128.png" onclick= "imagezoom(' + id + ')" id= "image' + id + '" style= "min-width:200px;max-width:100%;max-height:100%;object-fit: contain" />' +
         '<div class="helper dochelper">' +
         '<div><span class="docMetaData-title">Project Name:</span><span class="docMetaData-value">' + document.FileName + '</span></div>' +
         '<div><span class="docMetaData-title">Created Time:</span><span class="docMetaData-value">' + document.UploadedTime + '</span></div>' +
@@ -83,6 +83,32 @@
 }
 
 $(document).ready(function () {
+
+    //Populate values for Auto Complete - SharedWith
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: DocCoreServicesBaseAddress + "/userRest/GetAllUserDetails",
+        success: function (members) {
+
+            for (index in members) {
+                members[index].value = members[index].FullName;
+            }
+            $("#MainContent_txtSharedWith").autocomplete({
+                source: members,
+                minLength: 1,
+                focus: function (event, ui) {
+                    $("#MainContent_txtSharedWith").val(ui.item.FullName)
+                    return false;
+                },
+                select: function (event, ui) {
+                    //location.href = DocCoreAppBaseAddress + "/Admin/ViewAllUsers?Uid=" + ui.item.Uid;
+                    //return false;
+                }
+            });
+        }
+    });
+
     var userEmail = $('#DocCore_hdnf_LoggedInUserEmailID').val();
 
     var sharedDocuments = GetsharedDocumentsService(userEmail);

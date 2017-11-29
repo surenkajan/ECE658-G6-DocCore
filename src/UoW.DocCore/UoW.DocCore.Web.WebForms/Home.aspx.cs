@@ -32,7 +32,7 @@ namespace UoW.DocCore.Web.WebForms
                     string fileName = DocumentUpload.FileName;
                     string fileExtension = System.IO.Path.GetExtension(fileName);
                     txtDocName.Text = fileName;
-                    FileExtImage.ImageUrl = "\\Content\\Images\\ext\\" + fileExtension.Replace(".", "").ToLower() + "256.png";
+                    FileExtImage.ImageUrl = "\\Content\\Images\\extNew\\" + fileExtension.Replace(".", "").ToLower() + "-icon-128x128.png";
                     lblUploadedBy.Text = currentUserEmailID;
                     lblUploadedDate.Text = DateTime.Now.ToString("g");
                     lblDocSize.Text = DocumentUpload.FileBytes.Length.ToString();
