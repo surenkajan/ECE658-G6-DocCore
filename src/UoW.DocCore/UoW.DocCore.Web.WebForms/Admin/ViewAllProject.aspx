@@ -2,9 +2,26 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Stylesheets" runat="server">
       <link rel="stylesheet" href="/Content/css/docCoreCommon.css" type="text/css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">  
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="../Content/js/DocCoreBDelegate.js" type="text/javascript"></script>
+    <script src="../Content/js/searchbox_Project.js" type="text/javascript"></script>
     <asp:Panel runat ="server" ScrollBars="Auto">
-        <h2>View All Project </h2>
+        
+         <table>
+        <tr>
+            <td><h2>View All Project </h2></td>
+            </tr>
+             <tr>
+  <td><asp:Label ID="Label1" runat="server" Text="Search:" > </asp:Label></td>
+   
+    <td><asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" /></td>
+  <%--  <td><asp:Button Text="Search" runat="server" OnClick="Search" CssClass="btn btn-default" /></td>--%>
+            </tr>
+        </table>
         <hr />
    <asp:DataList ID="DataList1" runat="server"  
             BorderStyle="None"  CellPadding="3" CellSpacing="2"

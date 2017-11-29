@@ -26,36 +26,9 @@ namespace UoW.DocCore.Web.WebForms
             dt.Columns.Add("Uid");
             dt.Columns.Add("Action");
             List<UserDto> user = DocCoreBDelegate.Instance.GetAllUserDetails();
-
-            foreach (UserDto newuser in user)
+            if (txtSearch.Text == "")
             {
-                DataRow dr = dt.NewRow();
-                dr["FullName"] = newuser.FullName;
-                dr["ProjectRole"] = newuser.ProjectRole;
-                dr["Uid"] = newuser.Uid;
-                dr["Action"] = "Edit";
-
-
-
-                dt.Rows.Add(dr);
-                // }
-            }
-            gvCustomers.DataSource = dt;
-            gvCustomers.DataBind();
-        }
-
-        protected void Search(object sender, EventArgs e)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("FullName");
-            dt.Columns.Add("ProjectRole");
-            dt.Columns.Add("Uid");
-            dt.Columns.Add("Action");
-            List<UserDto> user = DocCoreBDelegate.Instance.GetAllUserDetails();
-
-            foreach (UserDto newuser in user)
-            {
-                if (newuser.FullName == txtSearch.Text)
+                foreach (UserDto newuser in user)
                 {
                     DataRow dr = dt.NewRow();
                     dr["FullName"] = newuser.FullName;
@@ -66,15 +39,70 @@ namespace UoW.DocCore.Web.WebForms
 
 
                     dt.Rows.Add(dr);
+                    // }
                 }
-                // }
+                gvCustomers.DataSource = dt;
+                gvCustomers.DataBind();
             }
-            gvCustomers.DataSource = dt;
-            gvCustomers.DataBind();
+            else
+            {
+                foreach (UserDto newuser in user)
+                {
+                    if (newuser.FullName == txtSearch.Text)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr["FullName"] = newuser.FullName;
+                        dr["ProjectRole"] = newuser.ProjectRole;
+                        dr["Uid"] = newuser.Uid;
+                        dr["Action"] = "Edit";
+
+
+
+                        dt.Rows.Add(dr);
+                    }
+                    // }
+                }
+                gvCustomers.DataSource = dt;
+                gvCustomers.DataBind();
+
+            }
+        }
+
+
+        protected void Search(object sender, EventArgs e)
+        {
+            LoadGridData();
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add("FullName");
+            //dt.Columns.Add("ProjectRole");
+            //dt.Columns.Add("Uid");
+            //dt.Columns.Add("Action");
+            //List<UserDto> user = DocCoreBDelegate.Instance.GetAllUserDetails();
+
+
+            //    foreach (UserDto newuser in user)
+            //    {
+            //        if (newuser.FullName == txtSearch.Text)
+            //        {
+            //            DataRow dr = dt.NewRow();
+            //            dr["FullName"] = newuser.FullName;
+            //            dr["ProjectRole"] = newuser.ProjectRole;
+            //            dr["Uid"] = newuser.Uid;
+            //            dr["Action"] = "Edit";
+
+
+
+            //            dt.Rows.Add(dr);
+            //        }
+            // }
+            //}
+            //gvCustomers.DataSource = dt;
+            //gvCustomers.DataBind();
+
         }
         protected void gvCustomers_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
         }
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -88,23 +116,23 @@ namespace UoW.DocCore.Web.WebForms
         }
         //private void BindGrid()
         //{
-            //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            //using (SqlConnection con = new SqlConnection(constr))
-            //{
-            //    using (SqlCommand cmd = new SqlCommand())
-            //    {
-            //        cmd.CommandText = "SELECT ContactName, City, Country FROM Customers WHERE ContactName LIKE '%' + @ContactName + '%'";
-            //        cmd.Connection = con;
-            //        cmd.Parameters.AddWithValue("@ContactName", txtSearch.Text.Trim());
-            //        DataTable dt = new DataTable();
-            //        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-            //        {
-            //            sda.Fill(dt);
-            //            gvCustomers.DataSource = dt;
-            //            gvCustomers.DataBind();
-            //        }
-            //    }
-            //}
+        //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+        //using (SqlConnection con = new SqlConnection(constr))
+        //{
+        //    using (SqlCommand cmd = new SqlCommand())
+        //    {
+        //        cmd.CommandText = "SELECT ContactName, City, Country FROM Customers WHERE ContactName LIKE '%' + @ContactName + '%'";
+        //        cmd.Connection = con;
+        //        cmd.Parameters.AddWithValue("@ContactName", txtSearch.Text.Trim());
+        //        DataTable dt = new DataTable();
+        //        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+        //        {
+        //            sda.Fill(dt);
+        //            gvCustomers.DataSource = dt;
+        //            gvCustomers.DataBind();
+        //        }
+        //    }
+        //}
         //}
 
         protected void gvCustomers_PageIndexChanging(object sender, GridViewPageEventArgs e)

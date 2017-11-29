@@ -9,15 +9,57 @@ namespace UoW.DocCore.Web.WebForms.Admin
 {
     public partial class ViewAllProject : Page
     {
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
                 DataList1.DataSource = project;
-                DataList1.DataBind();
+                if (txtSearch.Text == "")
+                {
+                    DataList1.DataBind();
+                }
+                else
+                {
+                    List<ProjectDto> projectNew = new List<ProjectDto>();
+                    foreach (ProjectDto proj in project)
+                    {
+                        if (txtSearch.Text == proj.ProjectName)
+                        {
 
+
+                            projectNew.Add(proj);
+                        }
+                    }
+                    DataList1.DataSource = projectNew;
+                    DataList1.DataBind();
+                }
+
+            }
+            else
+            {
+                List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
+                DataList1.DataSource = project;
+                if (txtSearch.Text == "")
+                {
+                    DataList1.DataBind();
+                }
+                else
+                {
+                    List<ProjectDto> projectNew = new List<ProjectDto>();
+                    foreach (ProjectDto proj in project)
+                    {
+                        if (txtSearch.Text == proj.ProjectName)
+                        {
+
+
+                            projectNew.Add(proj);
+                        }
+                    }
+                    DataList1.DataSource = projectNew;
+                    DataList1.DataBind();
+                }
             }
 
         }
@@ -29,7 +71,7 @@ namespace UoW.DocCore.Web.WebForms.Admin
             string databaseKey;
             if (e.Item.ItemType == ListItemType.Item || (e.Item.ItemType == ListItemType.AlternatingItem))
             {
-                
+
                 //var test = new List<Test>();
                 //test.Add(new Test() { testName = "Bike1" });
                 //test.Add(new Test() { testName = "Bike2" });
@@ -42,12 +84,12 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 databaseKey = databaseKeyHiddenField.Value;
                 int ProjectID = Int32.Parse(databaseKey);
 
-                
+
                 List<UserDto> managers = DocCoreBDelegate.Instance.GetAllManagersByProjectID(ProjectID);
                 List<UserDto> members = DocCoreBDelegate.Instance.GetAllTeamMembersByProjectID(ProjectID);
                 DataList innerDataList = e.Item.FindControl("DataList2") as DataList;
                 DataList innerDataList1 = e.Item.FindControl("DataList3") as DataList;
-                
+
                 innerDataList.DataSource = managers;
                 innerDataList.DataBind();
                 innerDataList1.DataSource = members;
@@ -75,10 +117,10 @@ namespace UoW.DocCore.Web.WebForms.Admin
             //HiddenField pIDField;
             //string ProjectID;
             //pIDField = (HiddenField)FindControl("HiddenField2") as HiddenField;
-           
+
             Button button = (Button)sender;
             string buttonId = button.ID;
-           // ProjectID = pIDField.Value;
+            // ProjectID = pIDField.Value;
             int ProjID = Int32.Parse(buttonId);
             Response.Redirect("Project.aspx?Uid=" + ProjID);
         }
