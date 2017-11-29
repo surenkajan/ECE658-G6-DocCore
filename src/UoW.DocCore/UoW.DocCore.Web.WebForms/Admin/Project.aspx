@@ -31,8 +31,11 @@
                         <asp:Label ID="Label1" runat="server" Text="Project Name" > </asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:TextBox  ID="TextBox1" runat="server"  Width="100%" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox  ID="TextBox1" runat="server"  OnTextChanged="DupliCateProject" AutoPostBack="true"  Width="100%" CssClass="form-control"></asp:TextBox>
                         <asp:Label ID="Label4" runat="server" Text="Project Name" > </asp:Label>
+                          <asp:TableCell>
+                        <asp:Label ID="ErrorMsg" runat="server"   Text="Duplicate Project!" Font-Size="Small" ForeColor="Red" ></asp:Label>
+                    </asp:TableCell>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
@@ -43,6 +46,7 @@
                         
                         <asp:ListBox ID="ListBox1" runat="server" Width="100%" SelectionMode="Multiple" CssClass="form-control"></asp:ListBox>
                       </asp:TableCell>
+                  
                     </asp:TableRow>
                 <asp:TableRow >
                     <asp:TableCell Height="50px">
@@ -70,7 +74,7 @@
                         <asp:Label ID="SuccessMesg" runat="server"   Text="Project have been successfully created" ></asp:Label>
                         <asp:Label ID="DeleteMsg" runat="server"   Text="Project have been successfully deleted" ></asp:Label>
                         <asp:Label ID="UpdateMsg" runat="server"   Text="Project have been successfully Updated" ></asp:Label>
-                         <asp:Label ID="ErrorMsg" runat="server"   Text="Duplicate Project!" ></asp:Label>
+                         
                     </asp:TableCell>
                    
                 </asp:TableRow>

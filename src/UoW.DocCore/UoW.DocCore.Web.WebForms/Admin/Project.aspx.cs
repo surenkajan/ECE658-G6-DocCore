@@ -65,7 +65,6 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 Button2.Visible = false;
                 Button3.Visible = false;
                 Button1.Visible = false;
-                TextBox1.Visible = false;
                 Label4.Visible = false;
                 ErrorMsg.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
@@ -74,7 +73,9 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-                //uid = "19";
+               
+                
+                //uid = "22";
                 //if (user.ProjectRole == "Admin")
                 //{
                 //FriendProfiles new1 = new FriendProfiles();
@@ -102,7 +103,8 @@ namespace UoW.DocCore.Web.WebForms.Admin
            
             TextBox1.Visible = true;
             Button1.Visible = true;
-            
+           
+
             List<UserDto> User = DocCoreBDelegate.Instance.GetAllManagers();
             ListBox1.DataSource = User;
             ListBox1.DataTextField = "FullName";
@@ -251,51 +253,63 @@ namespace UoW.DocCore.Web.WebForms.Admin
             //string currentUserEmailID = HttpContext.Current.User.Identity.Name;
             //int UserID = Int32.Parse(param1);
             string projectName = TextBox1.Text;
-
-            List<string> list = new List<string>();
-            if (ListBox1.Items.Count > 0)
-            {
-                for (int i = 0; i < ListBox1.Items.Count; i++)
+            //bool newFlag = false;
+            //List<ProjectDto> allProj = DocCoreBDelegate.Instance.GetAllProject();
+            //foreach(ProjectDto proj in allProj)
+            //{
+            //    if(projectName== proj.ProjectName)
+            //    {
+            //        newFlag = true;
+            //        break;
+            //    }
+            //}
+            //if (newFlag == false)
+            //{
+                List<string> list = new List<string>();
+                if (ListBox1.Items.Count > 0)
                 {
-                    if (ListBox1.Items[i].Selected)
+                    for (int i = 0; i < ListBox1.Items.Count; i++)
                     {
-                        string selectedItem0 = ListBox1.Items[i].Text;
-                        string selectedItem = selectedItem0.Trim();
-                        list.Add(selectedItem);
-                        //insert command
+                        if (ListBox1.Items[i].Selected)
+                        {
+                            string selectedItem0 = ListBox1.Items[i].Text;
+                            string selectedItem = selectedItem0.Trim();
+                            list.Add(selectedItem);
+                            //insert command
+                        }
                     }
                 }
-            }
-            string managers = String.Join(",", list.ToArray());
+                string managers = String.Join(",", list.ToArray());
 
-            List<string> list2 = new List<string>();
-            if (ListBox2.Items.Count > 0)
-            {
-                for (int i = 0; i < ListBox2.Items.Count; i++)
+                List<string> list2 = new List<string>();
+                if (ListBox2.Items.Count > 0)
                 {
-                    if (ListBox2.Items[i].Selected)
+                    for (int i = 0; i < ListBox2.Items.Count; i++)
                     {
-                        string selectedItem1 = ListBox2.Items[i].Text;
-                        string selectedItem2 = selectedItem1.Trim();
-                        list2.Add(selectedItem2);
-                        //insert command
+                        if (ListBox2.Items[i].Selected)
+                        {
+                            string selectedItem1 = ListBox2.Items[i].Text;
+                            string selectedItem2 = selectedItem1.Trim();
+                            list2.Add(selectedItem2);
+                            //insert command
+                        }
                     }
                 }
-            }
-            string members = String.Join(",", list2.ToArray());
-            ProjectDto project = new ProjectDto() { ProjectName = projectName, ProjectManager = managers, TeamMember = members };
-            int AddStatus = DocCoreBDelegate.Instance.CreateProject(project);
-            //LoadGridData();
-            if (AddStatus==0)
-            {
-            SuccessMesg.Visible = true;
-            ClearData();
-            }
-            else
-            {
-                ErrorMsg.Visible = true;
-                   
-            }
+                string members = String.Join(",", list2.ToArray());
+                ProjectDto project = new ProjectDto() { ProjectName = projectName, ProjectManager = managers, TeamMember = members };
+                int AddStatus = DocCoreBDelegate.Instance.CreateProject(project);
+                //LoadGridData();
+                if (AddStatus == 0)
+                {
+                    SuccessMesg.Visible = true;
+                    ClearData();
+                }
+            //}
+            //else
+            //{
+            //    ErrorMsg.Visible = true;
+
+            //}
 
         }
         protected void DeleteProject(object sender, EventArgs e)
@@ -312,7 +326,35 @@ namespace UoW.DocCore.Web.WebForms.Admin
 
             }
         }
+        protected void DupliCateProject(object sender, EventArgs e)
+        {
+            string projectName = TextBox1.Text;
+            bool newFlag = false;
+            List<ProjectDto> allProj = DocCoreBDelegate.Instance.GetAllProject();
+            foreach (ProjectDto proj in allProj)
+            {
+                if (projectName == proj.ProjectName)
+                {
+                    newFlag = true;
+                    break;
+                }
+            }
+            if (newFlag==true)
+            {
+                TextBox1.BorderColor = System.Drawing.Color.Red;
+                ErrorMsg.Visible = true;
+                Button1.Enabled = false;
+               
+                ClearData();
 
+            }
+            else
+            {
+                ErrorMsg.Visible = false;
+                Button1.Enabled = true;
+                TextBox1.BorderColor = System.Drawing.Color.Green;
+            }
+        }
         protected void UpdateProject(object sender, EventArgs e)
         {
             Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
