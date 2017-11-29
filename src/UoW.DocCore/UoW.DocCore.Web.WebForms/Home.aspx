@@ -91,6 +91,16 @@
             console.log(place);
         }
 
+        //function DownloadDocument(DocID) {
+        //    //PageMethods.ProcessIT(DocID, onSucess, onError);
+        //    function onSucess(result) {
+        //        alert('Result: ' + result);
+        //    }
+        //    function onError(result) {
+        //        alert('Something went wrong.');
+        //    }
+        //}
+
     </script>
 
 
@@ -164,11 +174,10 @@
         </asp:PlaceHolder>
 
         <div id="SharedDocuments" style="overflow-x: auto;">
+            <%--<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>--%>
             <table>
                 <tr>
                     <td style="vertical-align: top; width: 280px;"></td>
-
-
                     <td style="vertical-align: top; height: 100px; width: 660px; background-color: white">
                         <div id="SharedDocumentsContainer" class="SharedDocumentsContainerclass" style="height: auto;"></div>
                     </td>

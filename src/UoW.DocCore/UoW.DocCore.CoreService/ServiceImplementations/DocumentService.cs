@@ -80,5 +80,11 @@ namespace UoW.DocCore.CoreService
             DocumentDao docDao = new DocumentDao();
             return CoreObjectMapper.DocumentDaoToDto(docDao.GetUploadedAndSharedWithMeByEmailID(U_User, L_User));
         }
+
+        public DocumentDto GetDocumentWithContentByDocID(string DocID)
+        {
+            DocumentDao docDao = new DocumentDao();
+            return CoreObjectMapper.DocumentDaoToDto(docDao.GetDocumentWithContentByDocID(DocID));
+        }
     }
 }

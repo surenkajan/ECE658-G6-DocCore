@@ -18,6 +18,14 @@ namespace UoW.DocCore.CoreService
         [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetDocumentWithContentByDocID?DocID={DocID}")]
+        DocumentDto GetDocumentWithContentByDocID(string DocID);
+
+        [OperationContract]
+        [Description("Get Document By DocID")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "GetDocumentByDocID?DocID={DocID}")]
         DocumentDto GetDocumentByDocID(string DocID);
 

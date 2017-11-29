@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -66,6 +68,65 @@ namespace UoW.DocCore.Web.WebForms
                 }
             }
         }
+
+        //[WebMethod]
+        //public static int ProcessIT(string DocID)
+        //{
+        //    try
+        //    {
+        //        //WebClient req = new WebClient();
+        //        //HttpResponse response = HttpContext.Current.Response;
+        //        //response.Clear();
+        //        //response.ClearContent();
+        //        //response.ClearHeaders();
+        //        //response.Buffer = true;
+        //        //response.AddHeader("Content-Disposition", "attachment;filename=\"" + Server.MapPath(strURL) + "\"");
+        //        //DocumentDto document = DocCoreBDelegate.Instance.GetDocumentWithContentByDocID(DocID);
+
+        //        //byte[] data = document.FileData;
+        //        //response.BinaryWrite(data);
+        //        //response.End();
+        //        //ImagePreview.ImageUrl = "~/ImageHandler.ashx?uid=" + uid;
+
+        //        //Calling IHttpHandler for Download
+        //        //Response.Redirect("~/DownloadFile.ashx?Docid=" + DocID);
+
+        //        System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+        //        string currentUserEmailID = HttpContext.Current.User.Identity.Name;
+        //        DocumentDto document = DocCoreBDelegate.Instance.GetDocumentByDocID(DocID);
+        //        //Check for permission - Doc is created by the user OR Shared with user
+
+        //        //Decide the document is shared with current user
+        //        //List<User> matches = document.SharedWith.Where(usr =>usr.EmailAddress == currentUserEmailID);
+        //        bool isShared = document.SharedWith.Any(usr => usr.EmailAddress == currentUserEmailID);
+
+        //        if (document.CreatedUser.Equals(currentUserEmailID) || document.ModifiedBy.Equals(currentUserEmailID) || isShared)
+        //        {
+        //            DocumentDto documentContent = DocCoreBDelegate.Instance.GetDocumentWithContentByDocID(DocID);
+
+        //            response.ClearContent();
+        //            response.Clear();
+        //            response.ContentType = "text/plain";
+        //            response.AddHeader("Content-Disposition", "attachment; filename=" + documentContent.FileName + ";");
+        //            //response.TransmitFile(Server.MapPath("FileDownload.csv"));
+        //            response.BinaryWrite(documentContent.FileData);
+        //            response.Flush();
+        //            response.End();
+        //        }
+        //        else
+        //        {
+        //            //Session["ErrorCode"] = 001;
+        //            //Response.Redirect("/Error");
+        //            return -1;
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return -1;
+        //    }
+        //    return 0;
+        //}
 
         protected void btnSave_Click(object sender, EventArgs e)
         {

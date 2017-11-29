@@ -173,3 +173,7 @@ function DeleteDocumentService(DocID) {
 function PostCommentRestService(commentobj) {
     var result = DocCorePOSTService(DocCoreServicesBaseAddress + "/DocRest/AddCommentsByEmailID", commentobj);
 }
+
+function DownloadFileViaASHX(DocID) {
+    return (DocCorePOSTService("/DownloadFile.ashx?Docid=" + DocID))
+}

@@ -438,6 +438,23 @@ namespace UoW.DocCore.Web.WebForms
             return document;
         }
 
+        public DocumentDto GetDocumentWithContentByDocID(string DocID)
+        {
+            DocumentDto document = null;
+            //TODO : Do not hard code the method name here, Move to App.Settings
+            //Get the User
+            string doc = RestClient.Instance.MakeHttpRequest(Service_BaseAddress + "/docRest/GetDocumentWithContentByDocID?DocID=" + DocID, "GET", json_type, null);
+
+            //How to Consume this in DocCore Front End: Deserialize the object(s)
+            JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+            json_serializer.MaxJsonLength = int.MaxValue;
+            if (doc != null)
+            {
+                document = json_serializer.Deserialize<DocumentDto>(doc);
+            }
+            return document;
+        }
+
         public List<DocumentDto> GetAllDocumentsUploadedByEmailID(string EmailID)
         {
             List<DocumentDto> docList = null;

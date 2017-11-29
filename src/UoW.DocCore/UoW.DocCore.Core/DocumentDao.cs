@@ -33,6 +33,21 @@
                 throw;
             }
         }
+        
+        public Document GetDocumentWithContentByDocID(string DocID)
+        {
+            try
+            {
+                return Db.Read(Db.QueryType.StoredProcedure, "[doccore].[GetDocumentByDocIDWithFileContent]",
+                    GetDocumentFromReader, "DocCoreMSSQLConnection",
+                    new object[] { "DocID", DocID, "UserTablePreFix", "AU" });
+            }
+            catch (Exception ex)
+            {
+                EventLog.WriteEntry("Core Service", ex.Message + "\n Stack trace: " + ex.StackTrace);
+                throw;
+            }
+        }
 
         public List<Document> GetAllDocumentsUploadedByEmailID(string EmailID)
         {
