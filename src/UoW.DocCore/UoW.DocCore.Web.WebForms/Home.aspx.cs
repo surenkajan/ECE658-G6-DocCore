@@ -139,6 +139,15 @@ namespace UoW.DocCore.Web.WebForms
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
+            string values = txtSharedWith.Text;
+            List<User> SharedUsers = new List<User>();
+            foreach (string val in values.Split(','))
+            {
+                SharedUsers.Add(new User() {
+                    FullName = val
+                });
+            }
+
             //Consume the service and insert the document
             int D_ID = (int)(Session["DocID"]);
 
@@ -154,7 +163,8 @@ namespace UoW.DocCore.Web.WebForms
                     UploadedTime = DateTime.Now,
                     IsCheckedIn = 1,
                     Modified = DateTime.Now,
-                    ModifiedBy = currentUserEmailID
+                    ModifiedBy = currentUserEmailID,
+                    SharedWith = SharedUsers
                 };
 
                 int UpdatedDocID = DocCoreBDelegate.Instance.UpdateDocument(document);

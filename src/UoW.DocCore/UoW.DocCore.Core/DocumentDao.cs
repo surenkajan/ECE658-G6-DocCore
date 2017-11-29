@@ -5,6 +5,7 @@
     using System.Data;
     using System.Diagnostics;
     using System.Drawing;
+    using System.Linq;
     using System.Text;
     using UoW.DocCore.BusinessObjects;
     using UoW.DocCore.DataObjects.ADO.NET;
@@ -184,7 +185,8 @@
                         "UploadedTime", Doc.UploadedTime,
                         "IsCheckedIn", Doc.IsCheckedIn,
                         "ModifiedBy", Doc.ModifiedBy,
-                        "Modified", Doc.Modified
+                        "Modified", Doc.Modified,
+                        "SharedWith", string.Join(";", Doc.SharedWith.Select(x => x.FullName))
                     });
                 }
                 else
@@ -204,7 +206,8 @@
                         "UploadedTime", Doc.UploadedTime,
                         "IsCheckedIn", Doc.IsCheckedIn,
                         "ModifiedBy", Doc.ModifiedBy,
-                        "Modified", Doc.Modified
+                        "Modified", Doc.Modified,
+                        "SharedWith", string.Join(";", Doc.SharedWith.Select(x => x.FullName))
                     });
                 }
             }

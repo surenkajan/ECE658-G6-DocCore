@@ -43,17 +43,19 @@
                 setSource: function () {
                     //Replace with All Employees of the project
                    // return GetAllUsersByProjectID(userEmail);
+                    return GetAllUsers();
                 }
             }
 
-            $.when(editor.setSource()).then(function (friends) {
+            $.when(editor.setSource()).then(function (users) {
                 var sampleTags = [];
 
-                for (index in friends) {
-                    sampleTags.push(friends[index].FullName);
+                for (index in users) {
+                    //sampleTags.push(users[index].FullName);
+                    sampleTags.push(users[index].FullName);
                 }
 
-                $('#myULTags').tagit({
+                $("#MainContent_txtSharedWith").tagit({
                     availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
                     // configure the name of the input field (will be submitted with form), default: item[tags]
                     itemName: 'item',
@@ -64,6 +66,30 @@
             });
 
         });
+
+        //$.ajax({
+    //    type: "GET",
+    //    dataType: "json",
+    //    url: DocCoreServicesBaseAddress + "/userRest/GetAllUsers",
+    //    success: function (members) {
+
+    //        for (index in members) {
+    //            members[index].value = members[index].FullName;
+    //        }
+    //        $("#MainContent_txtSharedWith").autocomplete({
+    //            source: members,
+    //            minLength: 1,
+    //            focus: function (event, ui) {
+    //                $("#MainContent_txtSharedWith").val(ui.item.FullName)
+    //                return false;
+    //            },
+    //            select: function (event, ui) {
+    //                //location.href = DocCoreAppBaseAddress + "/Admin/ViewAllUsers?Uid=" + ui.item.Uid;
+    //                //return false;
+    //            }
+    //        });
+    //    }
+    //});
 
         function initAutocomplete() {
 

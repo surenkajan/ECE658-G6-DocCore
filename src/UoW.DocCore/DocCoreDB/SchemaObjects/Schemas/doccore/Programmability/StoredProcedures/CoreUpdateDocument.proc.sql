@@ -23,10 +23,16 @@ CREATE PROCEDURE [doccore].[UpdateDocument]
 	@UploadedTime			datetime,
 	@IsCheckedIn			int,
 	@Modified				datetime,
-	@ModifiedBy				VARCHAR(240)
+	@ModifiedBy				VARCHAR(240),
+	@SharedWith				VARCHAR(MAX)
 AS
 
-            UPDATE  [doccore].[Documents]
+            DELETE FROM [DocCoreDB].[doccore].[SharedWith] WHERE DocID = @DocID;
+
+			INSERT INTO [doccore].[SharedWith] (DocID,sharedTo) select  @DocID,(Select TOP 1 u.ID from [doccore].[User] u  where u.FullName = Items)
+		    from [doccore].[Split](@SharedWith, ';');
+			
+			UPDATE  [doccore].[Documents]
 			SET
 			FileName = @FileName, 
 			FileType = @FileType, 

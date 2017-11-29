@@ -85,29 +85,29 @@
 $(document).ready(function () {
 
     //Populate values for Auto Complete - SharedWith
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: DocCoreServicesBaseAddress + "/userRest/GetAllUserDetails",
-        success: function (members) {
+    //$.ajax({
+    //    type: "GET",
+    //    dataType: "json",
+    //    url: DocCoreServicesBaseAddress + "/userRest/GetAllUsers",
+    //    success: function (members) {
 
-            for (index in members) {
-                members[index].value = members[index].FullName;
-            }
-            $("#MainContent_txtSharedWith").autocomplete({
-                source: members,
-                minLength: 1,
-                focus: function (event, ui) {
-                    $("#MainContent_txtSharedWith").val(ui.item.FullName)
-                    return false;
-                },
-                select: function (event, ui) {
-                    //location.href = DocCoreAppBaseAddress + "/Admin/ViewAllUsers?Uid=" + ui.item.Uid;
-                    //return false;
-                }
-            });
-        }
-    });
+    //        for (index in members) {
+    //            members[index].value = members[index].FullName;
+    //        }
+    //        $("#MainContent_txtSharedWith").autocomplete({
+    //            source: members,
+    //            minLength: 1,
+    //            focus: function (event, ui) {
+    //                $("#MainContent_txtSharedWith").val(ui.item.FullName)
+    //                return false;
+    //            },
+    //            select: function (event, ui) {
+    //                //location.href = DocCoreAppBaseAddress + "/Admin/ViewAllUsers?Uid=" + ui.item.Uid;
+    //                //return false;
+    //            }
+    //        });
+    //    }
+    //});
 
     var userEmail = $('#DocCore_hdnf_LoggedInUserEmailID').val();
 

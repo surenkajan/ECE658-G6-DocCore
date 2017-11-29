@@ -1,41 +1,34 @@
 ﻿USE [DocCoreDB]
 GO
-
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[doccore].[AddSecurityAnswersEmailID]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [doccore].[AddSecurityAnswersEmailID]
-END
+/****** Object:  UserDefinedFunction [pictre].[Split]    Script Date: 11/29/2017 4:34:52 PM ******/
+SET ANSI_NULLS ON
 GO
-
-
-CREATE PROCEDURE [doccore].[AddSecurityAnswersEmailID]
-	@EmailAddress			VARCHAR(240),
-	--@QuestionAndAnswers	    VARCHAR(max),
-	@Question1			VARCHAR(max),
-	@Question1Answer    VARCHAR(max),
-	@Question2			VARCHAR(max),
-	@Question2Answer    VARCHAR(max)
-
-AS
-	-- Answers to the 1st Questions
-	INSERT INTO [doccore].[UserSecurity]
-	(UserID, QuestionID, Answer) VALUES
-	(
-		(SELECT ID FROM [DocCoreDB].[doccore].[User] where EmailAddress = @EmailAddress),
-		(SELECT ID FROM [DocCoreDB].[doccore].[SecurityQuestion] where Question = @Question1),
-		@Question1Answer
-	);
-	-- Answers to the 2nd Questions
-	INSERT INTO [doccore].[UserSecurity]
-	(UserID, QuestionID, Answer) VALUES
-	(
-		(SELECT ID FROM [DocCoreDB].[doccore].[User] where EmailAddress = @EmailAddress),
-		(SELECT ID FROM [DocCoreDB].[doccore].[SecurityQuestion] where Question = @Question2),
-		@Question2Answer
-	);
-RETURN 0
+SET QUOTED_IDENTIFIER ON
+GO
 	
-	
+CREATE FUNCTION [doccore].[Split](@String varchar(MAX), @Delimiter char(1))       
+returns @temptable TABLE (items varchar(MAX))       
+as       
+begin      
+    declare @idx int       
+    declare @slice varchar(8000)       
+
+    select @idx = 1       
+        if len(@String)<1 or @String is null  return       
+
+    while @idx!= 0       
+    begin       
+        set @idx = charindex(@Delimiter,@String)       
+        if @idx!=0       
+            set @slice = left(@String,@idx - 1)       
+        else       
+            set @slice = @String       
+
+        if(len(@slice)>0)  
+            insert into @temptable(Items) values(@slice)       
+
+        set @String = right(@String,len(@String) - @idx)       
+        if len(@String) = 0 break       
+    end   
+return 
+end;
