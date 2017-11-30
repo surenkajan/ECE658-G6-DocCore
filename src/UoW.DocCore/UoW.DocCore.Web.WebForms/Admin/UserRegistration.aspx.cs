@@ -32,6 +32,7 @@ namespace UoW.DocCore.Web.WebForms
                 PlaceHolder1.Visible = false;
                 Email.Visible = false;
                 LabelEmail.Visible = false;
+
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
                 HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
                 hdnf_CurrentUserEmailID.Value = currentUserEmailID;
@@ -97,6 +98,7 @@ namespace UoW.DocCore.Web.WebForms
             //Gender.SelectedIndex = Gender.Items.IndexOf(Gender.Items.FindByText(gender));
             DOB.Text = date.ToString("MMMM d, yyyy");
             LabelEmail.Text = user.EmailAddress;
+            Email.Text = user.EmailAddress;
             UserDto user1 = DocCoreBDelegate.Instance.GetAllUserDetailsByUid(UserID);
             ddlRole.SelectedValue = user1.ProjectRole;
            List<ProjectDto> user2 = DocCoreBDelegate.Instance.GetProjectDetailsByUid(UserID);
@@ -271,21 +273,12 @@ namespace UoW.DocCore.Web.WebForms
 
         protected void DeleteProject(object sender, EventArgs e)
         {
-
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
-            {
                 string EmailAddress = Email.Text;
                 int status = DocCoreBDelegate.Instance.DeleteUserByEmailID(EmailAddress);
                 RegisterStatusPH.Visible = true;
                 DocCoreRegisterUserPH.Visible = false;
                 ClearData();
                 registerStatus.Text = "The user has been successfully deleted!";
-            }
-
         }
 
         protected void CreateProject(object sender, EventArgs e)

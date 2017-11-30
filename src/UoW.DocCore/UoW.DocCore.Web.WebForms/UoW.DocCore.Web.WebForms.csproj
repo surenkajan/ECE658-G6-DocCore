@@ -328,6 +328,7 @@
     <Content Include="Content\Images\ext\xml.png" />
     <Content Include="Content\Images\ext\zip.png" />
     <Content Include="Content\Images\ext\zip256.png" />
+    <Content Include="Content\js\searchbox _Project.js" />
     <Content Include="Content\js\searchbox_Project.js" />
     <Content Include="Content\js\searchbox.js" />
     <Content Include="Content\js\DocCoreHome.js" />

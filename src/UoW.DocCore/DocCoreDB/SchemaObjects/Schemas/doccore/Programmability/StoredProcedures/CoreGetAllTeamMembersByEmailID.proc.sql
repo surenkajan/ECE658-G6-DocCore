@@ -1,18 +1,24 @@
-﻿USE [DocCoreDB]
+﻿/*    ==Scripting Parameters==
+
+    Source Server Version : SQL Server 2016 (13.0.1742)
+    Source Database Engine Edition : Microsoft SQL Server Enterprise Edition
+    Source Database Engine Type : Standalone SQL Server
+
+    Target Server Version : SQL Server 2017
+    Target Database Engine Edition : Microsoft SQL Server Standard Edition
+    Target Database Engine Type : Standalone SQL Server
+*/
+
+USE [DocCoreDB]
 GO
-
-IF EXISTS ( SELECT * 
-            FROM   sysobjects 
-            WHERE  id = object_id(N'[doccore].[GetAllTeamMembersByEmailID]') 
-                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
-BEGIN
-    DROP PROCEDURE [doccore].[GetAllTeamMembersByEmailID]
-END
-
+/****** Object:  StoredProcedure [doccore].[GetAllTeamMembersByEmailID]    Script Date: 11/30/2017 1:01:36 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
 --Team members, Project Managers , Admin
-CREATE PROCEDURE [doccore].[GetAllTeamMembersByEmailID]
+ALTER PROCEDURE [doccore].[GetAllTeamMembersByEmailID]
 @EmailID VARCHAR(240)
 AS
 --Team members of same projects
@@ -30,12 +36,12 @@ AS
 				WHERE [pID] in 
 				(SELECT [pID] FROM [doccore].[Members] 
 				  WHERE [memberID] = (SELECT [ID]  FROM [doccore].[User] WHERE [EmailAddress] = @EmailID)))
+		UNION
+
+		SELECT [FullName], [EmailAddress],[ID]  FROM [doccore].[User]
+		WHERE [ID] in 
+			(SELECT [memberID] FROM [doccore].[Members] 
+				WHERE [pID] in 
+				(SELECT [pID] FROM [doccore].[ProjectManager] 
+				  WHERE [ManagerID] = (SELECT [ID]  FROM [doccore].[User] WHERE [EmailAddress] = @EmailID)))
 --Admin
-GO
-
-
-
---EXEC [doccore].[CoreGetAllTeamMembersByID] @projectID= 18
---select * from [doccore].[User]
---select * from [doccore].[Project]
---select * from [doccore].[ProjectManager]

@@ -85,6 +85,13 @@ namespace UoW.DocCore.Web.WebForms.Account
                 };
                 int AddAnsStatus = DocCoreBDelegate.Instance.InsertSecurityAnswers(answers);
 
+                UserDto newUserForAccess = new UserDto()
+                {
+                    EmailAddress = Email.Text,
+                    ProjectRole = "Admin"
+                };
+                int AddAccessStatus = DocCoreBDelegate.Instance.CreateUserAccess(newUserForAccess);
+
                 signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }

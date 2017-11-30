@@ -25,7 +25,7 @@
 
         //    $.when(editor.setSource()).then(function (user) {
         //        if (user.length != 0) {
-        //            documentString += '<a href=' + PictureAppBaseAddress + '/myprofile?uid=' + user[0].UserID + '>' + user[0].FullName + '</a>, '
+        //            documentString += '<a href=' + DocCoreAppBaseAddress + '/myprofile?uid=' + user[0].UserID + '>' + user[0].FullName + '</a>, '
         //        }
 
         //    });
@@ -172,7 +172,7 @@ function addcommentToDiv(id) {
         var date = new Date();
 
         $('#commentList' + id).prepend(
-            "<li><a href='" + PictureAppBaseAddress + "/myprofile/myprofile?uid=" + userDetails.UserID + "'><div class='commenterImage'><img src= " + userDetails.ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + userDetails.FullName + " </strong></a>" + newComment + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
+            "<li><a href='" + DocCoreAppBaseAddress + "/myprofile/myprofile?uid=" + userDetails.UserID + "'><div class='commenterImage'><img src= " + userDetails.ProfilePhoto + " /></div><div class='commentText'><p class=''><strong>" + userDetails.FullName + " </strong></a>" + newComment + "</p><span class='date sub-text'>on " + date.toDateString("dd-mm-yyy") + "</span></div></li>"
         );
 
         $('#AddCommentDiv' + id).val("");

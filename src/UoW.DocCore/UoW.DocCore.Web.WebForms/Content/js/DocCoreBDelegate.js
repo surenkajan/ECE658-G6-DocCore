@@ -141,9 +141,9 @@ function GetAllTeamMembersByEmailID(EmailID) {
 
 function GetAllPossibleValuesforSharedWith(EmailID) {
     //TODO : Have not Implemented yet
-    var allteammembers = DocCoreGETService(DocCoreServicesBaseAddress + "/adminRest/GetAllTeamMembersByEmailID?EmailID=" + EmailID));
+    var allteammembers = DocCoreGETService(DocCoreServicesBaseAddress + "/adminRest/GetAllTeamMembersByEmailID?EmailID=" + EmailID);
     //var allProjects = DocCoreGETService(DocCoreServicesBaseAddress + "/adminRest/GetProjectDetailsByUid?EmailID=" + EmailID));
-
+    return allteammembers;
 }
 
 function GetAllUsers() {

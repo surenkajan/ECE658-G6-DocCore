@@ -22,6 +22,7 @@
 
 
     </script><div>
+   <a href="/Admin/ViewAllProject">View All Projects</a>
    <h2>Create Project</h2>
     <hr />
    

@@ -24,6 +24,7 @@
 
     <div id="DocCoreRegisterUserDiv" class="form-horizontal">
         <asp:PlaceHolder ID="DocCoreRegisterUserPH" runat="server">
+            <a href="/Admin/ViewAllUsers">View All Users</a>
             <h4>Create a new account</h4>
             <hr />
             <asp:ValidationSummary Visible="false" runat="server" CssClass="text-danger" />
