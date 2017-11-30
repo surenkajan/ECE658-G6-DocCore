@@ -226,6 +226,7 @@
     <Content Include="Content\Images\extNew\docx-icon-128x128.png" />
     <Content Include="Content\Images\extNew\dwf-icon-128x128.png" />
     <Content Include="Content\Images\extNew\dwg-icon-128x128.png" />
+    <Content Include="Content\Images\extNew\edit.png" />
     <Content Include="Content\Images\extNew\eps-icon-128x128.png" />
     <Content Include="Content\Images\extNew\epub-icon-128x128.png" />
     <Content Include="Content\Images\extNew\exe-icon-128x128.png" />

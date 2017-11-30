@@ -9,11 +9,14 @@ namespace UoW.DocCore.Web.WebForms.Admin
 {
     public partial class ViewAllProject : Page
     {
+         
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+
             {
+                
                 string currentUserEmailID;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
                 HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
@@ -30,7 +33,11 @@ namespace UoW.DocCore.Web.WebForms.Admin
                     {
                         List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
                         DataList1.DataSource = project;
+                     
+ 
+                        //theDataList.DataBind();
                         DataList1.DataBind();
+                            
                     }
                     else
                     {
@@ -40,6 +47,7 @@ namespace UoW.DocCore.Web.WebForms.Admin
                         project.pID = ID;
                         List<ProjectDto> projectNew = new List<ProjectDto>();
                         projectNew.Add(project);
+                       
                         DataList1.DataSource = projectNew;
                         DataList1.DataBind();
 
@@ -90,7 +98,7 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 }
             }
         }
-
+      
         protected void outerRep_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             //DataListItem selectedDataListItem;

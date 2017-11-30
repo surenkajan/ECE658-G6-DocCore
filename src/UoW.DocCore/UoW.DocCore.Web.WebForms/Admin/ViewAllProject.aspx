@@ -14,44 +14,48 @@
         
          <table>
         <tr>
-            <td><h2>View All Project </h2></td>
+            <td style="align-self:center"><h2>View All Project </h2></td>
             </tr>
              <tr>
-  <td><asp:Label ID="Label1" runat="server" Text="Search:" > </asp:Label></td>
+  <td><asp:Label ID="Label1" runat="server" Text="Search:" Font-Size="Medium" > </asp:Label></td>
    
-    <td><asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" /></td>
+    <td style="text-align:left"><asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" /></td>
   <%--  <td><asp:Button Text="Search" runat="server" OnClick="Search" CssClass="btn btn-default" /></td>--%>
             </tr>
         </table>
         <hr />
-   <asp:DataList ID="DataList1" runat="server"  
-            BorderStyle="None"  CellPadding="3" CellSpacing="2"
-            Font-Names="Verdana" Font-Size="Small" GridLines="Horizontal" RepeatColumns="1" RepeatDirection="Horizontal"
-            Width="100%" OnItemDataBound="outerRep_ItemDataBound"  >
+   <asp:DataList ID="DataList1" runat="server"  CellPadding="4"
+            Font-Names="Verdana" Font-Size="Small" RepeatColumns="1" RepeatDirection="Horizontal"
+            Width="70%" OnItemDataBound="outerRep_ItemDataBound" Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" ForeColor="#333333"  >
 
            
             
-       <ItemStyle BackColor="White"   />
+       <AlternatingItemStyle BackColor="White" />
+       <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+       <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+
+           
+            
+       <ItemStyle BackColor="#EFF3FB"   />
         <ItemTemplate>
             <asp:Table runat="server">
 
                 <asp:TableRow Height="30px" >
                     
-                    <asp:TableCell HorizontalAlign="Left" Width="40%">
+                    <asp:TableCell HorizontalAlign="Left" Width="50%">
                        
                    <asp:Label ID="lblName" runat="server" Font-Size="Medium" ForeColor="#3366cc" Text='<%# Bind( "projectName")%>' /></li>
                       
                             <asp:HiddenField runat="server" id="HiddenField1" Value='<%# Bind("pID") %>' />
-                            
-                    </asp:TableCell></asp:TableRow>
-
-             
-                 <asp:TableRow>
+                         <asp:HyperLink Runat =server NavigateUrl ='<%#"Project.aspx?Uid=" + DataBinder.Eval(Container.DataItem, "pID").ToString()%>' ToolTip="Edit Project"  ID="Hyperlink1">
+                              <img src="../Content/Images/extNew/edit.png" height="25" width="25" />
+                         </asp:HyperLink>   
+                    </asp:TableCell><asp:TableCell>
+                          
+                    </asp:TableCell></asp:TableRow><asp:TableRow>
                     <asp:TableCell Height="20px">
 
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
+                    </asp:TableCell></asp:TableRow><asp:TableRow>
                     <asp:TableCell VerticalAlign="Top"  >
                         <b>Project Managers</b>
                          </asp:TableCell><asp:TableCell Width="50%">
@@ -63,19 +67,14 @@
                      </ItemTemplate>
 
                 </asp:DataList>
-                   </asp:TableCell>
-                 </asp:TableRow>
-                <asp:TableRow>
+                   </asp:TableCell></asp:TableRow><asp:TableRow>
                     <asp:TableCell Height="20px">
 
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow  >
+                    </asp:TableCell></asp:TableRow><asp:TableRow  >
                     
                     <asp:TableCell VerticalAlign="Top" >
                         <b>Team Members</b>
-                    </asp:TableCell>
-                    <asp:TableCell >
+                    </asp:TableCell><asp:TableCell >
                         <asp:DataList ID="DataList3" runat="server">
                     <ItemTemplate  >
                        <ul>
@@ -86,15 +85,11 @@
 
 
                 </asp:DataList>
-                    </asp:TableCell>
-                     <asp:TableCell  HorizontalAlign="Center" Width="40%">
+                    </asp:TableCell><asp:TableCell  HorizontalAlign="Center" Width="40%">
                        
-                         <asp:HyperLink Runat =server NavigateUrl ='<%#"Project.aspx?Uid=" + DataBinder.Eval(Container.DataItem, "pID").ToString()%>' ID="Hyperlink1">
-                              Edit Project
-                           </asp:HyperLink>
+                       
                           
 
                          <%--<asp:Button ID="Button3" runat="server" Text="Edit Project" OnClick="UpdateProject" CssClass="btn btn-default" />  --%>
                       
-                     </asp:TableCell>
-                </asp:TableRow></asp:Table></ItemTemplate></asp:DataList></asp:Panel></asp:Content>
+                     </asp:TableCell></asp:TableRow></asp:Table></ItemTemplate><SelectedItemStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" /></asp:DataList></asp:Panel></asp:Content>
