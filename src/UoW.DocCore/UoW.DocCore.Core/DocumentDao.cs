@@ -259,7 +259,7 @@
             document.DocID = Db.GetValue(reader, "DocID", 0);
             document.FileName = Db.GetValue(reader, "FileName", "");
             document.FileType = Db.GetValue(reader, "FileType", "");
-            document.FileSummary = Db.GetValue(reader, "FileType", "");
+            document.FileSummary = Db.GetValue(reader, "FileSummary", "");
             document.FileSizeInKB = Db.GetValue(reader, "FileSizeInKB", 0);
             //document.FileData = (reader["FileData"] != null || !DBNull.Value.Equals(reader["FileData"])) ? (byte[])reader["FileData"] : null;
 

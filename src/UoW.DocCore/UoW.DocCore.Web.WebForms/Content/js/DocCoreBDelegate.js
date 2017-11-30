@@ -180,5 +180,6 @@ function PostCommentRestService(commentobj) {
 }
 
 function DownloadFileViaASHX(DocID) {
-    return (DocCorePOSTService("/DownloadFile.ashx?Docid=" + DocID))
+    //return (DocCorePOSTService("/DownloadFile.ashx?Docid=" + DocID));
+    window.open("/DownloadFile.ashx?Docid=" + DocID, '_blank');
 }

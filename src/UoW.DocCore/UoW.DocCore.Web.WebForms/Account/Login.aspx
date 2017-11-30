@@ -58,10 +58,21 @@
             </section>
         </div>
 
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
-            </section>
-        </div>
+<%--        <div class="col-md-4">
+                <h4>
+                        <span>DocCore - An​ ​Enterprise​ ​Document​ ​Management​ ​System</span></h4>
+                 <hr />
+                <div class="form-group">
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-user loginicons"></span><span class="loginicontext">Connect with your Project Members and Share the Documents!</span>
+                    </div><br />
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-camera loginicons"></span><span class="loginicontext">Capture and share your life moments in Photos!</span>
+                    </div><br />
+                    <div class="form-group">
+                        <span class="glyphicon glyphicon-map-marker loginicons"></span><span class="loginicontext">See Friend Photos and show off your Checkins!</span>
+                    </div>
+                </div>
+        </div>--%>
     </div>
 </asp:Content>
