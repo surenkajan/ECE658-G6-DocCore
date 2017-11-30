@@ -21,7 +21,7 @@ SELECT
 [UploadedTime],[FileSizeInKB],[IsCheckedIn],[Modified],
 (SELECT TOP 1 EmailAddress from [doccore].[User] where  ID = [ModifiedBy]) as [ModifiedBy]  
 FROM [doccore].[Documents]
-WHERE DocID in 
+WHERE   IsCheckedIn = 1 AND DocID in 
 	(SELECT DocID FROM [doccore].[SharedWith] 
 		WHERE sharedTo = (SELECT TOP 1 ID from [doccore].[User] where EmailAddress = @EmailID))
 GO

@@ -233,3 +233,13 @@
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+
+.docMetaData-sec {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.docMetaData-title
+{
+    font-weight:bold;
+}

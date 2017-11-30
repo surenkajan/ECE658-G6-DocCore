@@ -66,10 +66,10 @@
         '<span class="helper"></span>' +
         '<img src= "Content\\Images\\extNew\\' + document.FileType.toLowerCase() + '-icon-128x128.png" onclick= "imagezoom(' + id + ')" id= "image' + id + '" style= "min-width:200px;max-width:100%;max-height:100%;object-fit: contain" />' +
         '<div class="helper dochelper">' +
-        '<div><span class="docMetaData-title">Project Name:</span><span class="docMetaData-value">' + document.FileName + '</span></div>' +
-        '<div><span class="docMetaData-title">Created Time:</span><span class="docMetaData-value">' + document.UploadedTime + '</span></div>' +
-        '<div><span class="docMetaData-title">Modified By:</span><span class="docMetaData-value">' + document.ModifiedBy + '</span></div>' +
-        '<div><span class="docMetaData-title">Modified Time:</span><span class="docMetaData-value">' + document.Modified + '</span></div>' +
+        '<div class="docMetaData-sec"><span class="docMetaData-title">Project Name:</span><span class="docMetaData-value">' + document.FileName + '</span></div>' +
+        '<div class="docMetaData-sec"><span class="docMetaData-title">Created Time:</span><span class="docMetaData-value">' + DateFormatter(document.UploadedTime) + '</span></div>' +
+        '<div class="docMetaData-sec"><span class="docMetaData-title">Modified By:</span><span class="docMetaData-value">' + document.ModifiedBy + '</span></div>' +
+        '<div class="docMetaData-sec"><span class="docMetaData-title">Modified Time:</span><span class="docMetaData-value">' + DateFormatter(document.Modified) + '</span></div>' +
         '</div>' +
         '</div>' +
         '<span style="position: relative; font-size: 20px; margin-left: 15px;color:#365899;cursor: pointer;" class="glyphicon glyphicon-comment" onclick="showcommentDiv(' + id + ')"></span> ' +
@@ -230,6 +230,16 @@ function handleAddButtonCss(id) {
     } else {
         $('#AddCommentBtn' + id).prop('disabled', false);
     }
+}
+
+function DateFormatter(jsonDate)
+{
+    var dateString = jsonDate.substr(6);
+    var currentTime = new Date(parseInt(dateString));
+    var str = currentTime.getFullYear() + "-" + (currentTime.getMonth() + 1) + "-" + currentTime.getDate() + " " + currentTime.getHours() + ":" + currentTime.getMinutes() + ":" + currentTime.getSeconds();
+
+    return str;
+
 }
 
 function showcommentDiv(id) {

@@ -21,7 +21,7 @@ SELECT
 [UploadedTime],[FileSizeInKB],[IsCheckedIn],[Modified],
 (SELECT TOP 1 EmailAddress from [doccore].[User] where  ID = [ModifiedBy]) as [ModifiedBy]  
 FROM [doccore].[Documents] 
-where UploadedBy = (SELECT TOP 1 ID from [doccore].[User] where EmailAddress = @EmailID)
+where UploadedBy = (SELECT TOP 1 ID from [doccore].[User] where EmailAddress = @EmailID) AND IsCheckedIn = 1
 order by UploadedTime desc
 GO
 

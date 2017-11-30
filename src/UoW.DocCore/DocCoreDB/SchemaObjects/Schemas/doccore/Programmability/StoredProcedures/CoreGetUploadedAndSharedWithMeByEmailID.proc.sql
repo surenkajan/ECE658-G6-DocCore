@@ -29,6 +29,7 @@ WHERE (DocID in
 	  AND(
 		UploadedBy = (SELECT TOP 1 ID from [doccore].[User] where  EmailAddress = @U_User)
 	  )
+	  AND  IsCheckedIn = 1
 
 GO
 

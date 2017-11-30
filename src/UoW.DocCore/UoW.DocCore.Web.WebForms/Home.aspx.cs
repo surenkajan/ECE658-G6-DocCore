@@ -132,10 +132,10 @@ namespace UoW.DocCore.Web.WebForms
         //}
 
         //btnTest_Click
-        protected void btnTest_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/DownloadFile.ashx?Docid=" + 43);
-        }
+        //protected void btnTest_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("~/DownloadFile.ashx?Docid=" + 43);
+        //}
         protected void btnSave_Click(object sender, EventArgs e)
         {
 

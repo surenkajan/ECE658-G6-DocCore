@@ -11,12 +11,12 @@
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="Content/js/DocCoreBDelegate.js"></script>
     <script src="Content/js/DocCoreHome.js" type="text/javascript"></script>
     <script src="Content/js/tag-it.js" type="text/javascript"></script>
     <script src="Content/js/tag-it.min.js" type="text/javascript"></script>
-    
+
     <%--<script type="text/javascript">   
         function ShowDocumentPreview(input) {
             document.getElementById("DocID").style.display = "block";
@@ -42,7 +42,7 @@
             var editor = {
                 setSource: function () {
                     //Replace with All Employees of the project
-                   // return GetAllUsersByProjectID(userEmail);
+                    // return GetAllUsersByProjectID(userEmail);
                     return GetAllUsers();
                 }
             }
@@ -68,28 +68,28 @@
         });
 
         //$.ajax({
-    //    type: "GET",
-    //    dataType: "json",
-    //    url: DocCoreServicesBaseAddress + "/userRest/GetAllUsers",
-    //    success: function (members) {
+        //    type: "GET",
+        //    dataType: "json",
+        //    url: DocCoreServicesBaseAddress + "/userRest/GetAllUsers",
+        //    success: function (members) {
 
-    //        for (index in members) {
-    //            members[index].value = members[index].FullName;
-    //        }
-    //        $("#MainContent_txtSharedWith").autocomplete({
-    //            source: members,
-    //            minLength: 1,
-    //            focus: function (event, ui) {
-    //                $("#MainContent_txtSharedWith").val(ui.item.FullName)
-    //                return false;
-    //            },
-    //            select: function (event, ui) {
-    //                //location.href = DocCoreAppBaseAddress + "/Admin/ViewAllUsers?Uid=" + ui.item.Uid;
-    //                //return false;
-    //            }
-    //        });
-    //    }
-    //});
+        //        for (index in members) {
+        //            members[index].value = members[index].FullName;
+        //        }
+        //        $("#MainContent_txtSharedWith").autocomplete({
+        //            source: members,
+        //            minLength: 1,
+        //            focus: function (event, ui) {
+        //                $("#MainContent_txtSharedWith").val(ui.item.FullName)
+        //                return false;
+        //            },
+        //            select: function (event, ui) {
+        //                //location.href = DocCoreAppBaseAddress + "/Admin/ViewAllUsers?Uid=" + ui.item.Uid;
+        //                //return false;
+        //            }
+        //        });
+        //    }
+        //});
 
         function initAutocomplete() {
 
@@ -118,7 +118,7 @@
     </script>
 
 
-<%--    <div class="container">
+    <%--    <div class="container">
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" style="margin-left: 470px; width: 200px; margin-top: 20px"><span class="glyphicon glyphicon-picture"></span>&nbsp;Upload Document</button>
 
@@ -177,9 +177,14 @@
 
 
 
-    <h4>Upload New Documents to DocCore:</h4>
+
     <div class="form-horizontal">
-        <asp:FileUpload ID="DocumentUpload" runat="server" onchange="this.form.submit()" />
+        <asp:PlaceHolder ID="UploadPlaceHolder" runat="server">
+            <div class="doccore-upload-section" style="margin-right: 30%; margin-left: 32%; margin-top: 2%;margin-bottom: 2%;">
+                <h4>Upload New Documents:</h4>
+                <asp:FileUpload ID="DocumentUpload" runat="server" onchange="this.form.submit()" />
+            </div>
+        </asp:PlaceHolder>
         <%--<asp:FileUpload ID="DocumentUpload" runat="server"  onchange="ShowImagePreview(this);" />--%>
         <asp:PlaceHolder ID="UploadedDocumentDetailsPH" runat="server" Visible="false">
             <div class="col-md-3" style="margin-top: 10px;">
@@ -243,7 +248,7 @@
                 </div>
             </div>
         </asp:PlaceHolder>
-        <asp:Button runat="server" OnClick="btnTest_Click" Text="Test" CssClass="btn btn-default" />
+        <%--<asp:Button runat="server" OnClick="btnTest_Click" Text="Test" CssClass="btn btn-default" />--%>
 
         <div id="SharedDocuments" style="overflow-x: auto;">
             <%--<asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>--%>
