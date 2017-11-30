@@ -35,7 +35,7 @@
         {
             try
             {
-                return Db.Read(Db.QueryType.StoredProcedure, "[doccore].[CoreGetUserRoleByEmailID]", GetUserFromReader, "DocCoreMSSQLConnection",
+                return Db.Read(Db.QueryType.StoredProcedure, "[doccore].[CoreGetUserRoleByEmailID]", GetAllUserFromReader, "DocCoreMSSQLConnection",
                     new object[] { "EmailAddress", emailID });
                 //return new User() { FirstName = "User1FN", LastName = "User1LN", EmailAddress = "user1@gmail.com   ", DateOfBirth = DateTime.Now, FullName = "User1 User 1", Sex = "Male" };
             }

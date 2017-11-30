@@ -14,65 +14,79 @@ namespace UoW.DocCore.Web.WebForms.Admin
         {
             if (!IsPostBack)
             {
-                Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
-                string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-
-
-                if (string.IsNullOrEmpty(uid))
+                string currentUserEmailID;
+                currentUserEmailID = HttpContext.Current.User.Identity.Name;
+                HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
+                hdnf_CurrentUserEmailID.Value = currentUserEmailID;
+                UserDto role = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
+                if (role.ProjectRole == "Admin")
                 {
-                    List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
-                    DataList1.DataSource = project;
-                    DataList1.DataBind();
+                    UserDto userNew = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
+                    Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
+                    string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
+
+
+                    if (string.IsNullOrEmpty(uid))
+                    {
+                        List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
+                        DataList1.DataSource = project;
+                        DataList1.DataBind();
+                    }
+                    else
+                    {
+
+                        int ID = Int32.Parse(uid);
+                        ProjectDto project = DocCoreBDelegate.Instance.GetProjectDetailsByID(ID);
+                        List<ProjectDto> projectNew = new List<ProjectDto>();
+                        projectNew.Add(project);
+                        DataList1.DataSource = projectNew;
+                        DataList1.DataBind();
+
+                        //    List<ProjectDto> projectNew = new List<ProjectDto>();
+                        //    foreach (ProjectDto proj in project)
+                        //    {
+                        //        if (txtSearch.Text == proj.ProjectName)
+                        //        {
+
+
+                        //            projectNew.Add(proj);
+                        //        }
+                        //    }
+                        //    DataList1.DataSource = projectNew;
+                        //    DataList1.DataBind();
+                        //}
+
+                    }
+                    //else
+                    //{
+                    //    List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
+                    //    DataList1.DataSource = project;
+                    //    if (txtSearch.Text == "")
+                    //    {
+                    //        DataList1.DataBind();
+                    //    }
+                    //    else
+                    //    {
+                    //        List<ProjectDto> projectNew = new List<ProjectDto>();
+                    //        foreach (ProjectDto proj in project)
+                    //        {
+                    //            if (txtSearch.Text == proj.ProjectName)
+                    //            {
+
+
+                    //                projectNew.Add(proj);
+                    //            }
+                    //        }
+                    //        DataList1.DataSource = projectNew;
+                    //        DataList1.DataBind();
+                    //    }
+                    //}
                 }
                 else
                 {
-
-                    int ID = Int32.Parse(uid);
-                    ProjectDto project = DocCoreBDelegate.Instance.GetProjectDetailsByID(ID);
-                    List<ProjectDto> projectNew = new List<ProjectDto>();
-                    projectNew.Add(project);
-                    DataList1.DataSource = projectNew;
-                    DataList1.DataBind();
-
-                    //    List<ProjectDto> projectNew = new List<ProjectDto>();
-                    //    foreach (ProjectDto proj in project)
-                    //    {
-                    //        if (txtSearch.Text == proj.ProjectName)
-                    //        {
-
-
-                    //            projectNew.Add(proj);
-                    //        }
-                    //    }
-                    //    DataList1.DataSource = projectNew;
-                    //    DataList1.DataBind();
-                    //}
-
+                    Session["ErrorCode"] = "You are not Authorised to access this page";
+                    Response.Redirect("~/Error.aspx");
                 }
-                //else
-                //{
-                //    List<ProjectDto> project = DocCoreBDelegate.Instance.GetAllProject();
-                //    DataList1.DataSource = project;
-                //    if (txtSearch.Text == "")
-                //    {
-                //        DataList1.DataBind();
-                //    }
-                //    else
-                //    {
-                //        List<ProjectDto> projectNew = new List<ProjectDto>();
-                //        foreach (ProjectDto proj in project)
-                //        {
-                //            if (txtSearch.Text == proj.ProjectName)
-                //            {
-
-
-                //                projectNew.Add(proj);
-                //            }
-                //        }
-                //        DataList1.DataSource = projectNew;
-                //        DataList1.DataBind();
-                //    }
-                //}
             }
         }
 

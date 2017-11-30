@@ -33,35 +33,40 @@ namespace UoW.DocCore.Web.WebForms
                 Email.Visible = false;
                 LabelEmail.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
-                //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
-                //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
+                HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
+                hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-                uid = "1";
-                //if (user.ProjectRole == "Admin")
-                //{
-               
-                //PopulateAllRoles();
-                if (string.IsNullOrEmpty(uid))
+                //uid = "1";
+                if (user.ProjectRole == "Admin")
                 {
-                    // My Profile
-                    PasswordSection.Visible = true;
-                    PlaceHolder1.Visible = true;
-                    Email.Visible = true;
-                    //PopulateAllProjects();
+
+                    //PopulateAllRoles();
+                    if (string.IsNullOrEmpty(uid))
+                    {
+                        // My Profile
+                        PasswordSection.Visible = true;
+                        PlaceHolder1.Visible = true;
+                        Email.Visible = true;
+                        //PopulateAllProjects();
+
+                    }
+                    else
+                    {
+
+                        LoadData(uid);
+
+                    }
+
+                    //}
 
                 }
                 else
                 {
-
-                    LoadData(uid);
-
+                    Session["ErrorCode"] = "You are not Authorised to access this page";
+                    Response.Redirect("~/Error.aspx");
                 }
-
-                //}
-
-
                 
             }
             
@@ -90,7 +95,7 @@ namespace UoW.DocCore.Web.WebForms
             Gender.SelectedValue = gender;
             DateTime date = user.DateOfBirth ?? DateTime.Now;
             //Gender.SelectedIndex = Gender.Items.IndexOf(Gender.Items.FindByText(gender));
-            DOB.Text = user.DateOfBirth != null ? date.ToString("dd/MM/yyyy") : "";
+            DOB.Text = date.ToString("MMMM d, yyyy");
             LabelEmail.Text = user.EmailAddress;
             UserDto user1 = DocCoreBDelegate.Instance.GetAllUserDetailsByUid(UserID);
             ddlRole.SelectedValue = user1.ProjectRole;
@@ -169,6 +174,7 @@ namespace UoW.DocCore.Web.WebForms
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
             IdentityResult result = manager.Create(user, Password.Text);
+          
             if (result.Succeeded)
             {
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -191,7 +197,7 @@ namespace UoW.DocCore.Web.WebForms
                 };
                 UserDto UserAccess = new UserDto()
                 {
-                    EmailAddress = LabelEmail.Text,
+                    EmailAddress = Email.Text,
                     ProjectRole = ddlRole.Text
                 };
                 int AddStatus = DocCoreBDelegate.Instance.InsertUser(newUser);
