@@ -139,6 +139,13 @@ function GetAllTeamMembersByEmailID(EmailID) {
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/adminRest/GetAllTeamMembersByEmailID?EmailID=" + EmailID))
 }
 
+function GetAllPossibleValuesforSharedWith(EmailID) {
+    //TODO : Have not Implemented yet
+    var allteammembers = DocCoreGETService(DocCoreServicesBaseAddress + "/adminRest/GetAllTeamMembersByEmailID?EmailID=" + EmailID));
+    //var allProjects = DocCoreGETService(DocCoreServicesBaseAddress + "/adminRest/GetProjectDetailsByUid?EmailID=" + EmailID));
+
+}
+
 function GetAllUsers() {
     //TODO : Have not Implemented yet
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/userRest/GetAllUsers"))
@@ -188,3 +195,4 @@ function DownloadFileViaASHX(DocID) {
     //return (DocCorePOSTService("/DownloadFile.ashx?Docid=" + DocID));
     window.open("/DownloadFile.ashx?Docid=" + DocID, '_blank');
 }
+

@@ -46,7 +46,7 @@
 
 
                     //return GetAllUsers();
-                    return GetAllTeamMembersByEmailID(userEmail);
+                    return GetAllPossibleValuesforSharedWith(userEmail);
                 }
             }
 
