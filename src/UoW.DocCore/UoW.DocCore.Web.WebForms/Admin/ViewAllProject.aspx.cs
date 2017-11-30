@@ -21,7 +21,7 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 UserDto role = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 if (role.ProjectRole == "Admin")
                 {
-                    UserDto userNew = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
+                    //UserDto userNew = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                     Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                     string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
 
@@ -37,6 +37,7 @@ namespace UoW.DocCore.Web.WebForms.Admin
 
                         int ID = Int32.Parse(uid);
                         ProjectDto project = DocCoreBDelegate.Instance.GetProjectDetailsByID(ID);
+                        project.pID = ID;
                         List<ProjectDto> projectNew = new List<ProjectDto>();
                         projectNew.Add(project);
                         DataList1.DataSource = projectNew;
