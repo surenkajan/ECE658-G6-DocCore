@@ -68,31 +68,37 @@ namespace UoW.DocCore.Web.WebForms.Admin
                 Label4.Visible = false;
                 ErrorMsg.Visible = false;
                 currentUserEmailID = HttpContext.Current.User.Identity.Name;
-                //HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
-                //hdnf_CurrentUserEmailID.Value = currentUserEmailID;
+                HiddenField hdnf_CurrentUserEmailID = (HiddenField)Master.FindControl("DocCore_hdnf_CurrentUserEmailID");
+                hdnf_CurrentUserEmailID.Value = currentUserEmailID;
                 UserDto user = DocCoreBDelegate.Instance.GetUserRoleByEmailID(currentUserEmailID);
                 Uri myUri = new Uri(HttpContext.Current.Request.Url.AbsoluteUri);
                 string uid = HttpUtility.ParseQueryString(myUri.Query).Get("Uid");
-               
-                
+
+
                 //uid = "22";
-                //if (user.ProjectRole == "Admin")
-                //{
-                //FriendProfiles new1 = new FriendProfiles();
-                //ListBox1.DataSource = new1.FriendProfiless();
-                //ListBox1.DataTextField = "FirstName";
-                ////DropDownList1.DataValueField = "LastName";
-                //ListBox1.DataBind();
-                if (string.IsNullOrEmpty(uid))
+                if (user.ProjectRole == "Admin")
                 {
-                    // My Profile
-                    LoadGridDataFirst();
+                    //FriendProfiles new1 = new FriendProfiles();
+                    //ListBox1.DataSource = new1.FriendProfiless();
+                    //ListBox1.DataTextField = "FirstName";
+                    ////DropDownList1.DataValueField = "LastName";
+                    //ListBox1.DataBind();
+                    if (string.IsNullOrEmpty(uid))
+                    {
+                        // My Profile
+                        LoadGridDataFirst();
+                    }
+                    else
+                    {
+
+                        LoadGridData(uid);
+
+                    }
                 }
                 else
                 {
-
-                    LoadGridData(uid);
-
+                    Session["ErrorCode"] = "You are not Authorised to access this page";
+                    Response.Redirect("../Error.aspx");
                 }
             }
 

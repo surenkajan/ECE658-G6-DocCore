@@ -6,7 +6,8 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2 id="ErrorTitle"></h2>
     <div id="PictreRegisterUserDiv" class="form-horizontal">
-        <h4 id="ErrorDescription"></h4>
+        <h4 id="ErrorDescription" style="color:red;">
+            <asp:Label ID="lblErrorDescription" runat="server" Text=""></asp:Label></h4>
         <%--<asp:PlaceHolder ID="DocCoreErrorPage" runat="server">
             <div class="form-group">
 

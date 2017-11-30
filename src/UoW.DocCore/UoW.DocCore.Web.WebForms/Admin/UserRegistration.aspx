@@ -17,7 +17,7 @@
         });
     </script>
 
-    <h2><%: Title %>.</h2>
+    <h2 id="RegistrationID"><%: Title %>.</h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>

@@ -11,11 +11,16 @@ namespace UoW.DocCore.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string msg = (string)(Session["ErrorCode"]);
+            if(!string.IsNullOrEmpty(msg))
+            {
+                lblErrorDescription.Text = msg;
+            }
         }
 
         protected void Close_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("/home");
         }
     }
 }
