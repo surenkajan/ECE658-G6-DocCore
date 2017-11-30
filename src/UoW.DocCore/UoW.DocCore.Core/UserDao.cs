@@ -252,6 +252,13 @@
                 GetMemberFromReader, "DocCoreMSSQLConnection",
                 new object[] { "ProjectID", ID });
         }
+        
+        public List<User> GetAllTeamMembersByEmailID(string EmailID)
+        {
+            return Db.ReadList(Db.QueryType.StoredProcedure, "[doccore].[GetAllTeamMembersByEmailID]",
+                GetMemberFromReader, "DocCoreMSSQLConnection",
+                new object[] { "EmailID", EmailID });
+        }
         private User GetMemberFromReader(IDataReader reader)
         {
             return GetMemberFromReader(reader, "AU");

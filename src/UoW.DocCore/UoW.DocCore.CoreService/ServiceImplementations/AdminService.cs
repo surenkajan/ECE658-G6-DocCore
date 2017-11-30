@@ -82,5 +82,11 @@ namespace UoW.DocCore.CoreService
             ProjectDao projectDao = new ProjectDao();
             return CoreObjectMapper.ProjectDaoToDto(projectDao.GetProjectDetailsByUid(ID));
         }
+
+        public List<UserDto> GetAllTeamMembersByEmailID(string EmailID)
+        {
+            UserDao userDao = new UserDao();
+            return CoreObjectMapper.UserDaoToDto(userDao.GetAllTeamMembersByEmailID(EmailID));
+        }
     }
 }

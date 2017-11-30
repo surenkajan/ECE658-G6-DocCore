@@ -105,5 +105,13 @@ namespace UoW.DocCore.CoreService
        UriTemplate = "GetProjectDetailsByUid?Uid={ID}")]
         List<ProjectDto> GetProjectDetailsByUid( int ID);
 
+        [OperationContract]
+        [Description("Get All Team Members from all projects of Email ID")]
+        [WebGet(BodyStyle = WebMessageBodyStyle.Bare,
+    RequestFormat = WebMessageFormat.Json,
+    ResponseFormat = WebMessageFormat.Json,
+    UriTemplate = "GetAllTeamMembersByEmailID?EmailID={EmailID}")]
+        List<UserDto> GetAllTeamMembersByEmailID(string EmailID);
+
     }
 }

@@ -1,1 +1,8 @@
-﻿
+﻿.docMetaData-sec {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.docMetaData-title {
+    font-weight: bold;
+}

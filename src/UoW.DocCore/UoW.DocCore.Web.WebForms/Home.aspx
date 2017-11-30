@@ -43,7 +43,10 @@
                 setSource: function () {
                     //Replace with All Employees of the project
                     // return GetAllUsersByProjectID(userEmail);
-                    return GetAllUsers();
+
+
+                    //return GetAllUsers();
+                    return GetAllTeamMembersByEmailID(userEmail);
                 }
             }
 

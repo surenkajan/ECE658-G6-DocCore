@@ -134,6 +134,11 @@ function GetAllUsersByProjectID(Pid) {
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/userrest/GetAllUsersByProjectID?PID=" + Pid))
 }
 
+function GetAllTeamMembersByEmailID(EmailID) {
+    //TODO : Have not Implemented yet
+    return (DocCoreGETService(DocCoreServicesBaseAddress + "/adminRest/GetAllTeamMembersByEmailID?EmailID=" + EmailID))
+}
+
 function GetAllUsers() {
     //TODO : Have not Implemented yet
     return (DocCoreGETService(DocCoreServicesBaseAddress + "/userRest/GetAllUsers"))

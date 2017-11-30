@@ -73,7 +73,7 @@
         '</div>' +
         '</div>' +
         '<span style="position: relative; font-size: 20px; margin-left: 15px;color:#365899;cursor: pointer;" class="glyphicon glyphicon-comment" onclick="showcommentDiv(' + id + ')"></span> ' +
-        '<div><img src= "Content\\Images\\download.png" onclick= "DownloadFileViaASHX(' + id + ')" id= "doc' + id + '" style= "float:right;height:30px;" /></div>' +
+        '<div><img src= "Content\\Images\\download.png" onclick= "DownloadFileViaASHX(' + id + ')" id= "doc' + id + '" style= "float:right;height:30px;margin-top:-25px;margin-right:5px;" /></div>' +
         '<div id="description' + id + '" style="margin-top:5px;margin-bottom:5px;margin-left:15px;height:50px;">' + descriptionString + tagString + '</div>' +
         '<div class="detailBox"><div class="titleBox"><label>Comments</label></div ><div class="actionBox"> <ul id="commentList' + id + '" class="commentList">' + commentString + '</ul></div>' +
         '<div class="input-group" style="z-index:0.5;"><input id="AddCommentDiv' + id + '" class="form-control inputcomment" type="text" placeholder="Your comments" onkeyup="handleAddButtonCss(' + id + ')" />' +

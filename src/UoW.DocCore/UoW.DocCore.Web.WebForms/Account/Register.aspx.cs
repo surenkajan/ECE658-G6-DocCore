@@ -6,11 +6,34 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using UoW.DocCore.Web.WebForms.Models;
+using System.Collections.Generic;
 
 namespace UoW.DocCore.Web.WebForms.Account
 {
     public partial class Register : Page
     {
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //ErrorMessage.Visible = false;
+
+            //Retrieve the Security questions:
+            List<SecurityQuestionDto> questionsList = DocCoreBDelegate.Instance.GetSecurityQuestions();
+            if (questionsList != null)
+            {
+                SQuestion1.Text = questionsList[0].Question;
+                SQuestion2.Text = questionsList[1].Question;
+            }
+
+            //Redirect if the user is already loggedin
+            //string CurrentEmailID = (string)(Session["s_CurrentUserEmailID"]);
+            string LoggedInUserEmailID = HttpContext.Current.User.Identity.Name;
+            if (!string.IsNullOrEmpty(LoggedInUserEmailID))
+            {
+                Response.Redirect("/Home/Home");
+            }
+        }
+
         protected void CreateUser_Click(object sender, EventArgs e)
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -38,6 +61,29 @@ namespace UoW.DocCore.Web.WebForms.Account
                     ProfilePhoto = ImageToBase64()
                 };
                 int AddStatus = DocCoreBDelegate.Instance.InsertUser(newUser);
+
+                //Add Answers to the security questions
+                List<SecurityAnswerPair> questionsAnswers = new List<SecurityAnswerPair>();
+                SecurityAnswersDto answers = new SecurityAnswersDto()
+                {
+                    UserEmailID = Email.Text,
+                    //QuestionAnswer = new Dictionary<string, string>
+                    //{
+                    //    {SQuestion1.Text,SQuestion1Ans.Text},
+                    //    {SQuestion2.Text,SQuestion2Ans.Text}
+                    //}
+                    QuestionsAnswers = new List<SecurityAnswerPair> {
+                        new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = SQuestion1.Text},
+                            Answer =  SQuestion1Ans.Text
+                        },
+                        new SecurityAnswerPair(){
+                            Question = new SecurityQuestion(){ Question = SQuestion2.Text},
+                            Answer =  SQuestion2Ans.Text
+                        }
+                    }
+                };
+                int AddAnsStatus = DocCoreBDelegate.Instance.InsertSecurityAnswers(answers);
 
                 signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
